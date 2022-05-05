@@ -1,34 +1,38 @@
 import styled from "styled-components"
 
 export const Container = styled.header`
+    //Menu/Topbar
     width: 100vw;
-    height: 50px;
+    height: 60px;
     display: flex;
-    justify-content: flex-end;
+    padding: 1% 20%;
+    justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
-    background-color: #E8E8E8;
+    background-color: #fff;
+    border-bottom: 1px solid;
+    border-color: #7F8777;
 
+    //Logo
     img{
     cursor: pointer;
-    width: 45px;
+    width: 40px;
     margin-right: auto;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
 
     }
 
+    //Menu items
     li, a, button{
-    font-family: sans-serif;
     font-weight: 500;
     font-size: 16px;
     color: #3B393B;
     text-decoration: none;
-
     }
+
     .nav_links{
     list-style: none;
-
+    cursor: pointer;
     }
 
     .nav_links li{
@@ -44,19 +48,20 @@ export const Container = styled.header`
     color: #94449E;
     }
 
+    //Signin button
     button{
-    margin-left: 40px;
+    margin-left: 30px;
     padding: 9px 25px;
     background-color: #94449E;
     border: none;
-    border-radius: 50px;
+    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease 0s;
-    color: white;
+    color: #fff;
     }
-
+    
+    //Hover effect signin button
     button:hover{
     background-color: #3B393B;
-    color: #94449E
     }
 `

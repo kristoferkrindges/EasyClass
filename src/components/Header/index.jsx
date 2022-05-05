@@ -7,12 +7,12 @@ export default function Header(){
             <img className="logo" src={logo}></img>
             <nav>
                 <ul className="nav_links">
+                    <li><a>Sobre</a></li>
                     <li><a>Ajuda</a></li>
                     <li><a>Busca</a></li>
-                    <li><a>Entrar</a></li>
                 </ul>
             </nav>
-            <a><button>Criar conta</button></a>
+            <a><button>Entrar</button></a>
         </Container>
     )
 }
