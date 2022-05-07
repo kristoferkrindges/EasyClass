@@ -8,9 +8,11 @@ import api from "../../services/api"
 export default function Section(){
     const [teachers, setTeachers] = useState([])
     useEffect(()=> {
-        api.get("").then(({data})=>{
+        api.get("/teacher").then(({data})=>{
             setTeachers(data)
-        })
+        }).catch((error) => {
+            console.error(error)
+          })
         console.log(teachers)
     }, [])
 
