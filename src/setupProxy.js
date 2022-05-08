@@ -3,6 +3,7 @@ var reqValues = new Map();
 function relayRequestHeaders(proxyReq, req) {
     reqValues.forEach((value,key)=> {
         console.log('key:',key,'value',value);
+        proxyReq._header = 
         console.log(proxyReq._header);
     })
     console.log('relayRequestHeaders',proxyReq.headers);
@@ -21,7 +22,7 @@ const proxy = {
     cookieDomainRewrite: "localhost",
     //debug: true,
     preserveHeaderKeyCase: true,
-    onProxyReq: relayRequestHeaders,
+    //onProxyReq: relayRequestHeaders,
     onProxyRes: relayResponseHeaders,
     onError: (error) => {
         console.log("onError", error);
