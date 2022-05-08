@@ -1,45 +1,28 @@
 const {createProxyMiddleware} = require('http-proxy-middleware');
+var reqValues = new Map();
+function relayRequestHeaders(proxyReq, req) {
+    reqValues.forEach((value,key)=> {
+        console.log('key:',key,'value',value);
+        console.log(proxyReq._header);
+    })
+    console.log('relayRequestHeaders',proxyReq.headers);
+  };
+ function relayResponseHeaders(proxyRes, req, res) {
+    Object.keys(proxyRes.headers).forEach(function (key) {
+        if(key.includes('via') || key.includes('x-amz-cf-pop') || key.includes('x-amz-cf-id'))
+        reqValues.set(key,proxyRes.headers[key]);
+    });
+    console.log(reqValues);
+  };
 const proxy = {
-    target: 'https://wp66cisqye.execute-api.sa-east-1.amazonaws.com/Stage',
+    target: 'https://q4eorgmov1.execute-api.sa-east-1.amazonaws.com/Prod',
     changeOrigin: true,
-    onProxyReq: async (proxyReq, req, res) => {
-        console.log("onProxyReq",proxyReq,req)
-        var via = res.via;
-        var apiGw = res['x-amz-apigw-id'];
-        var cfId = res['x-amz-cf-id'];
-        var requestId = res['x-amzn-requestid'];
-        if (via) {
-            req.setHeader('via', via);
-        }
-        if(apiGw) {
-            req.setHeader('x-amz-apigw-id', apiGw);
-        }
-        if(cfId) {
-            req.setHeader('x-amz-cf-id', cfId);
-        }
-        if(requestId) {
-            req.setHeader('x-amzn-requestid', requestId);
-        }
-    },
-    onProxyReqWs: async (proxyReq, req, res) => {
-        console.log("onProxyReq",proxyReq,req)
-        var via = res.via;
-        var apiGw = res['x-amz-apigw-id'];
-        var cfId = res['x-amz-cf-id'];
-        var requestId = res['x-amzn-requestid'];
-        if (via) {
-            req.setHeader('via', via);
-        }
-        if(apiGw) {
-            req.setHeader('x-amz-apigw-id', apiGw);
-        }
-        if(cfId) {
-            req.setHeader('x-amz-cf-id', cfId);
-        }
-        if(requestId) {
-            req.setHeader('x-amzn-requestid', requestId);
-        }
-    },
+    secure: false,
+    cookieDomainRewrite: "localhost",
+    //debug: true,
+    preserveHeaderKeyCase: true,
+    onProxyReq: relayRequestHeaders,
+    onProxyRes: relayResponseHeaders,
     onError: (error) => {
         console.log("onError", error);
     },

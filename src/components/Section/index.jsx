@@ -11,7 +11,7 @@ export default function Section(){
         api.get("/teacher").then(({data})=>{
             setTeachers(data)
         }).catch((error) => {
-            console.error(error)
+            console.error('error',error);
           })
         console.log(teachers)
     }, [])
