@@ -9,7 +9,6 @@ export default function Header(){
                 <ul className="nav_links">
                     <li><a>Sobre</a></li>
                     <li><a>Ajuda</a></li>
-                    <li><a>Busca</a></li>
                 </ul>
             </nav>
             <a><button>Entrar</button></a>

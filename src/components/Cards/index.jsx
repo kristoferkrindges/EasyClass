@@ -2,12 +2,16 @@ import React from "react";
 import {Container, StarIcon} from "./styles"
 
 
-export default function Cards({img, estrela, name, disciplina, preco, id}){
+export default function Cards({img, stars, name, lastName, subject, price, id}){
+    const star = Array.from({length: stars}, (v,k) => k+1)
     return(
         <li>
             <Container>
                 <div>
                     <img className="logo" src={img}></img>
+                    {/* {stars?.star.forEach(stars => {
+                        <StarIcon></StarIcon>
+                    })} */}
                     <StarIcon></StarIcon>
                     <StarIcon></StarIcon>
                     <StarIcon></StarIcon>
@@ -15,13 +19,12 @@ export default function Cards({img, estrela, name, disciplina, preco, id}){
                     <StarIcon></StarIcon>
                 </div>
                 <div>
-                    <h2>{name}</h2>
+                    <h2>{`${name} ${lastName}`}</h2>
                     <hr></hr>
                     <ul>
-                        <li>{disciplina}</li>
-                        <li>{disciplina}</li>
+                        <li>{subject}</li>
                     </ul>
-                    <h2>{preco}</h2>
+                    <h2>{price}</h2>
                 </div>
             </Container>
         </li>

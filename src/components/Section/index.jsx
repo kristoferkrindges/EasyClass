@@ -15,52 +15,32 @@ export default function Section(){
             console.error('error',error);
           })
     }, [])
-
     return(
         <Container>
             <div className="seletor">
                 <h3>O QUE VOCÊ PROCURA?</h3>
                 <select className="selt">
-                <option value="">Inglês</option>
-                <option value="">Historia</option>
-                <option value="">Música</option>
-                <option value="">Biologia</option>
-            </select>
+                    <option value="History">História</option>
+                    <option value="Biology">Biologia</option>
+                    <option value="Guitar">Guitarra</option>
+                    <option value="Programming">Programação</option>
+                </select>
             </div>
             <ListCards>
-                <Cards
-                    img={logo}
-                    estrela={"xxxxx"}
-                    name={"Carlos"}
-                    lastName={""}
-                    disciplina={"Inglês"}
-                    preco={"R$65 Hr/Aula"}
-                    id={1}
-                    
+                {teachers?.map((teacher)=>(
+                    <Cards
+                        key={teacher.teacherId}
+                        img={logo}
+                        stars={teacher.rating}
+                        name={teacher.firstName}
+                        lastName={teacher.lastName}
+                        subject={"Inglês"}
+                        price={"R$65 Hr/Aula"}
+                        id={teacher.teacherId} 
                 />
-                <Cards
-                    img={logo}
-                    estrela={"xxxxx"}
-                    name={"Carlos"}
-                    lastName={""}
-                    disciplina={"Inglês"}
-                    preco={"R$65 Hr/Aula"}
-                    id={1}
-                    
-                />
-                <Cards
-                    img={logo}
-                    estrela={"xxxxx"}
-                    name={"Carlos"}
-                    lastName={""}
-                    disciplina={"Inglês"}
-                    preco={"R$65 Hr/Aula"}
-                    id={1}
-                    
-                />
+                ))}
             </ListCards>
             <p>Maiores buscas com os Melhores Profissionais</p>
-
         </Container>
     )
 }
