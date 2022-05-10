@@ -13,12 +13,12 @@ function relayRequestHeaders(proxyReq, req) {
         if(key.includes('via') || key.includes('x-amz-cf-pop') || key.includes('x-amz-cf-id'))
         reqValues.set(key,proxyRes.headers[key]);
     });
-    console.log(reqValues);
+    //req.setHeader('Access-Control-Allow-Origin','https://q4eorgmov1.execute-api.sa-east-1.amazonaws.com/Prod');
   };
 const proxy = {
     target: 'https://q4eorgmov1.execute-api.sa-east-1.amazonaws.com/Prod',
     changeOrigin: true,
-    secure: false,
+    secure: true,
     cookieDomainRewrite: "localhost",
     //debug: true,
     preserveHeaderKeyCase: true,

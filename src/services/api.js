@@ -4,7 +4,7 @@ const api = axios.create({
     baseURL: "/aws",
     headers: {'Access-Control-Allow-Origin':'*',
     'Access-Control-Allow-Headers': '*',
-    'Host': 'q4eorgmov1.execute-api.sa-east-1.amazonaws.com'},
+    'Vary': 'Origin'},
     withCredentials: false,
 })
 
