@@ -29,5 +29,5 @@ const proxy = {
     },
 };
 module.exports = function(app) {
-        app.use('/aws',createProxyMiddleware(proxy));
+       // app.use('/aws',createProxyMiddleware(proxy));
 }
