@@ -28,9 +28,6 @@ export default function Section(){
             console.error('error',error);
           });
       };
-
-    
-
     return(
         <Container>
             <div className="seletor">
@@ -55,12 +52,11 @@ export default function Section(){
                     lastName={value.lastName}
                     disciplina={"Inglês"}
                     preco={"R$65 Hr/Aula"}
-                    id={1}   
+                    id={value.teacherId}   
                 />)
                 }
             </ListCards>
             <p>Maiores buscas com os Melhores Profissionais</p>
-
         </Container>
     )
 }
