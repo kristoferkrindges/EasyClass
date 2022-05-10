@@ -10,10 +10,10 @@ export default function Section(){
     useEffect(()=> {
         api.get("/teacher").then(({data})=>{
             setTeachers(data)
+            console.log(data)
         }).catch((error) => {
             console.error('error',error);
           })
-        console.log(teachers)
     }, [])
 
     return(
