@@ -20,8 +20,8 @@ export default function Section(){
       };
 
       const getTeachersSubjectId = (id) => {
-        console.log("get teachers by subjectId" + id);
-        api.get("/teacher?subjectId=" + id).then(({data})=>{
+        console.log("get teachers by subject" + id);
+        api.get("/teacher?subject=" + id).then(({data})=>{
             setTeachers(data)
             console.log(data)
         }).catch((error) => {
@@ -36,10 +36,12 @@ export default function Section(){
                 onChange={e => getTeachersSubjectId(e.target.value)}
                 
                 className="selt">
-                <option value="1">Inglês</option>
-                <option value="2">Historia</option>
-                <option value="3">Música</option>
-                <option value="4">Biologia</option>
+                <option value="English">Inglês</option>
+                <option value="History">Historia</option>
+                <option value="Guitar">Guitarra</option>
+                <option value="Music">Música</option>
+                <option value="Biology">Biologia</option>
+                <option value="Programming">Programação</option>
             </select>
             </div>
             <ListCards>
