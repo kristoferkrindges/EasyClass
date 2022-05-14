@@ -1,17 +1,20 @@
 import React from "react";
 import {Container} from "./styles";
 import logo from "../../imagens/logo.jpeg"
+import { Link } from "react-router-dom";
+
 export default function Header(){
     return(
         <Container>
-            <img className="logo" src={logo}></img>
+            <Link to="/"><img className="logo" src={logo}></img></Link>
             <nav>
                 <ul className="nav_links">
-                    <li><a>Sobre</a></li>
-                    <li><a>Ajuda</a></li>
+                    <Link to="/"><li><a>Home</a></li></Link>
+                    <Link to="/about"><li><a>Sobre</a></li></Link>
+                    <Link to="/profile"><li><a>Perfil</a></li></Link>
                 </ul>
             </nav>
-            <a><button>Entrar</button></a>
+            <Link to="/login"><a><button>Entrar</button></a></Link>
         </Container>
     )
 }

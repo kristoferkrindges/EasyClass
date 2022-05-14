@@ -58,7 +58,7 @@ export default function Section(){
                 />)
                 }
             </ListCards>
-            <p>Maiores buscas com os Melhores Profissionais</p>
+            <p>Encontre os melhores profissionais do mercado!</p>
         </Container>
     )
 }

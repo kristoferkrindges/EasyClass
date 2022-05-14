@@ -1,17 +1,13 @@
 import React from "react";
-import Header from "../Header"
-import Footer from "../Footer"
-import Article from "../Article"
-import Section from "../Section"
+import Article from "../Article";
+import Section from "../Section";
 import { Container } from "./styles";
 
 export default function Layout(){
     return(
-        <Container>
-            <Header></Header>
-            <Article></Article>
-            <Section></Section>
-            <Footer></Footer>
-        </Container>
+            <Container>
+                <Article></Article>
+                <Section></Section>
+            </Container>
     )
 }
