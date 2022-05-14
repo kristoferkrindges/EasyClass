@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./Header"
-import Footer from "./Footer"
+import Header from "../Shared/Header"
+import Footer from "../Shared/Footer"
 import Article from "./Article"
 import Section from "./Section"
 import { Container } from "./styles";
