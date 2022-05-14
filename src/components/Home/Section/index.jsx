@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {Container, ListCards} from "./styles";
-import Cards from "../Cards"
-import logo from "../../imagens/logo.jpeg"
-
-import api from "../../services/api"
+import Cards from "../../Shared/Cards"
+import logo from "../../../imagens/logo.jpeg"
+import api from "../../../services/api"
 
 export default function Section(){
     const [teachers, setTeachers] = useState([])

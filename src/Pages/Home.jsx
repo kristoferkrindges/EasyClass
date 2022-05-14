@@ -1,12 +1,10 @@
-import React from 'react';
-import Layout from '../components/Layout';
+import React from 'react'
+import Home from '../components/Home'
 
-function Home() {
-  return (
-    <div>
-        <Layout></Layout>
-    </div>
-  )
+function HomeScreen(){
+    return(
+        <Home></Home>
+    )
 }
 
-export default Home
+export default HomeScreen
