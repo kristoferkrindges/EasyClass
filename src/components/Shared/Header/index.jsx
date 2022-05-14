@@ -1,7 +1,7 @@
 import React from "react";
 import {Container} from "./styles";
 import logo from "../../../imagens/logo.jpeg"
-export default function Header(){
+export default function Header(props){
     return(
         <Container>
             <img className="logo" src={logo}></img>
