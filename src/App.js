@@ -1,9 +1,9 @@
-import Layout from "./components/Layout";
 import GlobalStyles from "./styles/GlobalStyles";
+import Routes from './routes'
 function App(){
     return(
         <>
-            <Layout></Layout>
+            <Routes></Routes>
             <GlobalStyles></GlobalStyles>
         </>
     );

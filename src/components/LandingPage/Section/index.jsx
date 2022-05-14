@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {Container, ListCards} from "./styles";
-import Cards from "../Cards"
-import logo from "../../imagens/logo.jpeg"
+import Cards from "../../Shared/Cards"
+import logo from "../../../imagens/logo.jpeg"
 
-import api from "../../services/api"
+import api from "../../../services/api"
 
 export default function Section(){
     const [teachers, setTeachers] = useState([])
@@ -32,26 +32,31 @@ export default function Section(){
         <Container>
             <div className="seletor">
                 <h3>O QUE VOCÊ PROCURA?</h3>
-                <select onChange={e=> getTeachersSubjectId(e.target.value)} className="selt">
-                    <option value="1">História</option>
-                    <option value="2">Biologia</option>
-                    <option value="3">Guitarra</option>
-                    <option value="4">Programação</option>
-                </select>
+                <select 
+                onChange={e => getTeachersSubjectId(e.target.value)}
+                
+                className="selt">
+                <option value="English">Inglês</option>
+                <option value="History">Historia</option>
+                <option value="Guitar">Guitarra</option>
+                <option value="Music">Música</option>
+                <option value="Biology">Biologia</option>
+                <option value="Programming">Programação</option>
+            </select>
             </div>
             <ListCards>
-                {teachers?.map((value, key)=>(
+                {
+                    teachers.map((value, key) =>
                     <Cards
-                        key={value.teacherId}
-                        img={logo}
-                        stars={value.rating}
-                        name={value.firstName}
-                        lastName={value.lastName}
-                        subject={"Inglês"}
-                        price={"R$65 Hr/Aula"}
-                        id={value.teacherId} 
-                />
-                ))}
+                    img={logo}
+                    estrela={"xxxxx"}
+                    name={value.firstName}
+                    lastName={value.lastName}
+                    disciplina={"Inglês"}
+                    preco={"R$65 Hr/Aula"}
+                    id={value.teacherId}   
+                />)
+                }
             </ListCards>
             <p>Maiores buscas com os Melhores Profissionais</p>
         </Container>
