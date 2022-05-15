@@ -1,7 +1,7 @@
-import { Container } from "./styles";
+import { Container,CalendarContainer } from "./styles";
 import React, {useState,useEffect} from 'react';
-import ReactDOM from "react-dom";
-import { useParams, useLocation } from 'react-router-dom';
+import moment from 'moment';
+import { useLocation } from 'react-router-dom';
 import WeekCalendar from 'react-week-calendar';
 import api from "../../services/api"
 export default function RequestTeacher(){
@@ -10,13 +10,15 @@ export default function RequestTeacher(){
     let [teacher, setTeacher] = useState([])
     let [lessons, setLessons] = useState([])
     let [classe, setClass] = useState([])
+    let dataConvert = [];
 
     useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     console.log(queryParams);
     const teacherId = queryParams.get('teacherId')
     setParams(teacherId)
-    getTeacherById(teacherId)
+    //getTeacherById(teacherId)
+    getLessonTeacherById(teacherId)
     })
 
     const getTeacherById = (teacherId) => {
@@ -27,6 +29,24 @@ export default function RequestTeacher(){
         }).catch((error) => {
             console.error('error',error);
           });
+      };
+
+      const getLessonTeacherById = (teacherId) => {
+        /*console.log("getLessonTeacherById " + teacherId)
+        api.get("/lesson?teacherId=" + teacherId).then(({data})=>{
+        dataConvert = data.map(val => {
+           return {start: val.startDate, end: val.endDate};
+          });
+          setLessons(dataConvert)
+            console.log(dataConvert)
+        }).catch((error) => {
+            console.error('error',error);
+          });*/
+          this.dataConvert.push(
+            {start: moment(new Date(2022,5,16,11)).format('DD/MM/YYYY HH:mm'), end: moment(new Date(2022,5,16,12)).format('DD/MM/YYYY HH:mm')},
+            {start: moment(new Date(2022,5,16,15)).format('DD/MM/YYYY HH:mm'), end: moment(new Date(2022,5,16,16)).format('DD/MM/YYYY HH:mm')}
+            )
+            console.log(dataConvert);
       };
 
 
@@ -72,8 +92,9 @@ export default function RequestTeacher(){
       }
 
     return(
+      <div>
+          <div>
         <Container>
-            <span>
                 <div>
                     Foto
                 </div>
@@ -83,22 +104,23 @@ export default function RequestTeacher(){
                 <div>
                     Mensagens
                 </div>
-            </span>
-            <span>
+            </Container>
+                </div>
             <div>
-            <h3>Consulte os horários disponível para o professor</h3>
-            
-            <div className='calendar-container'>
+            <CalendarContainer>
+              <div>
+            <h3>Consulte os horários disponível para o professor</h3>          
+            </div>
              <WeekCalendar
              numberOfDays={7}
              dayFormat={'DD/MM'}
              scaleUnit={60}
              scaleFormat={'HH'}
+             selectedIntervals={dataConvert}
              modalComponent={ModalCalendar}
              ></WeekCalendar>
-             </div>
-            </div>
-            </span>
-        </Container>
+        </CalendarContainer>
+        </div>
+        </div>
     )
 }
