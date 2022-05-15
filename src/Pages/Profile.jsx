@@ -1,11 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import Profile from '../components/Profile';
 
-function Profile() {
-  let { username } = useParams();
+function ProfileScreen() {
   return (
-    <div>This is the profile page for {username}!</div>
+    <Profile></Profile>
   )
 }
 
-export default Profile
+export default ProfileScreen
