@@ -4,6 +4,7 @@ import HomeScreen from "./Pages/Home";
 import About from './Pages/About';
 import Profile from './Pages/Profile';
 import RegisterScreen from "./Pages/Register";
+import Request from "./Pages/Request";
 import Login from './Pages/Login';
 import ErrorPage from './Pages/ErrorPage';
 
@@ -16,6 +17,7 @@ export default function Routess(){
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<RegisterScreen/>}/>
                 <Route path="/about" element={<About />} />
+                <Route path="/request" element={<Request />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile/:username" element={<Profile />} />
                 <Route path="*" element={<ErrorPage />} />
