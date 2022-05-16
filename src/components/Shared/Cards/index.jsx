@@ -1,13 +1,16 @@
 import React from "react";
 import {Container, StarIcon} from "./styles"
-
-
-export default function Cards({img, stars, name, lastName, subject, price, id}){
-    const star = Array.from({length: stars}, (v,k) => k+1)
+export default function Cards({img, stars, name, lastName, subject, price, id,onClick}){
+    const star = Array.from({length: stars}, (v,k) => k+1);
+    const eventClick = (event) => {
+        event.stopPropagation();
+        if(onClick)
+        onClick(id);
+    }
     return(
-        <li>
+        <li onClick={eventClick}>
             <Container>
-                <div>
+                <div >
                     <img className="logo" src={img}></img>
                     {/* {stars?.star.forEach(stars => {
                         <StarIcon></StarIcon>

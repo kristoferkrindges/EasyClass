@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {Container, ListCards} from "./styles";
 import Cards from "../../Shared/Cards"
 import logo from "../../../imagens/logo.jpeg"
@@ -7,6 +8,15 @@ import api from "../../../services/api"
 export default function Section(){
     const [teachers, setTeachers] = useState([])
     useEffect(()=> getTeachers(), [])
+
+     
+  let navigate = useNavigate(); 
+
+  const routeChange = (id) =>{ 
+      console.log(id);
+    let path = `/request?teacherId=${id}`; 
+    navigate(path);
+  }
 
     const getTeachers = () => {
         console.log("get teachers")
@@ -53,7 +63,8 @@ export default function Section(){
                     lastName={value.lastName}
                     disciplina={"Inglês"}
                     preco={"R$65 Hr/Aula"}
-                    id={value.teacherId}   
+                    id={value.teacherId}
+                    onClick={routeChange}   
                 />)
                 }
             </ListCards>
