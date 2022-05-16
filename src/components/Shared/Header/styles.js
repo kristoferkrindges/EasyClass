@@ -16,10 +16,9 @@ export const Container = styled.header`
     img{
     cursor: pointer;
     width: 40px;
-    margin-right: auto;
+    margin-right: 20%;
     border: none;
     border-radius: 5px;
-
     }
 
     //Menu items
@@ -38,6 +37,7 @@ export const Container = styled.header`
     .nav_links li{
     display: inline-block;
     padding: 0px 20px;
+    align-items: center;
     }
 
     .nav_links li a{
@@ -50,8 +50,7 @@ export const Container = styled.header`
 
     //Signin button
     button{
-    margin-left: 30px;
-    padding: 9px 25px;
+    padding: 10px 15px;
     background-color: #94449E;
     border: none;
     border-radius: 5px;

@@ -9,7 +9,7 @@ export const Container = styled.div`
     height: 250px;
     width: 350px;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 6px black;
     cursor: pointer;
 
     transition: opacity 0.5s ease-out;
