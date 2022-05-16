@@ -8,7 +8,7 @@ export default function Register(){
     return(
         <Container>
             <Header></Header>
-            <Form></Form>
+                <Form></Form>
             <Footer></Footer>
         </Container>
     )

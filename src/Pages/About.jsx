@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import About from '../components/About';
 
-function About() {
-  return (
-    <div>About</div>
-  )
+function AboutScreen() {
+    return (
+      <About></About>
+    )
 }
 
-export default About
+export default AboutScreen
