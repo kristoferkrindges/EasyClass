@@ -1,10 +1,8 @@
-import React from 'react';
-import Profile from '../components/Profile';
+import React from "react";
+import Profile from "../components/Profile";
 
 function ProfileScreen() {
-  return (
-    <Profile></Profile>
-  )
+	return <Profile></Profile>;
 }
 
-export default ProfileScreen
+export default ProfileScreen;
