@@ -1,65 +1,65 @@
-import React, {useState} from 'react';
-import {Container} from "./style";
-import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { auth } from '../../../firebase-config'
-import Fields from '../../Register/Fields'
+import React, { useRef } from "react";
+import { Container } from "./style";
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../../context/userContext";
 
-function FieldsLogin() {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+// function FieldsLogin() {
+const Signin = () => {
+	const emailRef = useRef();
+	const psdRef = useRef();
+	const { signInUser, forgotPassword } = useUserContext();
 
-  const [user, setUser] = useState({});
+	const onSubmit = (e) => {
+		e.preventDefault();
+		const email = emailRef.current.value;
+		const password = psdRef.current.value;
+		if (email && password) signInUser(email, password);
+	};
 
-  onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-  });
+	const forgotPasswordHandler = () => {
+		const email = emailRef.current.value;
+		if (email)
+			forgotPassword(email).then(() => {
+				emailRef.current.value = "";
+				alert("Email enviado para a sua caixa de entrada!");
+			});
+	};
 
-  const login = async () => {
-    try {
-      const user = await signInWithEmailAndPassword(
-          auth, 
-          loginEmail, 
-          loginPassword
-      );
-      console.log(user)
-      } catch (error) {
-          console.log(error.message);
-      }
-  };
+	const navigate = useNavigate();
 
-  let navigate = useNavigate();
+	return (
+		<Container>
+			<div className="form">
+				<h2>Login</h2>
+				<form onSubmit={onSubmit}>
+					<input
+						placeholder="Email"
+						// id="email"
+						type="email"
+						// name="email"
+						ref={emailRef}
+					/>
+					<input
+						placeholder="Senha"
+						// id="password"
+						type="password"
+						// name="password"
+						ref={psdRef}
+					/>
+					<button
+						type="submit"
+						// onClick={() => {
+						// 	navigate("/profile");
+						// }}
+					>
+						Entrar
+					</button>
+					<p onClick={forgotPasswordHandler}>Esqueceu a senha?</p>
+				</form>
+			</div>
+		</Container>
+	);
+};
 
-  return (
-    <Container>
-        <div className="form">
-            <h2>Login</h2>
-            <input id="email" name="email" type="text" placeholder="Email" onChange={(event) => {
-                    setLoginEmail(event.target.value);
-                    }}/>
-            <input id="password" name="password" type="text" placeholder="Senha" onChange={(event) => {
-                    setLoginPassword(event.target.value);
-                    }}/>
-            <button 
-            onClick={login
-              // , () => {
-              // navigate("/profile");
-              // }
-            }
-            >
-            Entrar
-            </button>
-            <h3>Novo usuário?</h3>
-              <p
-              onClick={() => {
-                  navigate("/register");
-                  }}
-              >
-              Clique aqui
-              </p>
-        </div>
-    </Container>
-  )
-}
-
-export default FieldsLogin
+// export default FieldsLogin;
+export default Signin;

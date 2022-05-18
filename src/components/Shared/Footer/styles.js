@@ -1,16 +1,16 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.footer`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+	background-color: white;
 
-    strong{
-        color: #1e1e1e;
-        font-weight:700;
-        text-align: center;
-    }
-`
+	strong {
+		color: #1e1e1e;
+		font-weight: 700;
+		text-align: center;
+	}
+`;
