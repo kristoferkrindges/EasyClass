@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeScreen from "./Pages/Home";
 import About from "./Pages/About";
 import Profile from "./Pages/Profile";
-import RegisterScreen from "./Pages/Register";
 import Request from "./Pages/Request";
 import Login from "./Pages/Login";
 import ErrorPage from "./Pages/ErrorPage";
@@ -15,7 +14,6 @@ export default function Routess() {
 				{/* <Route exact path="/" element={<HomeScreen/>}/> */}
 				<Route path="/" element={<HomeScreen />} />
 				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<RegisterScreen />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/request" element={<Request />} />
 				<Route path="/profile" element={<Profile />} />

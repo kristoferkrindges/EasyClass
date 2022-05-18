@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	justify-self: center;
-	flex-direction: column;
-	max-width: 600px;
-	padding: 20%;
-	height: 80%;
-	width: 100%;
-	background-color: #e8e8e8;
-	box-shadow: 0 1px 6px black;
-	border-radius: 6px;
-	margin-top: 8%;
-	color: black;
+	.form {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		justify-self: center;
+		flex-direction: column;
+		max-width: 600px;
+		padding: 15%;
+		background-color: #e8e8e8;
+		box-shadow: 0 1px 6px black;
+		border-radius: 6px;
+		margin-top: 10%;
+		color: black;
+	}
 
 	input {
 		border-radius: 6px;
@@ -24,22 +24,23 @@ export const Container = styled.div`
 		font-size: 18px;
 	}
 
-	.form > h2 {
+	.form h2 {
 		text-align: center;
-		margin-bottom: 10%;
+		margin-bottom: 5%;
 	}
 
-	.form > h3 {
+	.form h3 {
 		text-align: center;
 		margin-bottom: 2%;
 	}
 
-	.form > p {
+	.form p {
 		cursor: pointer;
 		text-align: center;
+		font-weight: 700;
 	}
 
-	.form > button {
+	.form button {
 		border-radius: 6px;
 		border-color: white;
 		font-size: 18px;
