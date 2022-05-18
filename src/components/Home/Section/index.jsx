@@ -62,13 +62,14 @@ export default function Section() {
 				{teachers.map((value, key) => (
 					<Cards
 						img={logo}
-						estrela={"xxxxx"}
+						stars={value.rating}
 						name={value.firstName}
-						lastName={value.lastName}
-						disciplina={"Inglês"}
-						preco={"R$65 Hr/Aula"}
+						lastName={value.lastName[0]}
+						subject={value.subjects}
+						price={`R$${value.hourlyPrice} Hr/Aula`}
 						id={value.teacherId}
 						onClick={routeChange}
+						key={key}
 					/>
 				))}
 			</ListCards>

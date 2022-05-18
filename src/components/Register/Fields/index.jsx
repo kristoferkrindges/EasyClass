@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Container } from "./style";
 import { useUserContext } from "../../../context/userContext";
+import api from "../../../services/api";
 
 // export default function Fields() {
 const Signup = () => {
@@ -25,6 +26,19 @@ const Signup = () => {
 	};
 
 	const [fields, setFields] = useState(initialState);
+	
+	// const postValues = () => {
+	// 	console.log("post values");
+	// 	api
+	// 		.post("/teacher")
+	// 		.then(({ data }) => {
+	// 			setTeachers(data);
+	// 			console.log(data);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error("error", error);
+	// 		});
+	// };
 
 	const handleFieldsChange = (e) =>
 		setFields({
@@ -43,11 +57,11 @@ const Signup = () => {
 			<div className="form">
 				<h2>Cadastro</h2>
 				<form onSubmit={onSubmit}>
-					{/* <label>Eu sou um</label>
-                <label>Aluno</label>
-                <input type="radio" id="aluno" name="aluno" value={fields.type} onChange={handleFieldsChange}></input>
-                <label>Professor</label>
-                <input type="radio" id="professor" name="professor" value={fields.type}></input> */}
+					<h3>O que quero fazer?</h3>
+					<select>
+						<option value={fields.type}>Ensinar</option>
+						<option value={fields.type}>Aprender</option>
+					</select>
 					<input
 						placeholder="Nome"
 						id="name"
@@ -57,29 +71,39 @@ const Signup = () => {
 						value={fields.name}
 						onChange={handleFieldsChange}
 					/>
-					{/* <input
+					<input
 					placeholder="Sobrenome"
 					id="lastname"
 					name="lastname"
 					type="text"
 					value={fields.lastname}
 					onChange={handleFieldsChange}
-				/> */}
+					/> 
 					<input
 						placeholder="Email"
 						id="email"
 						name="email"
 						type="email"
-						ref={emailRef} /*value={fields.email}*/
+						ref={emailRef} 
+						/*value={fields.email}*/
+						onChange={handleFieldsChange}
 					/>
 					<input
 						placeholder="Senha"
 						id="password"
 						name="password"
 						type="password"
-						ref={psdRef} /*value={fields.password}*/
+						ref={psdRef} 
+						/*value={fields.password}*/
+						onChange={handleFieldsChange}
 					/>
-					{/* <input placeholder="Confirmar senha" type="text" /> */}
+					<input
+					placeholder="Confirmar Senha"
+					id="confirm-password"
+					name="confirm-password"
+					type="password"
+					value={""}
+					/>
 					<button type="submit">Registrar</button>
 				</form>
 			</div>

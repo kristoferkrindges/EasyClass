@@ -51,4 +51,20 @@ export const Container = styled.div`
 		color: white;
 		cursor: pointer;
 	}
+
+	select {
+		width: 100%;
+		min-width: 40ch;
+		max-width: 50ch;
+		border: 1px solid var(--select-border);
+		border-radius: 0.25em;
+		padding: 0.25em 0.5em;
+		margin-top: 5%;
+		font-size: 1.25rem;
+		cursor: pointer;
+		line-height: 1.1;
+		background-color: #fff;
+		background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+		text-align-last: center;
+	}
 `;
