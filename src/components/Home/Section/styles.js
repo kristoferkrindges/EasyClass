@@ -24,6 +24,8 @@ export const Container = styled.div`
 		color: #fff;
 		font-size: 30px;
 		font-weight: 400;
+		margin-top: 8vh;
+		margin-bottom: 8vh;
 	}
 
 	select {

@@ -4,10 +4,12 @@ export default function Article() {
 	return (
 		<Container>
 			<section className="sec">
-				<p>
-					A Easy Class sempre criando talentos e transformando sonhos em
-					realidades
-				</p>
+				<div className="content">
+					<p>
+						A Easy Class sempre criando talentos e transformando sonhos em
+						realidades
+					</p>
+				</div>
 			</section>
 		</Container>
 	);
