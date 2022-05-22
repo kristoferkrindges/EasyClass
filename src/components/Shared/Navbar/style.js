@@ -3,7 +3,8 @@ import {Link as LinkR} from 'react-router-dom'
 import {Link as LinkS} from 'react-scroll'
 
 export const Nav = styled.nav`
-	background: #e8e8e8;
+	/* background: #e8e8e8; */
+    background-color: rgba(232,232,232,0.7);
     height: 80px;
     /* margin-top: -80px; */
     display: flex;
@@ -52,7 +53,7 @@ export const NavLogo = styled(LinkR)`
         font-size: 20px;
     }
     h1:hover{
-        color: purple;
+        color: #94449e;
     }
     @media screen and (max-width: 768px){
         h1{
@@ -72,7 +73,7 @@ export const MobileIcon = styled.div`
         transform: translate(-100%, 60%);
         font-size: 1.8rem;
         cursor: pointer;
-        color: purple
+        color: #94449e
     }
 `
 
@@ -107,7 +108,7 @@ export const NavLinks = styled(LinkS)`
     }
     
     &:hover{
-        color: purple;
+        color: #94449e;
         font-size: 20px;
     }
 `
