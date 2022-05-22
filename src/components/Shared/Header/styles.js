@@ -8,8 +8,8 @@ export const Container = styled.header`
 	padding: 1% 20%;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #fff;
-	border-bottom: 1px solid;
+	background-color: #e8e8e8;
+	/* border-bottom: 1px solid; */
 	border-color: #7f8777;
 
 	//Logo
