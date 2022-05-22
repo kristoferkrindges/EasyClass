@@ -8,6 +8,7 @@ export const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 	background-color: #3b393b;
+	border: none;
 
 	h3 {
 		color: #fff;
@@ -16,8 +17,17 @@ export const Container = styled.div`
 	}
 
 	.seletor {
-		display: inline-block;
+		display: flex;
+		align-items: center;
+		/* justify-content: space-between; */
 		padding: 2%;
+		text-align: center;
+		white-space: nowrap;
+	}
+	.seletor h3{
+		font-size: 1.5rem;
+		margin-right: 20px;
+		text-align: center;
 	}
 
 	p {
@@ -30,12 +40,12 @@ export const Container = styled.div`
 
 	select {
 		width: 100%;
-		min-width: 15ch;
+		min-width: 22ch;
 		max-width: 30ch;
 		border: 1px solid var(--select-border);
 		border-radius: 0.25em;
 		padding: 0.25em 0.5em;
-		margin-top: 5%;
+		/* margin-top: 5%; */
 		font-size: 1.25rem;
 		cursor: pointer;
 		line-height: 1.1;

@@ -17,8 +17,8 @@ export const Container = styled.div`
 	&:hover {
 		opacity: 0.5;
 		background-color: #fff;
-		height: 280px;
-		width: 380px;
+		/* height: 260px;
+		width: 360px; */
 	}
 
 	img {
@@ -63,16 +63,20 @@ export const Container = styled.div`
 	.cont2 .price{
 		display:flex;
 		align-items: center;
+		text-align-last: center;
 		background: #94449e;
 		padding: 30px 30px;
-		width: 13vh;
-		height: 9vh;
+		width: 15vh;
+		/* height: 9vh; */
 		border: none;
-		border-radius: 30px;
+		border-radius: 90px;
 		box-shadow: 0 1px 6px black;
 	}
 	.cont2 .price h2{
-		font-size: 20px;
+		font-size: 1rem;
+		white-space: nowrap;
+		text-align: center;
+		
 	}
 `;
 
