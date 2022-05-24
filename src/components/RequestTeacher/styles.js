@@ -12,4 +12,4 @@ export const Container = style.div
  flex-direction: column;
  justify-content: space-between;
  heith: 50%;
- `
+`

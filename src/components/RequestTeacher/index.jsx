@@ -10,7 +10,7 @@ export default function RequestTeacher(){
     let [teacher, setTeacher] = useState([])
     let [lessons, setLessons] = useState([])
     let [classe, setClass] = useState([])
-    let dataConvert = [];
+    let [selectDates, setDates] = useState([]);
 
     useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -42,12 +42,31 @@ export default function RequestTeacher(){
         }).catch((error) => {
             console.error('error',error);
           });*/
-          this.dataConvert.push(
-            {start: moment(new Date(2022,5,16,11)).format('DD/MM/YYYY HH:mm'), end: moment(new Date(2022,5,16,12)).format('DD/MM/YYYY HH:mm')},
-            {start: moment(new Date(2022,5,16,15)).format('DD/MM/YYYY HH:mm'), end: moment(new Date(2022,5,16,16)).format('DD/MM/YYYY HH:mm')}
+          let dataConvert = new Array();
+          dataConvert.push(
+            {start: moment(new Date(2022,5,17,11,0)), end: moment(new Date(2022,5,17,12,0))},
+            {start: moment(new Date(2022,5,16,15,0)), end: moment(new Date(2022,5,16,16,0))}
             )
-            console.log(dataConvert);
+            setDates(dataConvert)
+            console.log(selectDates)
       };
+
+
+      class DayCell extends React.Component {
+        
+        calendarStyle = {
+          default:{
+            background: 'coral',
+          }
+        }
+      
+        render() {
+          return (
+            <div style={this.calendarStyle.default} role="presentation">
+                
+            </div>);
+        }
+      }
 
 
 
@@ -116,7 +135,8 @@ export default function RequestTeacher(){
              dayFormat={'DD/MM'}
              scaleUnit={60}
              scaleFormat={'HH'}
-             selectedIntervals={dataConvert}
+             dayCellComponent={DayCell}
+             selectedIntervals={selectDates}
              modalComponent={ModalCalendar}
              ></WeekCalendar>
         </CalendarContainer>
