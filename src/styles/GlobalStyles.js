@@ -11,7 +11,7 @@ export default createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     }
     #root {
-        height: 100vh;
+        height: 100%;
     }
     ul, li {
         list-style: none;
