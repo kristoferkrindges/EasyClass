@@ -18,11 +18,16 @@ export const Container = styled.div`
     .navbar h1{
         color: #f5f5f5;
         margin-left: 10px;
-        font-size: 2rem;
+        font-size: 1.8rem;
         background: none;
         text-transform: uppercase;
         font-weight: 800;
         
+    }
+    @media screen and (max-width: 768px){
+        .navbar h1{
+            display: none;
+        }
     }
     .navbar span{
         margin: 0;
@@ -129,6 +134,9 @@ export const Container = styled.div`
     .user h2{
         color: #f5f5f5;
         font-size: 1.0rem;
+    }
+    hr{
+        margin-bottom: 3vh;
     }
 
     .nav-text{

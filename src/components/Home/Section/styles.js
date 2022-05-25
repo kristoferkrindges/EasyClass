@@ -13,7 +13,7 @@ export const Container = styled.div`
 	h3 {
 		color: #fff;
 		font-weight: 400;
-		font-size: 25px;
+		font-size: 2rem;
 	}
 
 	.seletor {
@@ -24,6 +24,9 @@ export const Container = styled.div`
 		text-align: center;
 		white-space: nowrap;
 	}
+
+	
+
 	.seletor h3{
 		font-size: 1.5rem;
 		margin-right: 20px;
@@ -32,10 +35,9 @@ export const Container = styled.div`
 
 	p {
 		color: #fff;
-		font-size: 30px;
+		font-size: 2.0rem;
 		font-weight: 400;
-		margin-top: 8vh;
-		margin-bottom: 8vh;
+		margin: 8vh;
 	}
 
 	select {
@@ -53,15 +55,43 @@ export const Container = styled.div`
 		background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
 		text-align-last: center;
 	}
+
+	@media screen and (max-width: 798px){
+        .seletor{
+			flex-direction: column;
+			padding: 5%;
+		}
+
+		p{
+			font-size: 1.5rem;
+			margin-bottom: 20px;
+		}
+
+		h3{
+			font-size: 1.0rem;
+			padding: 5px;
+		}
+		.seletor select {
+			min-width: 20ch;
+			max-width: 20ch;
+			font-size: 1rem;
+		}
+    }
 `;
 
 export const ListCards = styled.ul`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	/* justify-self: center; */
-	max-width: 1200px;
+	max-width: 1800px;
 	/* padding: 20px; */
 	height: 60%;
 	width: 100%;
 	gap: 5%;
+	flex-wrap: wrap;
+
+	@media screen and (max-width: 798px){
+		margin-bottom: 150px;
+	}
 `;
