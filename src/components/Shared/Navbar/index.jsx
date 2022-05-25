@@ -13,7 +13,7 @@ import {
 import {FaBars} from 'react-icons/fa'
 import logo from "../../../imagens/logo.jpeg";
 
-export default function Navbar({toggle}) {
+export default function Navbar({toggle, resp}) {
 	return (
 		<>
 			<Nav>
@@ -37,7 +37,7 @@ export default function Navbar({toggle}) {
 						</NavItem>
 					</NavMenu>
 					<NavBtn>
-						<NavBtnLink to="/login">Entrar</NavBtnLink>
+						<NavBtnLink to="/login">{resp}</NavBtnLink>
 					</NavBtn>
 				</NavbarContainer>
 			</Nav>

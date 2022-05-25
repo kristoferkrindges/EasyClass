@@ -1,13 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { useParams } from "react-router-dom";
-import SideNav from "../Shared/SideNav"
 import logo from "../../imagens/logo.jpeg"
+import Bar from "../Shared/Bar"
 
 function Profile() {
 	let { username } = useParams();
 	return (
 		<>
-			<SideNav
+			<Bar
 				logo={logo}
 				name={"Kristofer"}
 				type={"Estudante"}
