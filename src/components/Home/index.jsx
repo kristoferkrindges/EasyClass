@@ -19,7 +19,7 @@ export default function Home() {
 		<Container>
 			{/* <Header></Header> */}
 			<Sidebar isOpen={isOpen} toggle={toggle}></Sidebar>
-			<Navbar toggle={toggle}></Navbar>
+			<Navbar toggle={toggle} resp={"Entrar"}></Navbar>
 			<Article></Article>
 			<Section></Section>
 			<Footer></Footer>
