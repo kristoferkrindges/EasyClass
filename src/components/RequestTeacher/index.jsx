@@ -1,14 +1,17 @@
 
 import { Container } from "./styles";
 import React, { useState, useEffect } from "react";
+import { useUserContext } from "../../context/userContext";
 import ReactDOM from "react-dom";
 import { useParams, useLocation } from "react-router-dom";
 import WeekCalendar from "react-week-calendar";
 import * as moment from 'moment';
 import api from "../../services/api";
 import logo from "../../imagens/logo.jpeg"
-import SideNav from "../Shared/SideNav"
+import SideBar from "../Shared/SideNav/Sidebar"
+import { getAdditionalUserInfo } from "firebase/auth";
 export default function RequestTeacher() {
+	const { user } = useUserContext();
 	const [params, setParams] = useState(null);
 	const location = useLocation();
 	let [teacher, setTeacher] = useState(null);
@@ -19,14 +22,20 @@ export default function RequestTeacher() {
 	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
 		console.log(queryParams);
+		checkUser(user);
 		const teacherId = queryParams.get("teacherId");
 		setParams(teacherId);
 		if(!teacher) {
 			getTeacherById(teacherId);
 			getLessonsByTeacherId(teacherId);
 		}
-
+		
 	});
+
+	const checkUser = (user) => {
+		if(user && user.providerData[0])
+		setUid(user.providerData[0].uid);
+	}
 
 	const getTeacherById = (teacherId) => {
 		console.log("getLessonsByTeacherId " + teacherId);
@@ -166,10 +175,27 @@ export default function RequestTeacher() {
 
 		handleSave = () => {
 			console.log(this)
-			const { value } = this.input;
-			this.props.onSave({
-				value,
+			let { value } = this.input;
+			let { start, end } = this.props;
+			let formattedStart = start.format('YYYY-MM-DDTHH:mm:ss');
+			let formatedEnd = end.format('YYYY-MM-DDTHH:mm:ss');
+			api
+			.post("/lesson-request", {
+				studentId: uid,
+				teacherId: teacher.teacherId,
+				startDate: formattedStart,
+				endDate: formatedEnd,
+				subject: teacher.subject[0],
+				hourlyPrice: teacher.hourlyPrice,
+			})
+			.then(({ data }) => {
+				console.log(data);
+			})
+			.catch((error) => {
+				console.error("error", error);
 			});
+
+
 		};
 
 		renderText() {
@@ -211,7 +237,7 @@ export default function RequestTeacher() {
 	return (
 		<Container>
 			<span>
-			<SideNav
+			<SideBar
 				logo={logo}
 				name={"firstName"}
 				type={"Professor"}
@@ -232,5 +258,4 @@ export default function RequestTeacher() {
 			</span>
 		</Container>
 	);
->>>>>>> e1849ea9e8bb8310ab82d119577dd1dc22f8ec7c
 }
