@@ -26,7 +26,7 @@ export default function Navbar({toggle, resp}) {
 						<FaBars></FaBars>
 					</MobileIcon>
 					<NavMenu>
-						<NavItem>
+						{/* <NavItem>
 							<NavLinks to="/">Home</NavLinks>
 						</NavItem>
 						<NavItem>
@@ -34,7 +34,7 @@ export default function Navbar({toggle, resp}) {
 						</NavItem>
 						<NavItem>
 							<NavLinks to="/profile">Perfil</NavLinks>
-						</NavItem>
+						</NavItem> */}
 					</NavMenu>
 					<NavBtn>
 						<NavBtnLink to="/login">{resp}</NavBtnLink>

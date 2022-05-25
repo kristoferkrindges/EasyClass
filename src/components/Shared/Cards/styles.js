@@ -6,8 +6,8 @@ export const Container = styled.div`
 	align-items: center;
 	background-color: #fff;
 	/* padding: 10px; */
-	height: 250px;
-	width: 350px;
+	height: 280px;
+	width: 380px;
 	border-radius: 20px;
 	box-shadow: 0 1px 6px black;
 	cursor: pointer;
@@ -48,6 +48,7 @@ export const Container = styled.div`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin: 20px;
 	}
 	.cont2 hr{
 		width: 15vh;

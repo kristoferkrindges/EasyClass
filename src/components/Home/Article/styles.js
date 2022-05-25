@@ -30,11 +30,20 @@ export const Container = styled.section`
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		height: 15vh;
+		height: 17vh;
 		background: #3b393b;
 		clip-path: polygon(100% 0,0 100%,100% 100%);
 		border: none;
 	}
+
+	@media screen and (max-width: 798px){
+        &:before{
+			height: 12vh;
+		}
+		.content p{
+		font-size: 1rem;
+	}
+    }
 
 	p {
 		font-weight: 700;
