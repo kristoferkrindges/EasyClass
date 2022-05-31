@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import logo from "../../imagens/logo.jpeg"
 import Bar from "../Shared/Bar"
 
-function Profile() {
+function SearchTeacher() {
 	let { username } = useParams();
 	return (
 		<>
@@ -18,4 +18,4 @@ function Profile() {
 	);
 }
 
-export default Profile;
+export default SearchTeacher;
