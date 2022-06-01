@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { useParams, useLocation } from "react-router-dom";
 import WeekCalendar from "react-week-calendar";
 import api from "../../services/api";
+import Navbar from "../Shared/Navbar";
+
 export default function RequestTeacher() {
 	const [params, setParams] = useState(null);
 	const location = useLocation();
@@ -77,15 +79,10 @@ export default function RequestTeacher() {
 
 	return (
 		<Container>
-			<span>
-				<div>Foto</div>
-				<div>Ver perfil</div>
-				<div>Mensagens</div>
-			</span>
+			<Navbar></Navbar>
 			<span>
 				<div>
-					<h3>Consulte os horários disponível para o professor</h3>
-
+					<h3>Consulte a disponibilidade do professor abaixo:</h3>
 					<div className="calendar-container">
 						<WeekCalendar
 							numberOfDays={7}
@@ -93,6 +90,8 @@ export default function RequestTeacher() {
 							scaleUnit={60}
 							scaleFormat={"HH"}
 							modalComponent={ModalCalendar}
+							cellHeight={100}
+							scaleHeaderTitle={"Data e Hora"}
 						></WeekCalendar>
 					</div>
 				</div>
