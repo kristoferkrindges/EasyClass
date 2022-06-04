@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeScreen from "./Pages/Home";
 import About from "./Pages/About";
-import Profile from "./Pages/Profile";
+import DashBoardStudent from "./Pages/DashboardAluno";
+import DashBoardTeacher from "./Pages/DashboardTeacher";
 import Request from "./Pages/Request";
 import Login from "./Pages/Login";
 import ErrorPage from "./Pages/ErrorPage";
@@ -17,9 +18,10 @@ export default function Routess() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/request" element={<Request />} />
-				<Route path="/profile" element={<Profile />} />
+				<Route path="/DashBoardStudent" element={<DashBoardStudent />} />
+				<Route path="/DashBoardTeacher" element={<DashBoardTeacher />} />
 				<Route path="/searchTeacher" element={<SearchTeacherScreen />} />
-				<Route path="/profile/:username" element={<Profile />} />
+				<Route path="/DashBoardStudent/:username" element={<DashBoardStudent />} />
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</Router>

@@ -63,8 +63,9 @@ export const Container = styled.div`
 		}
 
 		p{
-			font-size: 1.5rem;
-			margin-bottom: 20px;
+			font-size: 1.3rem;
+			margin-bottom: 50px;
+			white-space: nowrap;
 		}
 
 		h3{
@@ -92,6 +93,6 @@ export const ListCards = styled.ul`
 	flex-wrap: wrap;
 
 	@media screen and (max-width: 798px){
-		margin-bottom: 150px;
+		margin-bottom: 220px;
 	}
 `;

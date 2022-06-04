@@ -2,10 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, ListCards } from "./styles";
 import Cards from "../../Shared/Cards";
+import NewCards from "../../Shared/NewCards";
+import Loading from "../../Shared/Loader"
 import logo from "../../../imagens/logo.jpeg";
 import api from "../../../services/api";
 
 export default function Section() {
+	// Loader
+	const [removeLoading, setRemoveLoading] = useState(false)
+
 	const [teachers, setTeachers] = useState([]);
 	useEffect(() => getTeachers(), []);
 
@@ -24,6 +29,7 @@ export default function Section() {
 			.then(({ data }) => {
 				setTeachers(data);
 				console.log(data);
+				setRemoveLoading(true);
 			})
 			.catch((error) => {
 				console.error("error", error);
@@ -37,6 +43,7 @@ export default function Section() {
 			.then(({ data }) => {
 				setTeachers(data);
 				console.log(data);
+				setRemoveLoading(true);
 			})
 			.catch((error) => {
 				console.error("error", error);
@@ -49,7 +56,8 @@ export default function Section() {
 				<select
 					onChange={(e) => getTeachersSubjectId(e.target.value)}
 					className="selt"
-				>
+				>	
+					<option value="">Escolha</option>
 					<option value="English">Inglês</option>
 					<option value="History">Historia</option>
 					<option value="Guitar">Guitarra</option>
@@ -59,21 +67,40 @@ export default function Section() {
 				</select>
 			</div>
 			<ListCards>
-				{teachers.map((value, key) => (
-					<Cards
-						img={logo}
-						stars={value.rating}
-						name={value.firstName}
-						lastName={value.lastName[0]}
-						subject={value.subjects}
-						price={`R$${value.hourlyPrice} Hr/Aula`}
-						id={value.teacherId}
-						onClick={routeChange}
-						key={key}
-					/>
-				))}
+				{teachers.length > 0 &&
+					teachers.map((value, key) => (
+						<NewCards
+							img={logo}
+							stars={value.rating}
+							name={value.firstName}
+							lastName={value.lastName[0]}
+							subject={value.subjects}
+							price={`R$${value.hourlyPrice} Hr/Aula`}
+							id={value.teacherId}
+							onClick={routeChange}
+							key={key}
+						/>
+						
+					))
+				}
+				{!removeLoading && <Loading/>}
 			</ListCards>
-			<p>Encontre os melhores profissionais do mercado!</p>
+			<p>Melhores profissionais do mercado!</p>
 		</Container>
 	);
 }
+
+// {teachers.map((value, key) => (
+// 	<NewCards
+// 		img={logo}
+// 		stars={value.rating}
+// 		name={value.firstName}
+// 		lastName={value.lastName[0]}
+// 		subject={value.subjects}
+// 		price={`R$${value.hourlyPrice} Hr/Aula`}
+// 		id={value.teacherId}
+// 		onClick={routeChange}
+// 		key={key}
+// 	/>
+	
+// ))}

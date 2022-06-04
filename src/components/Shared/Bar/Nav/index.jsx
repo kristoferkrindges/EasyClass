@@ -11,6 +11,15 @@ function Nav(props) {
     const [sidebar, setSidebar] = useState(true)
 
     const showSidebar = () => setSidebar(!sidebar)
+    
+    let indexProp
+    
+    if(props.type=="Professor"){
+        indexProp = 1
+    }
+    else{
+        indexProp = 0
+    }
 
 	return (
 		<Container>
@@ -39,7 +48,7 @@ function Nav(props) {
                             <h2>Perfil: {props.type}</h2>
                         </li>
                         <hr></hr>
-                        {SidebarData.map((item, index) => {
+                        {SidebarData[indexProp].map((item, index) => {
                             return (
                                 <li key={index} className={item.cName}>
                                     <Link to={item.path}>
