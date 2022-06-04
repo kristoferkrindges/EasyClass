@@ -10,13 +10,12 @@ import {
 
 
 export const Container = styled.footer`
-	/* display: flex;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-  height: 5vh;
-  ackground-color: #e8e8e8;
-	border-top: 1px solid black;
+  	height: 20vh;
+	background-color: #3b393b;
 `;
 export const FooterWrap = styled.div`
 	padding: 48px 24px;
