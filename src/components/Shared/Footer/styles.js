@@ -14,10 +14,9 @@ export const Container = styled.footer`
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	height: 20vh; */
-	background-color: #3b393b;
+  height: 5vh;
+  ackground-color: #e8e8e8;
 	border-top: 1px solid black;
-
 `;
 export const FooterWrap = styled.div`
 	padding: 48px 24px;
