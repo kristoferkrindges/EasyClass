@@ -1,20 +1,21 @@
-import React, {useState} from "react";
-import Navbar from "../Shared/Navbar"
-import Sidebar from "../Shared/SideBar"
+import React, { useState } from "react";
+import Navbar from "../Shared/Navbar";
+import Sidebar from "../Shared/SideBar";
 import Footer from "../Shared/Footer";
 import { useUserContext } from "../../context/userContext";
 import Auth from "./Auth/auth";
-import Dashboard from "./Dashboard/dashboard";
+// import Dashboard from "./Dashboard/dashboard";
+import DashBoard from "../Shared/Dashboard";
 import { Container } from "./style";
 
 function Login() {
 	const { loading, error, user } = useUserContext();
 
-	const [isOpen, setIsOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState(false);
 
-	const toggle = () =>{
-		setIsOpen(!isOpen)
-	}
+	const toggle = () => {
+		setIsOpen(!isOpen);
+	};
 	return (
 		<Container>
 			<div className="container">
@@ -24,7 +25,7 @@ function Login() {
 				{loading ? (
 					<h2 className="carregando">Carregando...</h2>
 				) : (
-					<> {user ? <Dashboard /> : <Auth />} </>
+					<> {user ? <DashBoard /> : <Auth />} </>
 				)}
 				<Footer></Footer>
 			</div>
