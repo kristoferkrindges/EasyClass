@@ -1,4 +1,31 @@
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+import { Container,CalendarContainer } from "./styles";
+import React, {useState,useEffect} from 'react';
+import moment from 'moment';
+import { useLocation } from 'react-router-dom';
+import WeekCalendar from 'react-week-calendar';
+import api from "../../services/api"
+export default function RequestTeacher(){
+    const [params,setParams] = useState(null);
+    const location = useLocation();
+    let [teacher, setTeacher] = useState([])
+    let [lessons, setLessons] = useState([])
+    let [classe, setClass] = useState([])
+    let dataConvert = [];
+
+    useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    console.log(queryParams);
+    const teacherId = queryParams.get('teacherId')
+    setParams(teacherId)
+    //getTeacherById(teacherId)
+    getLessonTeacherById(teacherId)
+    })
+=======
+>>>>>>> main
 import { Container } from "./styles";
 import React, { useState, useEffect } from "react";
 import { useUserContext } from "../../context/userContext";
@@ -7,9 +34,14 @@ import { useParams, useLocation } from "react-router-dom";
 import WeekCalendar from "react-week-calendar";
 import * as moment from 'moment';
 import api from "../../services/api";
+<<<<<<< HEAD
 import logo from "../../imagens/logo.jpeg"
 import SideBar from "../Shared/SideNav/Sidebar"
 import { getAdditionalUserInfo } from "firebase/auth";
+=======
+import Navbar from "../Shared/Navbar";
+
+>>>>>>> main
 export default function RequestTeacher() {
 	const { user } = useUserContext();
 	const [params, setParams] = useState(null);
@@ -17,7 +49,11 @@ export default function RequestTeacher() {
 	let [teacher, setTeacher] = useState(null);
 	let [lessons, setLessons] = useState(null);
 	let [classe, setClass] = useState([]);
+<<<<<<< HEAD
 	let [uid, setUid] = useState(0);
+=======
+>>>>>>> 8ca413f60a80abb2c49e80035bd5ab31ba515cc5
+>>>>>>> main
 
 	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
@@ -31,6 +67,7 @@ export default function RequestTeacher() {
 		}
 		
 	});
+<<<<<<< HEAD
 
 	const checkUser = (user) => {
 		if(user && user.providerData[0])
@@ -60,6 +97,33 @@ export default function RequestTeacher() {
 		let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
 		api
 			.get("/lesson?teacherId=" + teacherId + '&after=' + formattedDateNow + '&before=' + formatedDateNextWeek)
+=======
+
+<<<<<<< HEAD
+      const getLessonTeacherById = (teacherId) => {
+        /*console.log("getLessonTeacherById " + teacherId)
+        api.get("/lesson?teacherId=" + teacherId).then(({data})=>{
+        dataConvert = data.map(val => {
+           return {start: val.startDate, end: val.endDate};
+          });
+          setLessons(dataConvert)
+            console.log(dataConvert)
+        }).catch((error) => {
+            console.error('error',error);
+          });*/
+          this.dataConvert.push(
+            {start: moment(new Date(2022,5,16,11)).format('DD/MM/YYYY HH:mm'), end: moment(new Date(2022,5,16,12)).format('DD/MM/YYYY HH:mm')},
+            {start: moment(new Date(2022,5,16,15)).format('DD/MM/YYYY HH:mm'), end: moment(new Date(2022,5,16,16)).format('DD/MM/YYYY HH:mm')}
+            )
+            console.log(dataConvert);
+      };
+
+=======
+	const getTeacherById = (teacherId) => {
+		console.log("getTeacherById " + teacherId);
+		api
+			.get("/teacher?teacherId=" + teacherId)
+>>>>>>> main
 			.then(({ data }) => {
 				setTeacher(data);
 				console.log(data);
@@ -68,6 +132,7 @@ export default function RequestTeacher() {
 				console.error("error", error);
 			});
 	};
+<<<<<<< HEAD
 
 
 	const parseLesson = (lessons = []) => {
@@ -169,6 +234,9 @@ export default function RequestTeacher() {
 		  />
 		}
 	}
+=======
+>>>>>>> 8ca413f60a80abb2c49e80035bd5ab31ba515cc5
+>>>>>>> main
 
 	class ModalCalendar extends React.Component {
 
@@ -205,9 +273,49 @@ export default function RequestTeacher() {
 			);
 		}
 
+<<<<<<< HEAD
 		render() {
 			const { value } = this.props;
 			console.log(this.props);
+=======
+<<<<<<< HEAD
+    return(
+      <div>
+          <div>
+        <Container>
+                <div>
+                    Foto
+                </div>
+                <div>
+                    Ver perfil
+                </div>
+                <div>
+                    Mensagens
+                </div>
+            </Container>
+                </div>
+            <div>
+            <CalendarContainer>
+              <div>
+            <h3>Consulte os horários disponível para o professor</h3>          
+            </div>
+             <WeekCalendar
+             numberOfDays={7}
+             dayFormat={'DD/MM'}
+             scaleUnit={60}
+             scaleFormat={'HH'}
+             selectedIntervals={dataConvert}
+             modalComponent={ModalCalendar}
+             ></WeekCalendar>
+        </CalendarContainer>
+        </div>
+        </div>
+    )
+}
+=======
+		render() {
+			const { value } = this.props;
+>>>>>>> main
 			return (
 				<div className="customModal">
 					<div className="customModal__text">{this.renderText()}</div>
@@ -236,6 +344,7 @@ export default function RequestTeacher() {
 
 	return (
 		<Container>
+<<<<<<< HEAD
 			<span>
 			<SideBar
 				logo={logo}
@@ -253,9 +362,30 @@ export default function RequestTeacher() {
 								<StandardCalendar/>
 							</div>
 						</div>
+=======
+			<Navbar></Navbar>
+			<span>
+				<div>
+					<h3>Consulte a disponibilidade do professor abaixo:</h3>
+					<div className="calendar-container">
+						<WeekCalendar
+							numberOfDays={7}
+							dayFormat={"DD/MM"}
+							scaleUnit={60}
+							scaleFormat={"HH"}
+							modalComponent={ModalCalendar}
+							cellHeight={100}
+							scaleHeaderTitle={"Data e Hora"}
+						></WeekCalendar>
+>>>>>>> main
 					</div>
 				</div>
 			</span>
 		</Container>
 	);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8ca413f60a80abb2c49e80035bd5ab31ba515cc5
+>>>>>>> main

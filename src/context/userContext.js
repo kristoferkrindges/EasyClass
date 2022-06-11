@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 import { useContext } from "react";
+import api from "../services/api";
 
 const UserContext = createContext({});
 
@@ -46,9 +47,22 @@ export const UserContextProvider = ({ children }) => {
 	const signInUser = (email, password) => {
 		setLoading(true);
 		signInWithEmailAndPassword(auth, email, password)
-			.then((res) => console.log(res))
+			.then((res) => console.log(res.user.uid))
 			.catch((err) => setError(err.message))
 			.finally(() => setLoading(false));
+	};
+
+	const postUID = () => {
+		console.log("post uid");
+		api
+			.post("/login")
+			.then((res) => {
+				res.user.uid(res);
+				console.log(res);
+			})
+			.catch((error) => {
+				console.error("error", error);
+			});
 	};
 
 	const logoutUser = () => {
@@ -67,6 +81,7 @@ export const UserContextProvider = ({ children }) => {
 		error,
 		registerUser,
 		signInUser,
+		postUID,
 		logoutUser,
 		forgotPassword,
 	};

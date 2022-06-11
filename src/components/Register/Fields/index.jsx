@@ -26,7 +26,7 @@ const Signup = () => {
 	};
 
 	const [fields, setFields] = useState(initialState);
-	
+
 	// const postValues = () => {
 	// 	console.log("post values");
 	// 	api
@@ -72,19 +72,19 @@ const Signup = () => {
 						onChange={handleFieldsChange}
 					/>
 					<input
-					placeholder="Sobrenome"
-					id="lastname"
-					name="lastname"
-					type="text"
-					value={fields.lastname}
-					onChange={handleFieldsChange}
-					/> 
+						placeholder="Sobrenome"
+						id="lastname"
+						name="lastname"
+						type="text"
+						value={fields.lastname}
+						onChange={handleFieldsChange}
+					/>
 					<input
 						placeholder="Email"
 						id="email"
 						name="email"
 						type="email"
-						ref={emailRef} 
+						ref={emailRef}
 						/*value={fields.email}*/
 						onChange={handleFieldsChange}
 					/>
@@ -93,16 +93,16 @@ const Signup = () => {
 						id="password"
 						name="password"
 						type="password"
-						ref={psdRef} 
+						ref={psdRef}
 						/*value={fields.password}*/
 						onChange={handleFieldsChange}
 					/>
 					<input
-					placeholder="Confirmar Senha"
-					id="confirm-password"
-					name="confirm-password"
-					type="password"
-					value={""}
+						placeholder="Confirmar Senha"
+						id="confirm-password"
+						name="confirm-password"
+						type="password"
+						value={""}
 					/>
 					<button type="submit">Registrar</button>
 				</form>
