@@ -1,19 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import Login from "../components/Login";
 
-function Login() {
-  let navigate = useNavigate();
-  return (
-    <div>
-      <button 
-      onClick={() => {
-        navigate("/profile");
-        }}
-      >
-        Login
-      </button>
-    </div>
-  )
+function LoginScreen() {
+	return <Login></Login>;
 }
 
-export default Login
+export default LoginScreen;

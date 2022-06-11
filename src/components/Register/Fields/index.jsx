@@ -1,58 +1,114 @@
-import React, {useState} from "react";
-import {Container} from "./style";
+import React, { useState, useRef } from "react";
+import { Container } from "./style";
+import { useUserContext } from "../../../context/userContext";
+import api from "../../../services/api";
 
-export default function Fields(){
+// export default function Fields() {
+const Signup = () => {
+	const emailRef = useRef();
+	const nameRef = useRef();
+	const psdRef = useRef();
+	const { registerUser } = useUserContext();
 
-    const initialState = {
-        type: '',
-        name: '',
-        lastname: '',
-        email: '',
-        password: '',
-    }
+	const onSubmit = (e) => {
+		e.preventDefault();
+		const email = emailRef.current.value;
+		const name = nameRef.current.value;
+		const password = psdRef.current.value;
+		if (email && name && password) registerUser(email, name, password);
+	};
+	const initialState = {
+		type: "",
+		name: "",
+		lastname: "",
+		email: "",
+		password: "",
+	};
 
-    const [fields, setFields] = useState(initialState)
+	const [fields, setFields] = useState(initialState);
 
-    const handleFieldsChange = (e) => setFields({
-        ...fields,
-        [e.currentTarget.name]: e.currentTarget.value
-    })
+	// const postValues = () => {
+	// 	console.log("post values");
+	// 	api
+	// 		.post("/teacher")
+	// 		.then(({ data }) => {
+	// 			setTeachers(data);
+	// 			console.log(data);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error("error", error);
+	// 		});
+	// };
 
-    const handleSubmit = (event) =>{
-        //props.addPlanet(fields)
-        event.preventDefault()
-        setFields(initialState)
-    }
+	const handleFieldsChange = (e) =>
+		setFields({
+			...fields,
+			[e.currentTarget.name]: e.currentTarget.value,
+		});
 
-    return(
-        <Container>
-            <div>
-                <label>Eu sou um</label>
-                <label>Aluno</label>
-                <input type="radio" id="aluno" name="aluno" value={fields.type} onChange={handleFieldsChange}></input>
-                <label>Professor</label>
-                <input type="radio" id="professor" name="professor" value={fields.type}></input>
-            </div>
-            <div>
-                <label>Nome:</label>
-                <input id="name" name="name" type="text" value={fields.name} onChange={handleFieldsChange}></input>
-            </div>
-            <div>
-                <label>Sobrenome:</label>
-                <input id="lastname" name="lastname" type="text" value={fields.lastname} onChange={handleFieldsChange}></input>
-            </div>
-            <div>
-                <label>Email:</label>
-                <input id="email" name="email" type="text" value={fields.email} onChange={handleFieldsChange}></input>
-            </div>
-            <div>
-                <label>Senha:</label>
-                <input id="password" name="password" type="text" value={fields.password} onChange={handleFieldsChange}></input>
-            </div>
-            <div>
-                <label>Confirmar senha:</label>
-                <input type="text"></input>
-            </div>
-        </Container>
-    )
-}
+	const handleSubmit = (event) => {
+		//props.addPlanet(fields)
+		event.preventDefault();
+		setFields(initialState);
+	};
+
+	return (
+		<Container>
+			<div className="form">
+				<h2>Cadastro</h2>
+				<form onSubmit={onSubmit}>
+					<h3>O que quero fazer?</h3>
+					<select>
+						<option value={fields.type}>Ensinar</option>
+						<option value={fields.type}>Aprender</option>
+					</select>
+					<input
+						placeholder="Nome"
+						id="name"
+						name="name"
+						type="name"
+						ref={nameRef}
+						value={fields.name}
+						onChange={handleFieldsChange}
+					/>
+					<input
+						placeholder="Sobrenome"
+						id="lastname"
+						name="lastname"
+						type="text"
+						value={fields.lastname}
+						onChange={handleFieldsChange}
+					/>
+					<input
+						placeholder="Email"
+						id="email"
+						name="email"
+						type="email"
+						ref={emailRef}
+						/*value={fields.email}*/
+						onChange={handleFieldsChange}
+					/>
+					<input
+						placeholder="Senha"
+						id="password"
+						name="password"
+						type="password"
+						ref={psdRef}
+						/*value={fields.password}*/
+						onChange={handleFieldsChange}
+					/>
+					<input
+						placeholder="Confirmar Senha"
+						id="confirm-password"
+						name="confirm-password"
+						type="password"
+						value={""}
+					/>
+					<button type="submit">Registrar</button>
+				</form>
+			</div>
+		</Container>
+	);
+};
+
+export default Signup;
