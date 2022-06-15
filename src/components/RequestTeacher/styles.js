@@ -1,27 +1,12 @@
 import style from "styled-components";
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> main
 export const Container = style.div
-`display: flex;
+  `display: flex;
  float:left;
  flex-direction: column;
  justify-content: space-between;`
 
- export const CalendarContainer = style.div
-`display: flex;
- float:left;
- flex-direction: column;
- justify-content: space-between;
- heith: 50%;
-<<<<<<< HEAD
-`
-=======
- `
-=======
-export const Container = style.div`
+export const CalendarContainer = style.div`
     display: flex;
     flex-direction: column;
     // justify-content: space-between;
@@ -60,7 +45,4 @@ export const Container = style.div`
 
       .weekCalendar__overlay_status_selection {
         background-color: rgba(148, 68, 158, 0.5);
-      }
-`;
->>>>>>> 8ca413f60a80abb2c49e80035bd5ab31ba515cc5
->>>>>>> main
+      }`

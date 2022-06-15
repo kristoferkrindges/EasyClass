@@ -8,15 +8,19 @@ const Signup = () => {
 	const emailRef = useRef();
 	const nameRef = useRef();
 	const psdRef = useRef();
-	const { registerUser } = useUserContext();
+	const { registerUser} = useUserContext();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const email = emailRef.current.value;
 		const name = nameRef.current.value;
 		const password = psdRef.current.value;
-		if (email && name && password) registerUser(email, name, password);
+		if (email && name && password) {
+			registerUser(email, name, password);
+		}
 	};
+
+
 	const initialState = {
 		type: "",
 		name: "",

@@ -1,21 +1,24 @@
-import React, { useRef } from "react";
+import React, { useRef} from "react";
 import { Container } from "./style";
 // import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../../context/userContext";
+import api from "../../../services/api";
 
 // function FieldsLogin() {
 const Signin = () => {
 	const emailRef = useRef();
 	const psdRef = useRef();
-	const { signInUser, forgotPassword, postUID } = useUserContext();
+	const { signInUser, forgotPassword } = useUserContext();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const email = emailRef.current.value;
 		const password = psdRef.current.value;
-		if (email && password) signInUser(email, password);
-		postUID();
+		if (email && password) {
+			signInUser(email, password);
+		}
 	};
+
 
 	const forgotPasswordHandler = () => {
 		const email = emailRef.current.value;

@@ -12,7 +12,7 @@ function DashBoard(props) {
 		<Container>
 			<Bar logo={logo} name={user.displayName} type={props.type} msg={4} />
 			<Board
-				logo={logo}
+				logo={user.photoURL? user.photoURL : logo}
 				name={user.displayName}
 				type={props.type}
 				year={21}

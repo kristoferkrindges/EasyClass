@@ -39,7 +39,7 @@ function Nav(props) {
 				</div>
 				<nav className={sidebar ? "nav-menu active" : "nav-menu"}>
 					<ul className="nav-menu-items" onClick={showSidebar}>
-						<li clasName="navbar-toggle">
+						<li className="navbar-toggle">
 							<Link to="#" className="menu-bars">
 								<AiIcons.AiOutlineClose />
 							</Link>
