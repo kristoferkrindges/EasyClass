@@ -7,6 +7,7 @@ import {
 	signOut,
 	sendPasswordResetEmail,
 } from "firebase/auth";
+import { firebase } from "firebase"
 import { auth, getAuth } from "../firebase";
 import { useContext } from "react";
 import axios from "axios";
@@ -37,8 +38,7 @@ export const UserContextProvider = ({ children }) => {
 		console.log("post uid");
 		console.log("user",user);
 		let userInfo = JSON.stringify({
-			userRemoteId : user.uid,
-			email: user.email
+			userRemoteId : user.uid
 		})
 		axios.post("https://us6povhbg6.execute-api.sa-east-1.amazonaws.com/Prod/login",
 		userInfo, {
@@ -68,6 +68,19 @@ export const UserContextProvider = ({ children }) => {
 			})
 			.catch((err) => setError(err.message))
 			.finally(() => setLoading(false));
+	};
+
+	const uploadImage = (imageName, uploadUri) => {
+		firebase
+		.storage()
+		.ref(imageName)
+		.putFile(uploadUri)
+		.then((snapshot) => {
+		  //You can check the image is now uploaded in the storage bucket
+		  console.log(`${imageName} Upload completo.`);
+		})
+		.catch((e) => console.log('erro ao realizar upload', e));
+
 	};
 
 	const getCurrentUser = () =>{
