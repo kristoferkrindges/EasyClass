@@ -5,9 +5,8 @@ import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
-import logo from "../../../../imagens/logo.jpeg";
+import logo from "../../../../assets/logo.jpeg";
 import { useUserContext } from "../../../../context/userContext";
-
 
 function Nav(props) {
 	const { user, logoutUser } = useUserContext();
