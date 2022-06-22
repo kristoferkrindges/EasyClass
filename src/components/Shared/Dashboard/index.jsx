@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useParams } from "react-router-dom";
-import logo from "../../../imagens/logo.jpeg"
+import logo from "../../../assets/logo.jpeg"
 import Bar from "../Bar"
 import {Container} from "./style"
 import Board from "./Board";

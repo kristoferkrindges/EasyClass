@@ -11,7 +11,7 @@ import {
 	NavBtnLink
 } from "./style";
 import {FaBars} from 'react-icons/fa'
-import logo from "../../../imagens/logo.jpeg";
+import logo from "../../../assets/logo.jpeg";
 
 export default function Navbar({toggle, resp}) {
 	return (

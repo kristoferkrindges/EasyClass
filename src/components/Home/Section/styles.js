@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { 
+    IoArrowDownOutline,
+	IoBookOutline
+} from "react-icons/io5";
 
 export const Container = styled.div`
 	display: flex;
@@ -96,3 +100,75 @@ export const ListCards = styled.ul`
 		margin-bottom: 220px;
 	}
 `;
+
+export const ContentCarrousel = styled.div`
+	width: 80%;
+`
+
+export const IoArrowDown = styled(IoArrowDownOutline)`
+	stroke: black;
+    font-size: 1.5rem;
+    transition: 0.3s;
+`;
+
+export const IoBook = styled(IoBookOutline)`
+	/* stroke: black;
+    font-size: 1.5rem;
+    transition: 0.3s; */
+`;
+
+
+// Select Dinamic
+export const SelectMenu = styled.div`
+    /* width: 380px; */
+    /* margin: 140px auto; */
+`
+
+export const SelectBtn = styled.div`
+    display: flex;
+    min-width: 20ch;
+	max-width: 20ch;
+	font-size: 1rem;
+    background: #fff;
+    padding: 20px;
+    font-weight: 400;
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    border: 1px solid black;
+`
+
+export const BtnText = styled.span`
+    color: black;
+`
+export const Options = styled.ul`
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    z-index: 15;
+    /* display: none; */
+    
+`
+export const Option = styled.li`
+    display: flex;
+    height: 55px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+
+    &:hover{
+        background: #F2F2F2;
+    }
+`
+
+export const OptionText = styled.span`
+    font-size: 18px;
+    color: black;
+`
