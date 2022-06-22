@@ -19,23 +19,36 @@ import Earnings from "../Earnings";
 import Invoices from "../Invoices";
 import Profile from "../Profile";
 import {IoBookmarks, IoAccessibility, IoCalendarClear, IoFileTrayFull} from "react-icons/io5"
+import {Link} from "react-router-dom"
 function Dashboard(props) {
+    let search
+    let whoami 
+    if(props.type == "Aluno"){
+        search = "/SearchTeacher"
+        whoami = "Professores"
+    } else{
+        whoami = "Alunos"
+    }
     const doc = [
         {
             card:"Aulas",
-            icon: <IoBookmarks/>
+            icon: <IoBookmarks/>,
+            link: ""
         },
         {
-            card: props.type,
-            icon: <IoAccessibility/>
+            card: whoami,
+            icon: <IoAccessibility/>,
+            link: search
         },
         {
             card:"Calendário",
-            icon: <IoCalendarClear/>
+            icon: <IoCalendarClear/>,
+            link: ""
         },
         {
             card:"Mensagens",
-            icon: <IoFileTrayFull/>
+            icon: <IoFileTrayFull/>,
+            link: ""
         },    
     ]
     if(props.type == "Aluno"){
@@ -48,11 +61,14 @@ function Dashboard(props) {
                 <SectionOne>
                     <ColumnOne1>
                         {doc.map((value, key) => (
-                            <Tags
-                                key={key}
-                                value={value.card}
-                                icon={value.icon}
-                            />
+                            <Link to={value.link}>
+                                <Tags
+                                    key={key}
+                                    value={value.card}
+                                    icon={value.icon}
+                                />
+                            </Link>
+                            
                             
                         ))}
                     </ColumnOne1>
