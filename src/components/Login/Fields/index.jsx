@@ -1,19 +1,20 @@
 import React, { useRef } from "react";
 import { Container } from "./style";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../../context/userContext";
 
 // function FieldsLogin() {
 const Signin = () => {
 	const emailRef = useRef();
 	const psdRef = useRef();
-	const { signInUser, forgotPassword } = useUserContext();
+	const { signInUser, forgotPassword, postUID } = useUserContext();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const email = emailRef.current.value;
 		const password = psdRef.current.value;
 		if (email && password) signInUser(email, password);
+		postUID();
 	};
 
 	const forgotPasswordHandler = () => {
@@ -25,7 +26,7 @@ const Signin = () => {
 			});
 	};
 
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
 	return (
 		<Container>
@@ -47,10 +48,10 @@ const Signin = () => {
 						ref={psdRef}
 					/>
 					<button
-						type="submit"
-						// onClick={() => {
-						// 	navigate("/profile");
-						// }}
+					// type="submit"
+					// onClick={() => {
+					// 	navigate("/DashBoardStudent");
+					// }}
 					>
 						Entrar
 					</button>
