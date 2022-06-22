@@ -7,8 +7,8 @@ import {
 	signOut,
 	sendPasswordResetEmail,
 } from "firebase/auth";
-import { firebase } from "firebase"
-import { auth, getAuth } from "../firebase";
+import { auth, getAuth, bd } from "../firebase";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { useContext } from "react";
 import axios from "axios";
 
@@ -18,6 +18,7 @@ export const useUserContext = () => useContext(UserContext);
 
 export const UserContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
+	const [image, setImage] = useState(null);
 	const [loading, setLoading] = useState();
 	const [error, setError] = useState("");
 
@@ -44,7 +45,7 @@ export const UserContextProvider = ({ children }) => {
 		userInfo, {
 		  })
 			.then((res) => {
-				res.user.uid(res);
+				//res.user.uid(res);
 				console.log(res);
 			})
 			.catch((error) => {
@@ -52,6 +53,23 @@ export const UserContextProvider = ({ children }) => {
 			});
 		}
 	}, [user]);
+
+	useEffect(() => {
+		if(image) {
+		console.log("post image");
+		console.log("image",image);
+		const imageRef = ref(bd, 'images/' + image.name);
+		uploadBytes(imageRef, image)
+ 		 .then((snapshot) => {
+    	console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+    	console.log('File metadata:', snapshot.metadata);
+		console.log(snapshot.ref);
+    	// Let's get a download URL for the file.
+ 	 }).catch((error) => {
+ 	   console.error('Upload failed', error);
+ 	 });
+	}
+	}, [image]);
 
 	const registerUser = (email, name, password) => {
 		///
@@ -70,23 +88,11 @@ export const UserContextProvider = ({ children }) => {
 			.finally(() => setLoading(false));
 	};
 
-	const uploadImage = (imageName, uploadUri) => {
-		firebase
-		.storage()
-		.ref(imageName)
-		.putFile(uploadUri)
-		.then((snapshot) => {
-		  //You can check the image is now uploaded in the storage bucket
-		  console.log(`${imageName} Upload completo.`);
-		})
-		.catch((e) => console.log('erro ao realizar upload', e));
-
+	const uploadImage = (file) => {
+		if(file)
+		setImage(file);
 	};
 
-	const getCurrentUser = () =>{
-		let user = auth.currentUser;
-		return user;
-	}
 
 	const signInUser = (email, password) => {
 		setLoading(true);
@@ -113,11 +119,11 @@ export const UserContextProvider = ({ children }) => {
 		user,
 		loading,
 		error,
-		getCurrentUser,
 		registerUser,
 		signInUser,
 		logoutUser,
 		forgotPassword,
+		uploadImage
 	};
 	return (
 		<UserContext.Provider value={contextValue}>{children}</UserContext.Provider>

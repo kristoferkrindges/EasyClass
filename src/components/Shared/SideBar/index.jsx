@@ -12,7 +12,7 @@ export default function Sidebar({isOpen, toggle}) {
                 <SidebarMenu>
                     <SidebarLink to="/" onClick={toggle}>Home</SidebarLink>
                     <SidebarLink to="/about" onClick={toggle}>Sobre</SidebarLink>
-                    <SidebarLink to="/profile" onClick={toggle}>Perfil</SidebarLink>
+                    <SidebarLink to="/profile">Perfil</SidebarLink>
                 </SidebarMenu>
                 <SideBtnWrap>
                     <SidebarRoute to="/login">Entrar</SidebarRoute>
