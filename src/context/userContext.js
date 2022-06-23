@@ -7,8 +7,8 @@ import {
 	signOut,
 	sendPasswordResetEmail,
 } from "firebase/auth";
-import { auth, getAuth, bd } from "../firebase";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { auth, bd } from "../firebase";
+import { ref, uploadBytes } from "firebase/storage";
 import { useContext } from "react";
 import axios from "axios";
 
@@ -19,6 +19,7 @@ export const useUserContext = () => useContext(UserContext);
 export const UserContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [image, setImage] = useState(null);
+	const [imageUrl, setImageUrl] = useState(null);
 	const [loading, setLoading] = useState();
 	const [error, setError] = useState("");
 
@@ -55,16 +56,21 @@ export const UserContextProvider = ({ children }) => {
 	}, [user]);
 
 	useEffect(() => {
+		if(user) {
+			setImageUrl(ref(user.photoURL).toString())
+	}}, [user]);
+
+	useEffect(() => {
 		if(image) {
 		console.log("post image");
 		console.log("image",image);
 		const imageRef = ref(bd, 'images/' + image.name);
 		uploadBytes(imageRef, image)
  		 .then((snapshot) => {
-    	console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-    	console.log('File metadata:', snapshot.metadata);
-		console.log(snapshot.ref);
-    	// Let's get a download URL for the file.
+			console.log("registrando url " + snapshot.metadata.fullPath);
+			updateProfile(auth.currentUser, {
+				photoURL: snapshot.metadata.fullPath
+			});
  	 }).catch((error) => {
  	   console.error('Upload failed', error);
  	 });
@@ -93,7 +99,6 @@ export const UserContextProvider = ({ children }) => {
 		setImage(file);
 	};
 
-
 	const signInUser = (email, password) => {
 		setLoading(true);
 		signInWithEmailAndPassword(auth, email, password)
@@ -117,6 +122,7 @@ export const UserContextProvider = ({ children }) => {
 
 	const contextValue = {
 		user,
+		imageUrl,
 		loading,
 		error,
 		registerUser,
