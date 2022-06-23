@@ -1,5 +1,6 @@
 import React from "react";
-import AvatarImage from "../../../../assets/logo.jpeg";
+import AvatarImage from "../../../../imagens/logo.jpeg";
+import { useUserContext } from "../../../../context/userContext";
 import {
     Container,
     Card,
@@ -12,21 +13,22 @@ import {
 
 
 function Profile(props) {
+  const { user } = useUserContext();
     return(
       <Container>
         <Card>
           <Image>
-            <img className="logo" src={props.logo}></img>
+            <img className="logo" src={user.photoURL? user.photoURL : props.logo}></img>
           </Image>
           <NameProfession>
             <Name>
-              {props.name}
+              {user.displayName? user.displayName :props.name}
             </Name>
             <Old>
               Idade: {props.year}
             </Old>
             <Old>
-              Email: {props.email}
+              Email: {user.email? user.email :props.email}
             </Old>
           </NameProfession>
         </Card>

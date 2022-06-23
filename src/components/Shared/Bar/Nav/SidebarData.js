@@ -15,7 +15,7 @@ export const SidebarData = [
 
     {
         title: 'Editar Perfil',
-        path: '',
+        path: '/profile',
         icon: <IoIcons.IoMdContact/>,
         cName: 'nav-text'
     },
@@ -73,7 +73,7 @@ export const SidebarData = [
     
         {
             title: 'Editar Perfil',
-            path: '',
+            path: '/profile',
             icon: <IoIcons.IoMdContact/>,
             cName: 'nav-text'
         },

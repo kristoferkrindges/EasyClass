@@ -6,6 +6,7 @@ import DashBoardStudent from "./Pages/DashboardAluno";
 import DashBoardTeacher from "./Pages/DashboardTeacher";
 import Request from "./Pages/Request";
 import Login from "./Pages/Login";
+import Profile from "./Pages/Profile";
 import ErrorPage from "./Pages/ErrorPage";
 import SearchTeacherScreen from "./Pages/SearchTeacher";
 
@@ -16,6 +17,7 @@ export default function Routess() {
 				{/* <Route exact path="/" element={<HomeScreen/>}/> */}
 				<Route path="/" element={<HomeScreen />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/profile" element={<Profile />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/request" element={<Request />} />
 				<Route path="/DashBoardStudent" element={<DashBoardStudent />} />

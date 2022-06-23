@@ -1,14 +1,25 @@
 import React, { useState, useRef } from "react";
 import { Container } from "./style";
 import { useUserContext } from "../../../context/userContext";
+import { auth } from "../../../firebase";
+import event from "events";
 import api from "../../../services/api";
 
 // export default function Fields() {
 const Signup = () => {
+	const image = useRef();
 	const emailRef = useRef();
 	const nameRef = useRef();
 	const psdRef = useRef();
-	const { registerUser } = useUserContext();
+	const { registerUser, uploadImage, user} = useUserContext();
+	const initialState = {
+		type: "",
+		name: auth.currentUser.displayName? auth.currentUser.displayName : "",
+		lastname: "",
+		email: auth.currentUser.email? auth.currentUser.email : "",
+		password: "",
+	};
+	const [fields, setFields] = useState(initialState);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -18,17 +29,6 @@ const Signup = () => {
 		if (email && name && password) registerUser(email, name, password);
 	};
 	
-	// Get values
-	const initialState = {
-		type: "",
-		name: "",
-		lastname: "",
-		email: "",
-		password: "",
-	};
-
-	const [fields, setFields] = useState(initialState);
-
 	const handleFieldsChange = (e) =>
 		setFields({
 			...fields,
@@ -52,7 +52,6 @@ const Signup = () => {
 	// 			console.error("error", error);
 	// 		});
 	// };
-
 	// const userId = () => {
 	// 	console.log("post values");
 	// 	api
@@ -64,6 +63,13 @@ const Signup = () => {
 	// 			console.error("error", error);
 	// 		});
 	// };
+
+	const handleChange = event => {
+		if (event.target.files && event.target.files[0]) {
+		  let file = event.target.files[0];
+		  uploadImage(file);
+		}
+	  };
 
 	return (
 		<Container>
@@ -117,6 +123,11 @@ const Signup = () => {
 						type="password"
 						value={""}
 					/>
+					 <input
+					 type="file"
+					 placeholder="Insira a sua imagem de perfil"
+					 name="image"
+					 onChange={handleChange} />
 					<button type="submit">Registrar</button>
 				</form>
 			</div>

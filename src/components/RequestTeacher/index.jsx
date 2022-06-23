@@ -1,73 +1,38 @@
-<<<<<<< HEAD
-import { Container,CalendarContainer } from "./styles";
-import React, {useState,useEffect} from 'react';
-import moment from 'moment';
-import { useLocation } from 'react-router-dom';
-import WeekCalendar from 'react-week-calendar';
-import api from "../../services/api"
-export default function RequestTeacher(){
-    const [params,setParams] = useState(null);
-    const location = useLocation();
-    let [teacher, setTeacher] = useState([])
-    let [lessons, setLessons] = useState([])
-    let [classe, setClass] = useState([])
-    let dataConvert = [];
-
-    useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    console.log(queryParams);
-    const teacherId = queryParams.get('teacherId')
-    setParams(teacherId)
-    //getTeacherById(teacherId)
-    getLessonTeacherById(teacherId)
-    })
-=======
-import { Container } from "./styles";
+import { Container, CalendarContainer } from "./styles";
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { useParams, useLocation } from "react-router-dom";
+import { useUserContext } from "../../context/userContext";
+import { useLocation } from "react-router-dom";
 import WeekCalendar from "react-week-calendar";
+import * as moment from 'moment';
 import api from "../../services/api";
-import Navbar from "../Shared/Navbar";
-
 export default function RequestTeacher() {
+	const { user } = useUserContext();
 	const [params, setParams] = useState(null);
 	const location = useLocation();
-	let [teacher, setTeacher] = useState([]);
-	let [lessons, setLessons] = useState([]);
+	let [teacher, setTeacher] = useState(null);
+	let [lessons, setLessons] = useState(null);
 	let [classe, setClass] = useState([]);
->>>>>>> 8ca413f60a80abb2c49e80035bd5ab31ba515cc5
-
+	let [uid, setUid] = useState(0);
 	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
 		console.log(queryParams);
+		checkUser(user);
 		const teacherId = queryParams.get("teacherId");
 		setParams(teacherId);
-		getTeacherById(teacherId);
+		if(!teacher) {
+			getTeacherById(teacherId);
+			getLessonsByTeacherId(teacherId);
+		}
+		
 	});
 
-<<<<<<< HEAD
-      const getLessonTeacherById = (teacherId) => {
-        /*console.log("getLessonTeacherById " + teacherId)
-        api.get("/lesson?teacherId=" + teacherId).then(({data})=>{
-        dataConvert = data.map(val => {
-           return {start: val.startDate, end: val.endDate};
-          });
-          setLessons(dataConvert)
-            console.log(dataConvert)
-        }).catch((error) => {
-            console.error('error',error);
-          });*/
-          this.dataConvert.push(
-            {start: moment(new Date(2022,5,16,11)).format('DD/MM/YYYY HH:mm'), end: moment(new Date(2022,5,16,12)).format('DD/MM/YYYY HH:mm')},
-            {start: moment(new Date(2022,5,16,15)).format('DD/MM/YYYY HH:mm'), end: moment(new Date(2022,5,16,16)).format('DD/MM/YYYY HH:mm')}
-            )
-            console.log(dataConvert);
-      };
+	const checkUser = (user) => {
+		if(user && user.providerData[0])
+		setUid(user.providerData[0].uid);
+	}
 
-=======
 	const getTeacherById = (teacherId) => {
-		console.log("getTeacherById " + teacherId);
+		console.log("getLessonsByTeacherId " + teacherId);
 		api
 			.get("/teacher?teacherId=" + teacherId)
 			.then(({ data }) => {
@@ -78,14 +43,146 @@ export default function RequestTeacher() {
 				console.error("error", error);
 			});
 	};
->>>>>>> 8ca413f60a80abb2c49e80035bd5ab31ba515cc5
+
+
+	const getLessonsByTeacherId = (teacherId) => {
+		console.log("getLessonsByTeacherId " + teacherId);
+		let dateNow = new Date();
+		let dateNextWeey = new Date();
+		dateNextWeey.setDate(dateNow.getDate() + 7);
+		let formattedDateNow = (moment(dateNow)).format('YYYY-MM-DDTHH:mm:ss+0000');
+		let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
+		api
+			.get("/lesson?teacherId=" + teacherId + '&after=' + formattedDateNow + '&before=' + formatedDateNextWeek)
+
+	};
+
+	const parseLesson = (lessons = []) => {
+		console.log("parseLesson");
+		console.log(lessons);
+		let parseLessons = [];
+		let lastUid = 0;
+		lessons.forEach(lesson => {
+			let includeLesson = {
+				lastUid: lastUid,
+				start: moment(lesson.startDate),
+				end: moment(lesson.endDate),
+				value: "status da aula"
+			}
+			lastUid ++;
+			parseLessons.push(includeLesson);
+		})
+		setUid(lastUid);
+		setLessons(parseLessons);
+		
+	};
+
+
+	class StandardCalendar extends React.Component {
+
+		constructor(props) {
+		  super(props);
+		  this.state = {
+			lastUid: uid,
+			selectedIntervals: [
+			  {
+				uid: 1,
+				start: moment({h: 10, m: 5}),
+				end: moment({h: 12, m: 5}),
+				value: "Booked by Smith"
+			  },
+			  {
+				uid: 2,
+				start: moment({h: 13, m: 0}).add(2,'d'),
+				end: moment({h: 13, m: 45}).add(2,'d'),
+				value: "Closed"
+			  },
+			  {
+				uid: 3,
+				start: moment({h: 11, m: 0}),
+				end: moment({h: 14, m: 0}),
+				value: "Reserved by White"
+			  },
+			]
+		  }
+		}
+	  
+		handleEventRemove = (event) => {
+		  const {selectedIntervals} = this.state;
+		  const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid);
+		  if (index > -1) {
+			selectedIntervals.splice(index, 1);
+			this.setState({selectedIntervals});
+		  }
+	  
+		}
+	  
+		handleEventUpdate = (event) => {
+		  const {selectedIntervals} = this.state;
+		  const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid);
+		  if (index > -1) {
+			selectedIntervals[index] = event;
+			this.setState({selectedIntervals});
+		  }
+		}
+	  
+		handleSelect = (newIntervals) => {
+		  const {lastUid, selectedIntervals} = this.state;
+		  const intervals = newIntervals.map( (interval, index) => {
+	  
+			return {
+			  ...interval,
+			  uid: lastUid + index
+			}
+		  });
+	  
+		  this.setState({
+			selectedIntervals: selectedIntervals.concat(intervals),
+			lastUid: lastUid + newIntervals.length
+		  })
+		}
+	  
+		render() {
+		  return <WeekCalendar
+		  numberOfDays={7}
+		  dayFormat={"DD/MM"}
+		  scaleUnit={60}
+		  scaleFormat={"HH"}
+		  modalComponent={ModalCalendar}
+		  selectedIntervals = {this.state.selectedIntervals}
+		  onIntervalSelect = {this.handleSelect}
+		  onIntervalUpdate = {this.handleEventUpdate}
+		  onIntervalRemove = {this.handleEventRemove}
+		  />
+		}
+	}
 
 	class ModalCalendar extends React.Component {
+
+
 		handleSave = () => {
-			const { value } = this.input;
-			this.props.onSave({
-				value,
+			console.log(this)
+			let { value } = this.input;
+			let { start, end } = this.props;
+			let formattedStart = start.format('YYYY-MM-DDTHH:mm:ss');
+			let formatedEnd = end.format('YYYY-MM-DDTHH:mm:ss');
+			api
+			.post("/lesson-request", {
+				studentId: uid,
+				teacherId: teacher.teacherId,
+				startDate: formattedStart,
+				endDate: formatedEnd,
+				subject: teacher.subject[0],
+				hourlyPrice: teacher.hourlyPrice,
+			})
+			.then(({ data }) => {
+				console.log(data);
+			})
+			.catch((error) => {
+				console.error("error", error);
 			});
+
+
 		};
 
 		renderText() {
@@ -95,7 +192,10 @@ export default function RequestTeacher() {
 			);
 		}
 
-<<<<<<< HEAD
+		render() {
+			const { value } = this.props;
+			const { dataConvert } = this.props;//ajustar isso
+			console.log(this.props);
     return(
       <div>
           <div>
@@ -129,55 +229,5 @@ export default function RequestTeacher() {
         </div>
     )
 }
-=======
-		render() {
-			const { value } = this.props;
-			return (
-				<div className="customModal">
-					<div className="customModal__text">{this.renderText()}</div>
-					<input
-						ref={(el) => {
-							this.input = el;
-						}}
-						className="customModal__input"
-						type="text"
-						placeholder="Observação (Opcional)"
-						defaultValue={value}
-						size="90"
-						width="50%"
-						height="30%"
-					/>
-					<button
-						className="customModal__button customModal__button_float_right"
-						onClick={this.handleSave}
-					>
-						Enviar Solicitação
-					</button>
-				</div>
-			);
-		}
 	}
-
-	return (
-		<Container>
-			<Navbar></Navbar>
-			<span>
-				<div>
-					<h3>Consulte a disponibilidade do professor abaixo:</h3>
-					<div className="calendar-container">
-						<WeekCalendar
-							numberOfDays={7}
-							dayFormat={"DD/MM"}
-							scaleUnit={60}
-							scaleFormat={"HH"}
-							modalComponent={ModalCalendar}
-							cellHeight={100}
-							scaleHeaderTitle={"Data e Hora"}
-						></WeekCalendar>
-					</div>
-				</div>
-			</span>
-		</Container>
-	);
 }
->>>>>>> 8ca413f60a80abb2c49e80035bd5ab31ba515cc5
