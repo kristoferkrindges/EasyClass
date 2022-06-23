@@ -4,7 +4,7 @@ import {
 	Img,
 
 } from "./style";
-import loading from "../../../imagens/loading.svg"
+import loading from "../../../assets/loading.svg"
 
 function Loader(props) {
 

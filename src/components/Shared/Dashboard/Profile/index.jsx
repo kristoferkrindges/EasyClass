@@ -1,5 +1,5 @@
 import React from "react";
-import AvatarImage from "../../../../imagens/logo.jpeg";
+import AvatarImage from "../../../../assets/logo.jpeg";
 import {
     Container,
     Card,

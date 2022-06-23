@@ -28,7 +28,7 @@ export default function Cards({img, stars, name, lastName, subject, price, id, o
         onClick(id);
     }
     return(
-        <li onClick={eventClick}>
+        <li>
             <Container>
                 <CardContent>
                     <Image>
@@ -52,7 +52,7 @@ export default function Cards({img, stars, name, lastName, subject, price, id, o
                                 <StarIcon2 key={index}></StarIcon2>
                         )}
                     </Rating>
-                    <Buttons>
+                    <Buttons onClick={eventClick}>
                         <HireMe>Agendar Aula</HireMe>
                     </Buttons>
                 </CardContent>

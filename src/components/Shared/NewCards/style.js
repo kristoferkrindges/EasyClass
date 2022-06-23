@@ -21,9 +21,9 @@ export const Container = styled.div`
     }
 
     &:hover{
-        width: 38vh;
-        height: 44vh;
-        opacity: 0.5;
+        /* width: 38vh;
+        height: 44vh; */
+        /* opacity: 0.5; */
     }
 `
 export const Image = styled.div`
@@ -39,6 +39,12 @@ export const Logo = styled.img`
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid #fff;
+
+    &:hover{
+        /* width: 38vh;
+        height: 44vh; */
+        opacity: 0.5;
+    }
 `
 export const CardContent = styled.div`
     display: flex;

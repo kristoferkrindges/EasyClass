@@ -17,6 +17,8 @@ const Signup = () => {
 		const password = psdRef.current.value;
 		if (email && name && password) registerUser(email, name, password);
 	};
+	
+	// Get values
 	const initialState = {
 		type: "",
 		name: "",
@@ -26,6 +28,17 @@ const Signup = () => {
 	};
 
 	const [fields, setFields] = useState(initialState);
+
+	const handleFieldsChange = (e) =>
+		setFields({
+			...fields,
+			[e.currentTarget.name]: e.currentTarget.value,
+		});
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		setFields(initialState);
+	};
 
 	// const postValues = () => {
 	// 	console.log("post values");
@@ -40,17 +53,17 @@ const Signup = () => {
 	// 		});
 	// };
 
-	const handleFieldsChange = (e) =>
-		setFields({
-			...fields,
-			[e.currentTarget.name]: e.currentTarget.value,
-		});
-
-	const handleSubmit = (event) => {
-		//props.addPlanet(fields)
-		event.preventDefault();
-		setFields(initialState);
-	};
+	// const userId = () => {
+	// 	console.log("post values");
+	// 	api
+	// 		.post("/user")
+	// 		.then(({ data }) => {
+	// 			console.log(data);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error("error", error);
+	// 		});
+	// };
 
 	return (
 		<Container>
@@ -85,7 +98,7 @@ const Signup = () => {
 						name="email"
 						type="email"
 						ref={emailRef}
-						/*value={fields.email}*/
+						value={fields.email}
 						onChange={handleFieldsChange}
 					/>
 					<input
@@ -94,7 +107,7 @@ const Signup = () => {
 						name="password"
 						type="password"
 						ref={psdRef}
-						/*value={fields.password}*/
+						value={fields.password}
 						onChange={handleFieldsChange}
 					/>
 					<input

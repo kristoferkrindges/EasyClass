@@ -12,7 +12,7 @@ export const Container = styled.div`
     &:hover{
         /* box-shadow: black; */
         opacity: 0.8;
-        width: 24rem;
+        cursor: pointer;
     }
 `
 
