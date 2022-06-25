@@ -10,31 +10,39 @@ export default function RequestTeacher() {
 	const [params, setParams] = useState(null);
 	const location = useLocation();
 	let [teacher, setTeacher] = useState(null);
+	let [teacherId, setTeacherId] = useState(null);
 	let [lessons, setLessons] = useState(null);
 	let [classe, setClass] = useState([]);
 	let [uid, setUid] = useState(0);
+
+
 	useEffect(() => {
+		checkUser(user);
+	});
+
+	useEffect(()=> {
 		const queryParams = new URLSearchParams(location.search);
 		console.log(queryParams);
-		checkUser(user);
 		const teacherId = queryParams.get("teacherId");
-		setParams(teacherId);
+		setTeacherId(teacherId);
+	},[user]);
+
+	useEffect(()=> {
 		if(!teacher) {
 			getTeacherById(teacherId);
 			getLessonsByTeacherId(teacherId);
 		}
-		
-	});
+	},[teacherId])
 
 	const checkUser = (user) => {
-		if(user && user.providerData[0])
-		setUid(user.providerData[0].uid);
+		if(user && user.uid)
+		setUid(user.uid);
 	}
 
 	const getTeacherById = (teacherId) => {
-		console.log("getLessonsByTeacherId " + teacherId);
+		console.log("getUserTeacherId " + teacherId);
 		api
-			.get("/teacher?teacherId=" + teacherId)
+			.get("/user?userId=" + teacherId)
 			.then(({ data }) => {
 				setTeacher(data);
 				console.log(data);
@@ -47,13 +55,13 @@ export default function RequestTeacher() {
 
 	const getLessonsByTeacherId = (teacherId) => {
 		console.log("getLessonsByTeacherId " + teacherId);
-		let dateNow = new Date();
-		let dateNextWeey = new Date();
-		dateNextWeey.setDate(dateNow.getDate() + 7);
-		let formattedDateNow = (moment(dateNow)).format('YYYY-MM-DDTHH:mm:ss+0000');
-		let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
+		//let dateNow = new Date();
+		//let dateNextWeey = new Date();
+		//dateNextWeey.setDate(dateNow.getDate() + 7);
+		//let formattedDateNow = (moment(dateNow)).format('YYYY-MM-DDTHH:mm:ss+0000');
+		//let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
 		api
-			.get("/lesson?teacherId=" + teacherId + '&after=' + formattedDateNow + '&before=' + formatedDateNextWeek)
+			.get("/lesson-request?teacherId=" + teacherId)
 
 	};
 
