@@ -28,7 +28,7 @@ export default function RequestTeacher() {
 	},[user]);
 
 	useEffect(()=> {
-		if(!teacher) {
+		if(teacherId) {
 			getTeacherById(teacherId);
 			getLessonsByTeacherId(teacherId);
 		}
@@ -40,7 +40,7 @@ export default function RequestTeacher() {
 	}
 
 	const getTeacherById = (teacherId) => {
-		console.log("getUserTeacherId " + teacherId);
+		console.log("getUserTeacherById " + teacherId);
 		api
 			.get("/user?userId=" + teacherId)
 			.then(({ data }) => {
