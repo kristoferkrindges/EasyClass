@@ -56,7 +56,7 @@ export const UserContextProvider = ({ children }) => {
 	}, [user]);
 
 	useEffect(() => {
-		if(user) {
+		if(user && user.photoURL) {
 			setImageUrl(ref(user.photoURL).toString())
 	}}, [user]);
 
