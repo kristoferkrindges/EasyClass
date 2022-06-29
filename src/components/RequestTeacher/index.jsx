@@ -4,6 +4,7 @@ import { useUserContext } from "../../context/userContext";
 import { useLocation } from "react-router-dom";
 import WeekCalendar from "react-week-calendar";
 import * as moment from 'moment';
+import Bar from "../Shared/Bar"
 import api from "../../services/api";
 export default function RequestTeacher() {
 	const { user } = useUserContext();
@@ -32,7 +33,7 @@ export default function RequestTeacher() {
 			getTeacherById(teacherId);
 			getLessonsByTeacherId(teacherId);
 		}
-	},[teacherId])
+	},[user, teacherId])
 
 	const checkUser = (user) => {
 		if(user && user.uid)
@@ -200,26 +201,16 @@ export default function RequestTeacher() {
 			);
 		}
 
-		render() {
-			const { value } = this.props;
-			const { dataConvert } = this.props;//ajustar isso
-			console.log(this.props);
+		
+
+		
+	}
+
     return(
       <div>
-          <div>
-        <Container>
-                <div>
-                    Foto
-                </div>
-                <div>
-                    Ver perfil
-                </div>
-                <div>
-                    Mensagens
-                </div>
-            </Container>
-                </div>
-            <div>
+		Funciona
+		<div>
+        	{teacher.firstName} {teacher.role} {teacher.photoUrl}
             <CalendarContainer>
               <div>
             <h3>Consulte os horários disponível para o professor</h3>          
@@ -229,13 +220,11 @@ export default function RequestTeacher() {
              dayFormat={'DD/MM'}
              scaleUnit={60}
              scaleFormat={'HH'}
-             selectedIntervals={dataConvert}
+             //selectedIntervals={dataConvert}
              modalComponent={ModalCalendar}
              ></WeekCalendar>
         </CalendarContainer>
         </div>
         </div>
     )
-}
-	}
 }
