@@ -7,6 +7,7 @@ import Auth from "./Auth/auth";
 // import Dashboard from "./Dashboard/dashboard";
 import DashBoard from "../Shared/Dashboard";
 import { Container } from "./style";
+import Profile from "../../Pages/Profile";
 
 function Login() {
 	const { loading, error, user } = useUserContext();
@@ -19,15 +20,16 @@ function Login() {
 	return (
 		<Container>
 			<div className="container">
-				<Sidebar isOpen={isOpen} toggle={toggle}></Sidebar>
-				<Navbar toggle={toggle} resp={"Entrar"}></Navbar>
+				{user ? <div /> : <Sidebar isOpen={isOpen} toggle={toggle}></Sidebar>}
+				{user ? <div /> : <Navbar toggle={toggle} resp={"Entrar"}></Navbar>}
 				{error && <p className="error"> {error}</p>}
 				{loading ? (
 					<h2 className="carregando">Carregando...</h2>
 				) : (
-					<> {user ? <DashBoard /> : <Auth />} </>
+					<> {user ? <DashBoard type={"Aluno"} /> : <Auth />} </>
 				)}
-				<Footer></Footer>
+				{user ? <div /> : <Footer />}
+				{/* <Footer></Footer> */}
 			</div>
 		</Container>
 	);
