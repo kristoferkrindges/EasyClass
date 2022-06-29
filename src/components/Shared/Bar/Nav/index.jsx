@@ -45,10 +45,10 @@ function Nav(props) {
 							</Link>
 						</li>
 						<li className="img-profle">
-							<img className="img-p" src={imageUrl? imageUrl : logo}></img>
+							<img className="img-p" src={user ? imageUrl : logo}></img>
 						</li>
 						<li className="user">
-							<h1>{props.name}</h1>
+							<h1>{user ? user.displayName : "?"}</h1>
 							<h2>Perfil: {props.type}</h2>
 						</li>
 						<hr></hr>
@@ -56,6 +56,16 @@ function Nav(props) {
 							return (
 								<li key={index} className={item.cName}>
 									<Link to={item.path}>
+										{item.icon}
+										<span>{item.title}</span>
+									</Link>
+								</li>
+							);
+						})}
+						{SidebarData[2].map((item, index) => {
+							return (
+								<li key={index} className={item.cName}>
+									<Link to={item.path} onClick={logoutUser}>
 										{item.icon}
 										<span>{item.title}</span>
 									</Link>

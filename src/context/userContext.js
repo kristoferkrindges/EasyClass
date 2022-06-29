@@ -23,8 +23,6 @@ export const UserContextProvider = ({ children }) => {
 	const [loading, setLoading] = useState();
 	const [error, setError] = useState("");
 
-	
-
 	useEffect(() => {
 		setLoading(true);
 		const unsubscribe = onAuthStateChanged(auth, (res) => {
@@ -36,45 +34,51 @@ export const UserContextProvider = ({ children }) => {
 	}, []);
 
 	useEffect(() => {
-		if(user) {
-		console.log("post uid");
-		console.log("user",user);
-		let userInfo = JSON.stringify({
-			userRemoteId : user.uid
-		})
-		axios.post("https://us6povhbg6.execute-api.sa-east-1.amazonaws.com/Prod/login",
-		userInfo, {
-		  })
-			.then((res) => {
-				//res.user.uid(res);
-				console.log(res);
-			})
-			.catch((error) => {
-				console.error("error", error);
+		if (user) {
+			console.log("post uid");
+			console.log("user", user);
+			let userInfo = JSON.stringify({
+				userRemoteId: user.uid,
 			});
+			axios
+				.post(
+					"https://us6povhbg6.execute-api.sa-east-1.amazonaws.com/Prod/login",
+					userInfo,
+					{}
+				)
+				.then((res) => {
+					//res.user.uid(res);
+					console.log(res);
+				})
+				.catch((error) => {
+					console.error("error", error);
+				});
 		}
 	}, [user]);
 
 	useEffect(() => {
-		if(user && user.photoURL) {
-			setImageUrl(ref(user.photoURL).toString())
-	}}, [user]);
+		if (user && user.photoURL) {
+			setImageUrl(ref(user.photoURL).toString());
+		}
+	}, [user]);
 
 	useEffect(() => {
-		if(image) {
-		console.log("post image");
-		console.log("image",image);
-		const imageRef = ref(bd, 'images/' + image.name);
-		uploadBytes(imageRef, image)
- 		 .then((snapshot) => {
-			console.log("registrando url " + snapshot.metadata.fullPath);
-			updateProfile(auth.currentUser, {
-				photoURL: snapshot.metadata.fullPath
-			});
- 	 }).catch((error) => {
- 	   console.error('Upload failed', error);
- 	 });
-	}
+		if (image) {
+			console.log("post image");
+			console.log("image", image);
+			const imageRef = ref(bd, "images/" + image.name);
+			uploadBytes(imageRef, image)
+				.then((snapshot) => {
+					console.log("registrando url " + snapshot.metadata.fullPath);
+					updateProfile(auth.currentUser, {
+						photoURL: snapshot.metadata.fullPath,
+					});
+					console.log(snapshot);
+				})
+				.catch((error) => {
+					console.error("Upload failed", error);
+				});
+		}
 	}, [image]);
 
 	const registerUser = (email, name, password) => {
@@ -87,7 +91,7 @@ export const UserContextProvider = ({ children }) => {
 				});
 			})
 			.then((res) => {
-				console.log("registerUser",res.user.uid);
+				console.log("registerUser", res.user.uid);
 				setUser(res.user);
 			})
 			.catch((err) => setError(err.message))
@@ -95,15 +99,14 @@ export const UserContextProvider = ({ children }) => {
 	};
 
 	const uploadImage = (file) => {
-		if(file)
-		setImage(file);
+		if (file) setImage(file);
 	};
 
 	const signInUser = (email, password) => {
 		setLoading(true);
 		signInWithEmailAndPassword(auth, email, password)
 			.then((res) => {
-				console.log("signInUser",res.user.uid);
+				console.log("signInUser", res.user.uid);
 				setUser(res.user);
 			})
 			.catch((err) => setError(err.message))
@@ -129,7 +132,7 @@ export const UserContextProvider = ({ children }) => {
 		signInUser,
 		logoutUser,
 		forgotPassword,
-		uploadImage
+		uploadImage,
 	};
 	return (
 		<UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
