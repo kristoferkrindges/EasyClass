@@ -9,7 +9,7 @@ import logo from "../../../../assets/logo.jpeg";
 import { useUserContext } from "../../../../context/userContext";
 
 function Nav(props) {
-	const { user, imageUrl, logoutUser } = useUserContext();
+	const { user, photoURL, logoutUser } = useUserContext();
 
 	const [sidebar, setSidebar] = useState(true);
 
@@ -45,7 +45,7 @@ function Nav(props) {
 							</Link>
 						</li>
 						<li className="img-profle">
-							<img className="img-p" src={user ? imageUrl : logo}></img>
+							<img className="img-p" src={user ? photoURL : logo}></img>
 						</li>
 						<li className="user">
 							<h1>{user ? user.displayName : "?"}</h1>
