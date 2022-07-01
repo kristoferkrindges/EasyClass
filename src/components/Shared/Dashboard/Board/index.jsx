@@ -25,7 +25,10 @@ import {
 	IoFileTrayFull,
 } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../../../../context/userContext";
+
 function Dashboard(props) {
+	const { photoURL } = useUserContext();
 	let search;
 	let whoami;
 	if (props.type == "Aluno") {
@@ -81,7 +84,7 @@ function Dashboard(props) {
 						<ColumnTwo2>
 							<TitleText>Seus dados</TitleText>
 							<Profile
-								logo={props.logo}
+								logo={photoURL}
 								name={props.name}
 								year={props.year}
 								email={props.email}
