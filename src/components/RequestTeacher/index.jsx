@@ -19,21 +19,21 @@ export default function RequestTeacher() {
 
 	useEffect(() => {
 		checkUser(user);
-	});
+	},[]);
 
 	useEffect(()=> {
 		const queryParams = new URLSearchParams(location.search);
 		console.log(queryParams);
 		const teacherId = queryParams.get("teacherId");
 		setTeacherId(teacherId);
-	},[user]);
+	},[]);
 
 	useEffect(()=> {
 		if(teacherId) {
 			getTeacherById(teacherId);
 			getLessonsByTeacherId(teacherId);
 		}
-	},[user, teacherId])
+	},[user,teacherId])
 
 	const checkUser = (user) => {
 		if(user && user.uid)
@@ -194,10 +194,30 @@ export default function RequestTeacher() {
 
 		};
 
-		renderText() {
-			const { start, end } = this.props;
+		render() {
+			const { value, start, end } = this.props;
 			return (
-				<span>{`${start.format("DD/MM HH:mm")} - ${end.format("HH:mm")}`}</span>
+				<div className="customModal">
+					<div className="customModal__text"></div>
+					<input
+						ref={(el) => {
+							this.input = el;
+						}}
+						className="customModal__input"
+						type="text"
+						placeholder="Observação (Opcional)"
+						defaultValue={value}
+						size="90"
+						width="50%"
+						height="30%"
+					/>
+					<button
+						className="customModal__button customModal__button_float_right"
+						onClick={this.handleSave}
+					>
+						Enviar Solicitação
+					</button>
+				</div>
 			);
 		}
 
@@ -210,7 +230,7 @@ export default function RequestTeacher() {
       <div>
 		Funciona
 		<div>
-        	{teacher.firstName} {teacher.role} {teacher.photoUrl}
+        	{teacher? teacher.firstName : null} {teacher? teacher.role : null} {teacher? teacher.photoUrl: null}
             <CalendarContainer>
               <div>
             <h3>Consulte os horários disponível para o professor</h3>          
