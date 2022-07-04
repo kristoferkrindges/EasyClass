@@ -175,15 +175,19 @@ export default function RequestTeacher() {
 			let { start, end } = this.props;
 			let formattedStart = start.format('YYYY-MM-DDTHH:mm:ss');
 			let formatedEnd = end.format('YYYY-MM-DDTHH:mm:ss');
-			api
-			.post("/lesson-request", {
+			let postData = {
 				studentId: uid,
-				teacherId: teacher.teacherId,
+				teacherId: teacherId,
 				startDate: formattedStart,
 				endDate: formatedEnd,
-				subject: teacher.subject[0],
-				hourlyPrice: teacher.hourlyPrice,
-			})
+				subject: 'biology',
+				hourlyPrice: 70.00
+				//subject: teacher.subject[0],
+				//hourlyPrice: teacher.hourlyPrice,
+			}
+			console.log("post", postData);
+			api
+			.post("/lesson-request", postData)
 			.then(({ data }) => {
 				console.log(data);
 			})
@@ -198,7 +202,9 @@ export default function RequestTeacher() {
 			const { value, start, end } = this.props;
 			return (
 				<div className="customModal">
-					<div className="customModal__text"></div>
+					<div className="customModal__text">
+					{`Das ${start.format('HH:mm')} {as ${end.format('HH:mm')}`}
+					</div>
 					<input
 						ref={(el) => {
 							this.input = el;

@@ -36,13 +36,7 @@ export default function Cards({img, stars, name, lastName, subject, price, id, o
                     </Image>
                     <NameSubject>
                         <Name>{`${name} ${lastName}`}</Name>
-                        <Subject>
-                            <SubjectUl>
-                                {subject.map((value, key) => (
-                                    <Li key={key}>{value}</Li>
-                                ))}
-                            </SubjectUl>
-                        </Subject>
+                        
                     </NameSubject>
                     <Rating>
                         {star.map((id,index)=>

@@ -10,7 +10,7 @@ import {
 import { auth, storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useContext } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 const UserContext = createContext({});
 
@@ -75,18 +75,18 @@ export const UserContextProvider = ({ children }) => {
 		if (user) {
 			console.log("post uid");
 			console.log("user", user);
-			let userInfo = JSON.stringify({
-				userRemoteId: user.uid,
-			});
-			axios
+			let userInfo = {
+				"userRemoteId": user.uid,
+			};
+			api
 				.post(
-					"https://us6povhbg6.execute-api.sa-east-1.amazonaws.com/Prod/login",
+					"/login",
 					userInfo,
 					{}
 				)
 				.then((res) => {
 					//res.user.uid(res);
-					console.log(res);
+					console.log("aws User",res);
 				})
 				.catch((error) => {
 					console.error("error", error);

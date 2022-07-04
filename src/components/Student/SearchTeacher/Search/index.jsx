@@ -61,7 +61,7 @@ function Search(){
 	const getTeachers = () => {
 		console.log("get teachers");
 		api
-			.get("/teacher")
+			.get("/user?role=TEACHER")
 			.then(({ data }) => {
 				setTeachers(data);
 				console.log(data);
@@ -74,8 +74,9 @@ function Search(){
 
 	const getTeachersSubjectId = (id) => {
 		console.log("get teachers by subject" + id);
+		if(id)
 		api
-			.get("/teacher?subject=" + id)
+			.get("/user?subject=" + id.toUpperCase())
 			.then(({ data }) => {
 				setTeachers(data);
 				console.log(data);
@@ -194,7 +195,7 @@ function Search(){
 								lastName={value.lastName[0]}
 								subject={value.subjects}
 								price={`R$${value.hourlyPrice} Hr/Aula`}
-								id={value.teacherId}
+								id={value.userId}
 								onClick={routeChange}
 								key={key}
 							/>
