@@ -71,29 +71,6 @@ export const UserContextProvider = ({ children }) => {
 		return unsubscribe;
 	}, []);
 
-	useEffect(() => {
-		if (user) {
-			console.log("post uid");
-			console.log("user", user);
-			let userInfo = {
-				"userRemoteId": user.uid,
-			};
-			api
-				.post(
-					"/login",
-					userInfo,
-					{}
-				)
-				.then((res) => {
-					//res.user.uid(res);
-					console.log("aws User",res);
-				})
-				.catch((error) => {
-					console.error("error", error);
-				});
-		}
-	}, [user]);
-
 	const registerUser = (email, name, password) => {
 		///
 		setLoading(true);
@@ -117,10 +94,23 @@ export const UserContextProvider = ({ children }) => {
 			.then((res) => {
 				console.log("signInUser", res.user.uid);
 				setUser(res.user);
+				fetchUser(res.user.uid)
 			})
 			.catch((err) => setError(err.message))
 			.finally(() => setLoading(false));
 	};
+
+	function fetchUser(userRemoteId) {
+		// let payload = { userRemoteId: userRemoteId }
+		api
+		.post("/login", { "userRemoteId": userRemoteId })
+		.then(({res})  => {
+			console.log("aws user", res)
+		})
+		.catch((error) => {
+			console.log(error)
+		})
+	}
 
 	const logoutUser = () => {
 		//
