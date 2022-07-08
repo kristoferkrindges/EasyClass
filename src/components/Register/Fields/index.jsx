@@ -14,9 +14,9 @@ const Signup = () => {
 	const { registerUser } = useUserContext();
 	const initialState = {
 		type: "",
-		name: auth.currentUser.displayName ? auth.currentUser.displayName : "",
+		name: auth && auth.currentUser && auth.currentUser.displayName ? auth.currentUser.displayName : "",
 		lastname: "",
-		email: auth.currentUser.email ? auth.currentUser.email : "",
+		email: auth && auth.currentUser && auth.currentUser.email ? auth.currentUser.email : "",
 		password: "",
 	};
 	const [fields, setFields] = useState(initialState);

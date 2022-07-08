@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import Bar from "../Shared/Bar"
 import api from "../../services/api";
 export default function RequestTeacher() {
-	const { user } = useUserContext();
+	const { awsUser, fetchUser, user } = useUserContext();
 	const [params, setParams] = useState(null);
 	const location = useLocation();
 	let [teacher, setTeacher] = useState(null);
@@ -18,7 +18,7 @@ export default function RequestTeacher() {
 
 
 	useEffect(() => {
-		checkUser(user);
+		checkUser(awsUser);
 	},[]);
 
 	useEffect(()=> {
@@ -35,9 +35,11 @@ export default function RequestTeacher() {
 		}
 	},[user,teacherId])
 
-	const checkUser = (user) => {
-		if(user && user.uid)
-		setUid(user.uid);
+	const checkUser = (awsUser) => {
+		console.log(awsUser)
+		if(awsUser!= null && awsUser != undefined)
+		setUid(awsUser.userId);
+		else fetchUser(user.uid);
 	}
 
 	const getTeacherById = (teacherId) => {
@@ -176,7 +178,7 @@ export default function RequestTeacher() {
 			let formattedStart = start.format('YYYY-MM-DDTHH:mm:ss');
 			let formatedEnd = end.format('YYYY-MM-DDTHH:mm:ss');
 			let postData = {
-				studentId: uid,
+				studentId: awsUser.userId,
 				teacherId: teacherId,
 				startDate: formattedStart,
 				endDate: formatedEnd,

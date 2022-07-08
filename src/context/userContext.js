@@ -18,6 +18,7 @@ export const useUserContext = () => useContext(UserContext);
 
 export const UserContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
+	const [awsUser, setAwsUser] = useState(null);
 	const [photo, setPhoto] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [photoURL, setPhotoURL] = useState(
@@ -60,6 +61,7 @@ export const UserContextProvider = ({ children }) => {
 			console.log(user.photoURL);
 		}
 	}, [user]);
+
 
 	useEffect(() => {
 		setLoading(true);
@@ -106,6 +108,7 @@ export const UserContextProvider = ({ children }) => {
 		.post("/login", { "userRemoteId": userRemoteId })
 		.then(({res})  => {
 			console.log("aws user", res)
+			setAwsUser(res)
 		})
 		.catch((error) => {
 			console.log(error)
@@ -124,8 +127,10 @@ export const UserContextProvider = ({ children }) => {
 
 	const contextValue = {
 		user,
+		awsUser,
 		photoURL,
 		setPhoto,
+		fetchUser,
 		loading,
 		error,
 		registerUser,
