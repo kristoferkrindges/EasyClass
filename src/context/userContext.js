@@ -102,18 +102,19 @@ export const UserContextProvider = ({ children }) => {
 			.finally(() => setLoading(false));
 	};
 
-	function fetchUser(userRemoteId) {
+	 function fetchUser(userRemoteId) {
 		// let payload = { userRemoteId: userRemoteId }
-		api
+		 api
 		.post("/login", { "userRemoteId": userRemoteId })
 		.then(({res})  => {
 			console.log("aws user", res)
-			setAwsUser(res)
+			setAwsUser(res);
 		})
 		.catch((error) => {
 			console.log(error)
 		})
 	}
+
 
 	const logoutUser = () => {
 		//
@@ -130,7 +131,6 @@ export const UserContextProvider = ({ children }) => {
 		awsUser,
 		photoURL,
 		setPhoto,
-		fetchUser,
 		loading,
 		error,
 		registerUser,
