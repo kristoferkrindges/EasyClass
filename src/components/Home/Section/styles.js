@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import { 
-    IoArrowDownOutline,
-	IoBookOutline
-} from "react-icons/io5";
+import { IoArrowDownOutline, IoBookOutline } from "react-icons/io5";
 
 export const Container = styled.div`
 	display: flex;
@@ -12,7 +9,7 @@ export const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 	background-color: #3b393b;
-	border: none;
+	/* border: 1px solid #3b393b; */
 
 	h3 {
 		color: #fff;
@@ -29,9 +26,7 @@ export const Container = styled.div`
 		white-space: nowrap;
 	}
 
-	
-
-	.seletor h3{
+	.seletor h3 {
 		font-size: 1.5rem;
 		margin-right: 20px;
 		text-align: center;
@@ -39,7 +34,7 @@ export const Container = styled.div`
 
 	p {
 		color: #fff;
-		font-size: 2.0rem;
+		font-size: 2rem;
 		font-weight: 400;
 		margin: 8vh;
 	}
@@ -60,20 +55,20 @@ export const Container = styled.div`
 		text-align-last: center;
 	}
 
-	@media screen and (max-width: 798px){
-        .seletor{
+	@media screen and (max-width: 798px) {
+		.seletor {
 			flex-direction: column;
 			padding: 5%;
 		}
 
-		p{
+		p {
 			font-size: 1.3rem;
 			margin-bottom: 50px;
 			white-space: nowrap;
 		}
 
-		h3{
-			font-size: 1.0rem;
+		h3 {
+			font-size: 1rem;
 			padding: 5px;
 		}
 		.seletor select {
@@ -81,7 +76,7 @@ export const Container = styled.div`
 			max-width: 20ch;
 			font-size: 1rem;
 		}
-    }
+	}
 `;
 
 export const ListCards = styled.ul`
@@ -96,19 +91,23 @@ export const ListCards = styled.ul`
 	gap: 5%;
 	flex-wrap: wrap;
 
-	@media screen and (max-width: 798px){
+	@media screen and (max-width: 798px) {
 		margin-bottom: 220px;
 	}
 `;
 
 export const ContentCarrousel = styled.div`
 	width: 80%;
-`
+
+	@media screen and (max-width: 798px) {
+		width: 92%;
+	}
+`;
 
 export const IoArrowDown = styled(IoArrowDownOutline)`
 	stroke: black;
-    font-size: 1.5rem;
-    transition: 0.3s;
+	font-size: 1.5rem;
+	transition: 0.3s;
 `;
 
 export const IoBook = styled(IoBookOutline)`
@@ -117,58 +116,56 @@ export const IoBook = styled(IoBookOutline)`
     transition: 0.3s; */
 `;
 
-
 // Select Dinamic
 export const SelectMenu = styled.div`
-    /* width: 380px; */
-    /* margin: 140px auto; */
-`
+	/* width: 380px; */
+	/* margin: 140px auto; */
+`;
 
 export const SelectBtn = styled.div`
-    display: flex;
-    min-width: 20ch;
+	display: flex;
+	min-width: 20ch;
 	max-width: 20ch;
 	font-size: 1rem;
-    background: #fff;
-    padding: 20px;
-    font-weight: 400;
-    border-radius: 8px;
-    align-items: center;
-    cursor: pointer;
-    justify-content: space-between;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    border: 1px solid black;
-`
+	background: #fff;
+	padding: 20px;
+	font-weight: 400;
+	border-radius: 8px;
+	align-items: center;
+	cursor: pointer;
+	justify-content: space-between;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	border: 1px solid black;
+`;
 
 export const BtnText = styled.span`
-    color: black;
-`
+	color: black;
+`;
 export const Options = styled.ul`
-    position: relative;
-    padding: 20px;
-    margin-top: 10px;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 0 3px rgba(0,0,0,0.1);
-    z-index: 15;
-    /* display: none; */
-    
-`
+	position: relative;
+	padding: 20px;
+	margin-top: 10px;
+	border-radius: 8px;
+	background: #fff;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	z-index: 15;
+	/* display: none; */
+`;
 export const Option = styled.li`
-    display: flex;
-    height: 55px;
-    cursor: pointer;
-    padding: 0 16px;
-    border-radius: 8px;
-    align-items: center;
-    background: #fff;
+	display: flex;
+	height: 55px;
+	cursor: pointer;
+	padding: 0 16px;
+	border-radius: 8px;
+	align-items: center;
+	background: #fff;
 
-    &:hover{
-        background: #F2F2F2;
-    }
-`
+	&:hover {
+		background: #f2f2f2;
+	}
+`;
 
 export const OptionText = styled.span`
-    font-size: 18px;
-    color: black;
-`
+	font-size: 18px;
+	color: black;
+`;

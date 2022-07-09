@@ -12,6 +12,7 @@ import ErrorPage from "./Pages/ErrorPage";
 import SearchTeacherScreen from "./Pages/SearchTeacher";
 import EditProfileScreen from "./Pages/EditProfile";
 import PostsScreen from "./Pages/Posts";
+import RatingScreen from "./Pages/RatingPage";
 
 import { UserContextProvider } from "./context/userContext";
 import { PrivateRouter } from "./context/PrivateRouter";
@@ -24,6 +25,7 @@ export default function Routess() {
 					{/* <Route exact path="/" element={<HomeScreen/>}/> */}
 					<Route path="/" element={<HomeScreen />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/rating" element={<RatingScreen />} />
 					<Route path="/editprofile" element={<PrivateRouter />}>
 						<Route path="/editprofile" element={<EditProfileScreen />} />
 					</Route>

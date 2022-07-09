@@ -2,10 +2,14 @@ import React, { useState } from "react";
 
 import { Context, Card, Left, Right, Div, Buttons, HireMe } from "./style";
 
+import Rating from "../../../Shared/Rating/Ratings";
+
 export default function Message(props) {
 	let controll = true;
 
 	const [click, setClick] = useState(true);
+
+	const [openModal, setOpenModal] = useState(false);
 
 	function Handler() {
 		if (click == false) {
@@ -18,8 +22,15 @@ export default function Message(props) {
 	if (props.type == "Aceito") {
 		return (
 			// <Context>
-
 			<Card style={!click ? { boxshadow: "none" } : {}}>
+				{openModal && (
+					<Rating
+						closeModal={setOpenModal}
+						img={props.logo}
+						name={props.name}
+						type={"Professor"}
+					/>
+				)}
 				<Left
 					style={controll ? { background: "#94449e" } : {}}
 					onClick={Handler}
@@ -37,8 +48,13 @@ export default function Message(props) {
 					<h2>Data: {props.date}</h2>
 					<p>Sua aula foi aceita. Parabéns!</p>
 					<Buttons>
-						<HireMe style={controll ? { background: "gray" } : {}}>
-							{"Agenda"}
+						<HireMe
+							style={controll ? { background: "gray" } : {}}
+							onClick={() => {
+								setOpenModal(true);
+							}}
+						>
+							{"Avaliar"}
 						</HireMe>
 						<HireMe style={controll ? { background: "green" } : {}}>
 							{props.type}

@@ -89,7 +89,7 @@ function Edit(props) {
 					<Top>
 						<CardContent>
 							<Image>
-								<Logo src={logo} />
+								<Logo src={user.photoURL} />
 								<InputImage
 									type="file"
 									id="file"
