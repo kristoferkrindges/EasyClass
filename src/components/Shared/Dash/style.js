@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 	/* display: flex; */
-	height: 100vh;
+	height: 100%;
 	/* width: 100%; */
 	background: #4f4f4f;
 `;
+
 export const Content = styled.section`
 	position: relative;
 	width: calc(100% - 250px);

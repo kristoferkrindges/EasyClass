@@ -7,6 +7,8 @@ export const Container = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		position: relative;
+		z-index: 300;
 	}
 	.fresh {
 		display: flex;
@@ -73,6 +75,14 @@ export const Container = styled.div`
 		top: 0;
 		left: -100%;
 		transition: 850ms;
+		z-index: 200;
+
+		hr {
+			margin-top: 14%;
+		}
+		h2 {
+			margin-top: 5%;
+		}
 	}
 
 	.nav-menu.active {
@@ -86,7 +96,7 @@ export const Container = styled.div`
 		align-items: center;
 		padding: 8px 0px 12px 16px;
 		margin-left: 4vh;
-		margin-top: 10vh;
+		margin-top: 11vh;
 		margin-bottom: 5vh;
 		height: 60px;
 	}

@@ -6,6 +6,7 @@ import { useUserContext } from "../../context/userContext";
 import Auth from "./Auth/auth";
 // import Dashboard from "./Dashboard/dashboard";
 import DashBoard from "../Shared/Dashboard";
+import Dash from "../Shared/Dash";
 import { Container } from "./style";
 import Profile from "../../Pages/Profile";
 
@@ -26,7 +27,8 @@ function Login() {
 				{loading ? (
 					<h2 className="carregando">Carregando...</h2>
 				) : (
-					<> {user ? <DashBoard type={"Aluno"} /> : <Auth />} </>
+					// <> {user ? <DashBoard type={"Aluno"} /> : <Auth />} </>
+					<> {user ? <Dash type={"Aluno"} /> : <Auth />} </>
 				)}
 				{user ? <div /> : <Footer />}
 				{/* <Footer></Footer> */}

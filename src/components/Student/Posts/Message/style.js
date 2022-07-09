@@ -21,6 +21,10 @@ export const Container = styled.div`
 	height: 100vh;
 	/* width: 100%; */
 	background: #4f4f4f;
+
+	/* @media (max-width: 768px) {
+		width: 50vh;
+	} */
 `;
 
 export const Context = styled.div`
@@ -30,7 +34,7 @@ export const Context = styled.div`
 	height: 100vh;
 	align-items: center;
 
-	@media (max-width: 1030px) {
+	@media (max-width: 768px) {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
