@@ -30,7 +30,7 @@ export const CalendarContainer = style.div`
 
       .event {
         color: white;
-        background-color: white;
+        background-color: gray;
       }
 
       .customModal__button {
@@ -68,6 +68,12 @@ export const CalendarContainer = style.div`
     .customModal__button_example {
         width: 100%;
         display: block;
+    }
+
+    .customModal__input {
+      background-color: gray;
+      margin-bottom: 10px;
+      width: 100%;
     }
     
     .customEvent {
