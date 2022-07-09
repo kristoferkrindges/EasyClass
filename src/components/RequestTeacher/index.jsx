@@ -7,18 +7,22 @@ import * as moment from 'moment';
 import Bar from "../Shared/Bar"
 import api from "../../services/api";
 export default function RequestTeacher() {
-	const { awsUser, fetchUser, user } = useUserContext();
+	const { user } = useUserContext();
 	const [params, setParams] = useState(null);
 	const location = useLocation();
 	let [teacher, setTeacher] = useState(null);
+	let [awsUser, setAwsUser] = useState(null);
 	let [teacherId, setTeacherId] = useState(null);
-	let [lessons, setLessons] = useState(null);
+	let [lessons, setLessons] = useState([]);
 	let [classe, setClass] = useState([]);
 	let [uid, setUid] = useState(0);
 
 
 	useEffect(() => {
-		checkUser(awsUser);
+		console.log("useEffect awsUser",awsUser);
+		if(user) {
+		fetchUser(user.uid);
+	}
 	},[]);
 
 	useEffect(()=> {
@@ -35,12 +39,6 @@ export default function RequestTeacher() {
 		}
 	},[user,teacherId])
 
-	const checkUser = (awsUser) => {
-		console.log(awsUser)
-		if(awsUser!= null && awsUser != undefined)
-		setUid(awsUser.userId);
-		else fetchUser(user.uid);
-	}
 
 	const getTeacherById = (teacherId) => {
 		console.log("getUserTeacherById " + teacherId);
@@ -57,36 +55,49 @@ export default function RequestTeacher() {
 
 
 	const getLessonsByTeacherId = (teacherId) => {
-		console.log("getLessonsByTeacherId " + teacherId);
-		//let dateNow = new Date();
-		//let dateNextWeey = new Date();
-		//dateNextWeey.setDate(dateNow.getDate() + 7);
-		//let formattedDateNow = (moment(dateNow)).format('YYYY-MM-DDTHH:mm:ss+0000');
-		//let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
 		api
-			.get("/lesson-request?teacherId=" + teacherId)
+			.get("/lesson-request?teacherId=" + teacherId).then(res => {
+				console.log("getLessonsByTeacherId", res);
+				parseLesson(res.data);
+			}).catch((e) => {
+				console.error(e);
+			});
 
 	};
 
-	const parseLesson = (lessons = []) => {
-		console.log("parseLesson");
-		console.log(lessons);
-		let parseLessons = [];
+	const parseLesson = (lessonsToParse = []) => {
+		console.log(lessonsToParse);
 		let lastUid = 0;
-		lessons.forEach(lesson => {
+		Array.from(lessonsToParse).forEach(lesson => {
 			let includeLesson = {
 				lastUid: lastUid,
 				start: moment(lesson.startDate),
 				end: moment(lesson.endDate),
-				value: "status da aula"
+				value: lesson.status == 'ACCEPTED'? 'Ocupado' : 'Reservado'
 			}
 			lastUid ++;
-			parseLessons.push(includeLesson);
+			setLessons(lessons => [...lessons, includeLesson]);
 		})
 		setUid(lastUid);
-		setLessons(parseLessons);
+		console.log("after parse");
+		console.log(lessons);
 		
 	};
+
+
+	function fetchUser(userRemoteId) {
+		// let payload = { userRemoteId: userRemoteId }
+		 api
+		.post("/login", { "userRemoteId": userRemoteId })
+		.then((res)  => {
+			console.log("aws user", res);
+			if(res && res.data)
+			setAwsUser(res.data[0]);
+		})
+		.catch((error) => {
+			console.log(error)
+		})
+	}
 
 
 	class StandardCalendar extends React.Component {
@@ -95,26 +106,7 @@ export default function RequestTeacher() {
 		  super(props);
 		  this.state = {
 			lastUid: uid,
-			selectedIntervals: [
-			  {
-				uid: 1,
-				start: moment({h: 10, m: 5}),
-				end: moment({h: 12, m: 5}),
-				value: "Booked by Smith"
-			  },
-			  {
-				uid: 2,
-				start: moment({h: 13, m: 0}).add(2,'d'),
-				end: moment({h: 13, m: 45}).add(2,'d'),
-				value: "Closed"
-			  },
-			  {
-				uid: 3,
-				start: moment({h: 11, m: 0}),
-				end: moment({h: 14, m: 0}),
-				value: "Reserved by White"
-			  },
-			]
+			selectedIntervals: []
 		  }
 		}
 	  
@@ -155,7 +147,7 @@ export default function RequestTeacher() {
 	  
 		render() {
 		  return <WeekCalendar
-		  numberOfDays={7}
+		  numberOfDays={5}
 		  dayFormat={"DD/MM"}
 		  scaleUnit={60}
 		  scaleFormat={"HH"}
@@ -177,12 +169,13 @@ export default function RequestTeacher() {
 			let { start, end } = this.props;
 			let formattedStart = start.format('YYYY-MM-DDTHH:mm:ss');
 			let formatedEnd = end.format('YYYY-MM-DDTHH:mm:ss');
+			console.log("handleSave", awsUser);
 			let postData = {
 				studentId: awsUser.userId,
 				teacherId: teacherId,
 				startDate: formattedStart,
 				endDate: formatedEnd,
-				subject: 'biology',
+				subject: teacher.subject[0],
 				hourlyPrice: 70.00
 				//subject: teacher.subject[0],
 				//hourlyPrice: teacher.hourlyPrice,
@@ -205,7 +198,7 @@ export default function RequestTeacher() {
 			return (
 				<div className="customModal">
 					<div className="customModal__text">
-					{`Das ${start.format('HH:mm')} {as ${end.format('HH:mm')}`}
+					{`Das ${start.format('HH:mm')} as ${end.format('HH:mm')}`}
 					</div>
 					<input
 						ref={(el) => {
@@ -248,7 +241,7 @@ export default function RequestTeacher() {
              dayFormat={'DD/MM'}
              scaleUnit={60}
              scaleFormat={'HH'}
-             //selectedIntervals={dataConvert}
+             selectedIntervals={lessons}
              modalComponent={ModalCalendar}
              ></WeekCalendar>
         </CalendarContainer>
