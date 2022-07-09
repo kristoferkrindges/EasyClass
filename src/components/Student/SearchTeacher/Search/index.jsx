@@ -67,7 +67,7 @@ function Search() {
 	const getTeachers = () => {
 		console.log("get teachers");
 		api
-			.get("/teacher")
+			.get("/user?role=TEACHER")
 			.then(({ data }) => {
 				setTeachers(data);
 				console.log(data);
@@ -80,8 +80,9 @@ function Search() {
 
 	const getTeachersSubjectId = (id) => {
 		console.log("get teachers by subject" + id);
+		if(id)
 		api
-			.get("/teacher?subject=" + id)
+			.get("/user?subject=" + id.toUpperCase())
 			.then(({ data }) => {
 				setTeachers(data);
 				console.log(data);
@@ -248,6 +249,7 @@ function Search() {
 								// setCount(value.length);
 								return value;
 							}
+
 						})
 						.map((value, key) => (
 							<SwiperSlide key={key}>
@@ -268,6 +270,29 @@ function Search() {
 			</Swiper> */}
 		</Container>
 	);
+
+						}).map((value, key) => (
+							<NewCards
+								img={logo}
+								stars={value.rating}
+								name={value.firstName}
+								lastName={value.lastName[0]}
+								subject={value.subjects}
+								price={`R$${value.hourlyPrice} Hr/Aula`}
+								id={value.userId}
+								onClick={routeChange}
+								key={key}
+							/>
+							
+						))
+				}
+				{!removeLoading && <Loading/>}
+			</Carrousel>
+			</ListCards>
+			
+        </Container>
+    )
+
 }
 
 export default Search;

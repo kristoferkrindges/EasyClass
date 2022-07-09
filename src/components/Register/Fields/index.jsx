@@ -11,12 +11,12 @@ const Signup = () => {
 	const emailRef = useRef();
 	const nameRef = useRef();
 	const psdRef = useRef();
-	const { registerUser, uploadImage, user} = useUserContext();
+	const { registerUser } = useUserContext();
 	const initialState = {
 		type: "",
-		name: auth.currentUser.displayName? auth.currentUser.displayName : "",
+		name: auth && auth.currentUser && auth.currentUser.displayName ? auth.currentUser.displayName : "",
 		lastname: "",
-		email: auth.currentUser.email? auth.currentUser.email : "",
+		email: auth && auth.currentUser && auth.currentUser.email ? auth.currentUser.email : "",
 		password: "",
 	};
 	const [fields, setFields] = useState(initialState);
@@ -28,7 +28,7 @@ const Signup = () => {
 		const password = psdRef.current.value;
 		if (email && name && password) registerUser(email, name, password);
 	};
-	
+
 	const handleFieldsChange = (e) =>
 		setFields({
 			...fields,
@@ -63,13 +63,6 @@ const Signup = () => {
 	// 			console.error("error", error);
 	// 		});
 	// };
-
-	const handleChange = event => {
-		if (event.target.files && event.target.files[0]) {
-		  let file = event.target.files[0];
-		  uploadImage(file);
-		}
-	  };
 
 	return (
 		<Container>
@@ -123,11 +116,12 @@ const Signup = () => {
 						type="password"
 						value={""}
 					/>
-					 <input
-					 type="file"
-					 placeholder="Insira a sua imagem de perfil"
-					 name="image"
-					 onChange={handleChange} />
+					<input
+						type="file"
+						placeholder="Insira a sua imagem de perfil"
+						name="image"
+						/*onChange={handleChange}*/
+					/>
 					<button type="submit">Registrar</button>
 				</form>
 			</div>

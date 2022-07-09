@@ -4,37 +4,48 @@ import { useUserContext } from "../../context/userContext";
 import { useLocation } from "react-router-dom";
 import WeekCalendar from "react-week-calendar";
 import * as moment from 'moment';
+import Bar from "../Shared/Bar"
 import api from "../../services/api";
 export default function RequestTeacher() {
-	const { user } = useUserContext();
+	const { awsUser, fetchUser, user } = useUserContext();
 	const [params, setParams] = useState(null);
 	const location = useLocation();
 	let [teacher, setTeacher] = useState(null);
+	let [teacherId, setTeacherId] = useState(null);
 	let [lessons, setLessons] = useState(null);
 	let [classe, setClass] = useState([]);
 	let [uid, setUid] = useState(0);
+
+
 	useEffect(() => {
+		checkUser(awsUser);
+	},[]);
+
+	useEffect(()=> {
 		const queryParams = new URLSearchParams(location.search);
 		console.log(queryParams);
-		checkUser(user);
 		const teacherId = queryParams.get("teacherId");
-		setParams(teacherId);
-		if(!teacher) {
+		setTeacherId(teacherId);
+	},[]);
+
+	useEffect(()=> {
+		if(teacherId) {
 			getTeacherById(teacherId);
 			getLessonsByTeacherId(teacherId);
 		}
-		
-	});
+	},[user,teacherId])
 
-	const checkUser = (user) => {
-		if(user && user.providerData[0])
-		setUid(user.providerData[0].uid);
+	const checkUser = (awsUser) => {
+		console.log(awsUser)
+		if(awsUser!= null && awsUser != undefined)
+		setUid(awsUser.userId);
+		else fetchUser(user.uid);
 	}
 
 	const getTeacherById = (teacherId) => {
-		console.log("getLessonsByTeacherId " + teacherId);
+		console.log("getUserTeacherById " + teacherId);
 		api
-			.get("/teacher?teacherId=" + teacherId)
+			.get("/user?userId=" + teacherId)
 			.then(({ data }) => {
 				setTeacher(data);
 				console.log(data);
@@ -47,13 +58,13 @@ export default function RequestTeacher() {
 
 	const getLessonsByTeacherId = (teacherId) => {
 		console.log("getLessonsByTeacherId " + teacherId);
-		let dateNow = new Date();
-		let dateNextWeey = new Date();
-		dateNextWeey.setDate(dateNow.getDate() + 7);
-		let formattedDateNow = (moment(dateNow)).format('YYYY-MM-DDTHH:mm:ss+0000');
-		let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
+		//let dateNow = new Date();
+		//let dateNextWeey = new Date();
+		//dateNextWeey.setDate(dateNow.getDate() + 7);
+		//let formattedDateNow = (moment(dateNow)).format('YYYY-MM-DDTHH:mm:ss+0000');
+		//let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
 		api
-			.get("/lesson?teacherId=" + teacherId + '&after=' + formattedDateNow + '&before=' + formatedDateNextWeek)
+			.get("/lesson-request?teacherId=" + teacherId)
 
 	};
 
@@ -166,15 +177,19 @@ export default function RequestTeacher() {
 			let { start, end } = this.props;
 			let formattedStart = start.format('YYYY-MM-DDTHH:mm:ss');
 			let formatedEnd = end.format('YYYY-MM-DDTHH:mm:ss');
-			api
-			.post("/lesson-request", {
-				studentId: uid,
-				teacherId: teacher.teacherId,
+			let postData = {
+				studentId: awsUser.userId,
+				teacherId: teacherId,
 				startDate: formattedStart,
 				endDate: formatedEnd,
-				subject: teacher.subject[0],
-				hourlyPrice: teacher.hourlyPrice,
-			})
+				subject: 'biology',
+				hourlyPrice: 70.00
+				//subject: teacher.subject[0],
+				//hourlyPrice: teacher.hourlyPrice,
+			}
+			console.log("post", postData);
+			api
+			.post("/lesson-request", postData)
 			.then(({ data }) => {
 				console.log(data);
 			})
@@ -185,33 +200,45 @@ export default function RequestTeacher() {
 
 		};
 
-		renderText() {
-			const { start, end } = this.props;
+		render() {
+			const { value, start, end } = this.props;
 			return (
-				<span>{`${start.format("DD/MM HH:mm")} - ${end.format("HH:mm")}`}</span>
+				<div className="customModal">
+					<div className="customModal__text">
+					{`Das ${start.format('HH:mm')} {as ${end.format('HH:mm')}`}
+					</div>
+					<input
+						ref={(el) => {
+							this.input = el;
+						}}
+						className="customModal__input"
+						type="text"
+						placeholder="Observação (Opcional)"
+						defaultValue={value}
+						size="90"
+						width="50%"
+						height="30%"
+					/>
+					<button
+						className="customModal__button customModal__button_float_right"
+						onClick={this.handleSave}
+					>
+						Enviar Solicitação
+					</button>
+				</div>
 			);
 		}
 
-		render() {
-			const { value } = this.props;
-			const { dataConvert } = this.props;//ajustar isso
-			console.log(this.props);
+		
+
+		
+	}
+
     return(
       <div>
-          <div>
-        <Container>
-                <div>
-                    Foto
-                </div>
-                <div>
-                    Ver perfil
-                </div>
-                <div>
-                    Mensagens
-                </div>
-            </Container>
-                </div>
-            <div>
+		Funciona
+		<div>
+        	{teacher? teacher.firstName : null} {teacher? teacher.role : null} {teacher? teacher.photoUrl: null}
             <CalendarContainer>
               <div>
             <h3>Consulte os horários disponível para o professor</h3>          
@@ -221,13 +248,11 @@ export default function RequestTeacher() {
              dayFormat={'DD/MM'}
              scaleUnit={60}
              scaleFormat={'HH'}
-             selectedIntervals={dataConvert}
+             //selectedIntervals={dataConvert}
              modalComponent={ModalCalendar}
              ></WeekCalendar>
         </CalendarContainer>
         </div>
         </div>
     )
-}
-	}
 }

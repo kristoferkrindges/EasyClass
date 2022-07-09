@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Bar from "../Bar";
 import {
@@ -33,7 +33,8 @@ import { useUserContext } from "../../../context/userContext";
 import logo from "../../../assets/logo.jpeg";
 
 function Edit(props) {
-	const { user } = useUserContext();
+	const { user, setPhoto, photoURL, handleChange, handleClick } =
+		useUserContext();
 
 	const [clickName, setClickName] = useState(false);
 	const [clickPhone, setClickPhone] = useState(false);
@@ -81,6 +82,7 @@ function Edit(props) {
 			setClickYear(false);
 		}
 	}
+
 	return (
 		<Container>
 			<Bar logo={logo} name={user.displayName} type={props.type} msg={4} />
@@ -89,12 +91,13 @@ function Edit(props) {
 					<Top>
 						<CardContent>
 							<Image>
-								<Logo src={user.photoURL} />
+								<Logo src={photoURL} />
 								<InputImage
 									type="file"
 									id="file"
-									acceppt="image/*"
-									onChange={""}
+									name="image"
+									acceppt="image/*, png, jpeg, jpg"
+									onChange={handleChange}
 								/>
 								<LabelImage
 									htmlFor="file"
@@ -168,7 +171,7 @@ function Edit(props) {
 										onClick={HandlerOpen}
 										style={open ? { margin: "8% 0% 0% 0%" } : {}}
 									>
-										<HireMe>Pronto</HireMe>
+										<HireMe onClick={handleClick}>Pronto</HireMe>
 									</Buttons>
 								</UserDetails>
 							</form>
