@@ -26,13 +26,13 @@ import Loading from "../../../Shared/Loader";
 import api from "../../../../services/api";
 import Carrousel from "react-elastic-carousel";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, A11y } from "swiper";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation, Pagination, A11y } from "swiper";
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/a11y";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/pagination";
+// import "swiper/css/a11y";
 
 function Search() {
 	// Loader
@@ -80,22 +80,30 @@ function Search() {
 
 	const getTeachersSubjectId = (id) => {
 		console.log("get teachers by subject" + id);
-		if(id)
-		api
-			.get("/user?subject=" + id.toUpperCase())
-			.then(({ data }) => {
-				setTeachers(data);
-				console.log(data);
-				setRemoveLoading(true);
-			})
-			.catch((error) => {
-				console.error("error", error);
-			});
+		if (id)
+			api
+				.get("/user?subject=" + id.toUpperCase())
+				.then(({ data }) => {
+					setTeachers(data);
+					console.log(data);
+					setRemoveLoading(true);
+				})
+				.catch((error) => {
+					console.error("error", error);
+				});
 	};
 
 	const [count, setCount] = useState(teachers.length);
 	useEffect(setCount, []);
+	//bug carrousel
+	const [car, setCar] = useState(["1"]);
+	useEffect(() => {
+		function Carl() {
+			setCar(["2"]);
+		}
 
+		Carl();
+	}, []);
 	// Carrousel
 	const breakPoints = [
 		{ width: 500, itemsToShow: 1 },
@@ -116,13 +124,16 @@ function Search() {
 						<Input
 							type="text"
 							placeholder="Nome do professor..."
-							onChange={(e) => setSearchName(e.target.value)}
+							onChange={(e) => {
+								setSearchName(e.target.value);
+								setCar(["2"]);
+							}}
 						/>
 						<TextInput forName="check">
 							<IconSearch></IconSearch>
 						</TextInput>
 					</Drop>
-					<Result>
+					{/* <Result>
 						<Ul>
 							{teachers.length > 0 &&
 								teachers
@@ -144,7 +155,7 @@ function Search() {
 										</Li>
 									))}
 						</Ul>
-					</Result>
+					</Result> */}
 				</ContainerInput>
 				{/* <ContainerInput>
 					<TextInput>Nome</TextInput>
@@ -196,35 +207,38 @@ function Search() {
 				{!removeLoading && <Loading/>}
 			</ListCards> */}
 			<ListCards>
-				<Carrousel breakPoints={breakPoints}>
-					{teachers.length > 0 &&
-						teachers
-							.filter((value) => {
-								if (searchName === "") {
-									return value;
-								} else if (
-									value.firstName
-										.toLowerCase()
-										.includes(searchName.toLowerCase())
-								) {
-									return value;
-								}
-							})
-							.map((value, key) => (
-								<NewCards
-									img={logo}
-									stars={value.rating}
-									name={value.firstName}
-									lastName={value.lastName[0]}
-									subject={value.subjects}
-									price={`R$${value.hourlyPrice} Hr/Aula`}
-									id={value.teacherId}
-									onClick={routeChange}
-									key={key}
-								/>
-							))}
-					{!removeLoading && <Loading />}
-				</Carrousel>
+				{car.length > 0 &&
+					car.map((value, key) => (
+						<Carrousel breakPoints={breakPoints}>
+							{teachers.length > 0 &&
+								teachers
+									.filter((value) => {
+										if (searchName === "") {
+											return value;
+										} else if (
+											value.firstName
+												.toLowerCase()
+												.includes(searchName.toLowerCase())
+										) {
+											return value;
+										}
+									})
+									.map((value, key) => (
+										<NewCards
+											img={value.photoUrl}
+											stars={value.rating}
+											name={value.firstName}
+											lastName={value.lastName[0]}
+											subject={value.subject}
+											price={`R$${value.hourlyPrice} Hr/Aula`}
+											id={value.teacherId}
+											onClick={routeChange}
+											key={key}
+										/>
+									))}
+							{!removeLoading && <Loading />}
+						</Carrousel>
+					))}
 			</ListCards>
 			{/* <Swiper
 				modules={[Navigation, Pagination, A11y]}
@@ -271,28 +285,27 @@ function Search() {
 		</Container>
 	);
 
-						}).map((value, key) => (
-							<NewCards
-								img={logo}
-								stars={value.rating}
-								name={value.firstName}
-								lastName={value.lastName[0]}
-								subject={value.subjects}
-								price={`R$${value.hourlyPrice} Hr/Aula`}
-								id={value.userId}
-								onClick={routeChange}
-								key={key}
-							/>
-							
-						))
-				}
-				{!removeLoading && <Loading/>}
-			</Carrousel>
-			</ListCards>
-			
-        </Container>
-    )
+	// 					}).map((value, key) => (
+	// 						<NewCards
+	// 							img={logo}
+	// 							stars={value.rating}
+	// 							name={value.firstName}
+	// 							lastName={value.lastName[0]}
+	// 							subject={value.subjects}
+	// 							price={`R$${value.hourlyPrice} Hr/Aula`}
+	// 							id={value.userId}
+	// 							onClick={routeChange}
+	// 							key={key}
+	// 						/>
 
+	// 					))
+	// 			}
+	// 			{!removeLoading && <Loading/>}
+	// 		</Carrousel>
+	// 		</ListCards>
+
+	//     </Container>
+	// )
 }
 
 export default Search;

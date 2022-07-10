@@ -92,7 +92,7 @@ export const Name = styled.span`
 	font-weight: 600;
 `;
 export const Subject = styled.span`
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	font-weight: 500;
 `;
 export const SubjectUl = styled.ul``;
