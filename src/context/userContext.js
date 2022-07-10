@@ -94,7 +94,7 @@ export const UserContextProvider = ({ children }) => {
 		setLoading(true);
 		signInWithEmailAndPassword(auth, email, password)
 			.then((res) => {
-				console.log("signInUser", res.user.uid);
+				console.log("signInUser", res);
 				setUser(res.user);
 				fetchUser(res.user.uid)
 			})
@@ -106,9 +106,9 @@ export const UserContextProvider = ({ children }) => {
 		// let payload = { userRemoteId: userRemoteId }
 		api
 		.post("/login", { "userRemoteId": userRemoteId })
-		.then(({res})  => {
+		.then((res)  => {
 			console.log("aws user", res)
-			setAwsUser(res)
+			setAwsUser(res.data ? res.data[0] : null)
 		})
 		.catch((error) => {
 			console.log(error)

@@ -12,7 +12,7 @@ export default function RequestTeacher() {
 	const location = useLocation();
 	let [teacher, setTeacher] = useState(null);
 	let [teacherId, setTeacherId] = useState(null);
-	let [lessons, setLessons] = useState(null);
+	let [lessons, setLessons] = useState([]);
 	let [classe, setClass] = useState([]);
 	let [uid, setUid] = useState(0);
 
@@ -57,14 +57,19 @@ export default function RequestTeacher() {
 
 
 	const getLessonsByTeacherId = (teacherId) => {
-		console.log("getLessonsByTeacherId " + teacherId);
+		
 		//let dateNow = new Date();
 		//let dateNextWeey = new Date();
 		//dateNextWeey.setDate(dateNow.getDate() + 7);
 		//let formattedDateNow = (moment(dateNow)).format('YYYY-MM-DDTHH:mm:ss+0000');
 		//let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
 		api
-			.get("/lesson-request?teacherId=" + teacherId)
+			.get("/lesson-request?teacherId=" + teacherId).then(res => {
+				console.log("getLessonsByTeacherId " + teacherId);
+				parseLesson(res.data);
+			}).catch((e)=> {
+				console.error(e);
+			})
 
 	};
 
@@ -95,26 +100,7 @@ export default function RequestTeacher() {
 		  super(props);
 		  this.state = {
 			lastUid: uid,
-			selectedIntervals: [
-			  {
-				uid: 1,
-				start: moment({h: 10, m: 5}),
-				end: moment({h: 12, m: 5}),
-				value: "Booked by Smith"
-			  },
-			  {
-				uid: 2,
-				start: moment({h: 13, m: 0}).add(2,'d'),
-				end: moment({h: 13, m: 45}).add(2,'d'),
-				value: "Closed"
-			  },
-			  {
-				uid: 3,
-				start: moment({h: 11, m: 0}),
-				end: moment({h: 14, m: 0}),
-				value: "Reserved by White"
-			  },
-			]
+			selectedIntervals: lessons
 		  }
 		}
 	  
@@ -248,7 +234,7 @@ export default function RequestTeacher() {
              dayFormat={'DD/MM'}
              scaleUnit={60}
              scaleFormat={'HH'}
-             //selectedIntervals={dataConvert}
+             selectedIntervals={lessons}
              modalComponent={ModalCalendar}
              ></WeekCalendar>
         </CalendarContainer>

@@ -143,7 +143,7 @@ export default function Section() {
 								lastName={value.lastName[0]}
 								subject={value.subject}
 								price={`R$${value.hourlyPrice} Hr/Aula`}
-								id={value.teacherId}
+								id={value.userId}
 								onClick={routeChange}
 								key={key}
 							/>
