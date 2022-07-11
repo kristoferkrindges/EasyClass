@@ -20,39 +20,11 @@ export const SidebarData = [
 		},
 
 		{
-			title: "Agenda de Aulas",
-			path: "",
-			icon: <IoIcons.IoMdCalendar />,
-			cName: "nav-text",
-		},
-
-		{
 			title: "Buscar Professor",
 			path: "/SearchTeacher",
 			icon: <IoIcons.IoIosSearch />,
 			cName: "nav-text",
 		},
-
-		{
-			title: "Mensagens",
-			path: "/posts",
-			icon: <FaIcons.FaEnvelopeOpenText />,
-			cName: "nav-text",
-		},
-
-		{
-			title: "Suporte",
-			path: "",
-			icon: <IoIcons.IoMdHelpCircle />,
-			cName: "nav-text",
-		},
-
-		// {
-		// 	title: "Modo escuro",
-		// 	path: "",
-		// 	icon: <IoIcons.IoIosSunny />,
-		// 	cName: "nav-text",
-		// },
 	],
 
 	[
@@ -70,40 +42,6 @@ export const SidebarData = [
 			cName: "nav-text",
 		},
 
-		{
-			title: "Agenda de Aulas",
-			path: "",
-			icon: <IoIcons.IoMdCalendar />,
-			cName: "nav-text",
-		},
-
-		{
-			title: "Seus Alunos",
-			path: "",
-			icon: <IoIcons.IoIosSearch />,
-			cName: "nav-text",
-		},
-
-		{
-			title: "Mensagens",
-			path: "/posts",
-			icon: <FaIcons.FaEnvelopeOpenText />,
-			cName: "nav-text",
-		},
-
-		{
-			title: "Suporte",
-			path: "",
-			icon: <IoIcons.IoMdHelpCircle />,
-			cName: "nav-text",
-		},
-
-		// {
-		// 	title: "Modo escuro",
-		// 	path: "",
-		// 	icon: <IoIcons.IoIosSunny />,
-		// 	cName: "nav-text",
-		// },
 	],
 
 	[

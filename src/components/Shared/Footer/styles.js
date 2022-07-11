@@ -1,20 +1,7 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import { 
-	IoLogoFacebook, 
-	IoLogoTwitter, 
-	IoLogoWhatsapp,
-	IoLogoYoutube,
-	IoLogoInstagram
-} from "react-icons/io5";
-
 
 export const Container = styled.footer`
-	/* display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%; 
-  	height: 20vh;*/
 	background-color: #3b393b;
 	border-top: 1px solid black;
 `;
