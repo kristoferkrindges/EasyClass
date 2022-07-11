@@ -175,9 +175,10 @@ function Search() {
 						<Option value="English">Inglês</Option>
 						<Option value="History">Historia</Option>
 						<Option value="Guitar">Guitarra</Option>
-						<Option value="Music">Música</Option>
 						<Option value="Biology">Biologia</Option>
 						<Option value="Programming">Programação</Option>
+						<Option value="Zumba">Zumba</Option>
+						<Option value="Drums">Bateria</Option>
 					</Select>
 				</ContainerSelect>
 			</Searchs>
