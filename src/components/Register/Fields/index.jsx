@@ -18,6 +18,7 @@ const Signup = () => {
 		lastname: "",
 		email: auth && auth.currentUser && auth.currentUser.email ? auth.currentUser.email : "",
 		password: "",
+		confirmPassword: "",
 	};
 	const [fields, setFields] = useState(initialState);
 
@@ -39,30 +40,6 @@ const Signup = () => {
 		event.preventDefault();
 		setFields(initialState);
 	};
-
-	// const postValues = () => {
-	// 	console.log("post values");
-	// 	api
-	// 		.post("/teacher")
-	// 		.then(({ data }) => {
-	// 			setTeachers(data);
-	// 			console.log(data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error("error", error);
-	// 		});
-	// };
-	// const userId = () => {
-	// 	console.log("post values");
-	// 	api
-	// 		.post("/user")
-	// 		.then(({ data }) => {
-	// 			console.log(data);
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error("error", error);
-	// 		});
-	// };
 
 	return (
 		<Container>
@@ -114,13 +91,13 @@ const Signup = () => {
 						id="confirm-password"
 						name="confirm-password"
 						type="password"
-						value={""}
+						value={fields.confirmPassword}
+						onChange={handleFieldsChange}
 					/>
 					<input
 						type="file"
 						placeholder="Insira a sua imagem de perfil"
 						name="image"
-						/*onChange={handleChange}*/
 					/>
 					<button type="submit">Registrar</button>
 				</form>
