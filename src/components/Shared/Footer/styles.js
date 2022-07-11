@@ -1,20 +1,7 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import { 
-	IoLogoFacebook, 
-	IoLogoTwitter, 
-	IoLogoWhatsapp,
-	IoLogoYoutube,
-	IoLogoInstagram
-} from "react-icons/io5";
-
 
 export const Container = styled.footer`
-	/* display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%; 
-  	height: 20vh;*/
 	background-color: #3b393b;
 	border-top: 1px solid black;
 `;
@@ -114,50 +101,3 @@ export const WebsiteRights = styled.small`
 	margin-bottom: 16px;
 
 `;
-
-export const SocialIcons = styled.div`
-	display:flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 240px;
-	
-`;
-
-export const SocialIconLink = styled.a`
-	color: #fff;
-	font-size: 24px;
-
-	
-`;
-
-
-// export const Container = styled.div`
-
-// `;
-
-export const FacebookIcon = styled(IoLogoFacebook)`
-    width: 20px;
-	height: 20px;
-
-`
-export const TwitterIcon = styled(IoLogoTwitter)`
-    width: 20px;
-	height: 20px;
-
-`
-export const WhatsappIcon = styled(IoLogoWhatsapp)`
-    width: 20px;
-	height: 20px;
-
-`
-export const YoutubeIcon = styled(IoLogoYoutube)`
-    width: 20px;
-	height: 20px;
-
-`
-
-export const InstagramIcon = styled(IoLogoInstagram)`
-    width: 20px;
-	height: 20px;
-
-`

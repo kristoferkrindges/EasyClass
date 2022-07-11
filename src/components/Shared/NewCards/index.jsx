@@ -35,7 +35,6 @@ export default function Cards({
 		event.stopPropagation();
 		if (onClick) onClick(id);
 	};
-	console.log(subject);
 	return (
 		<li>
 			<Container>
