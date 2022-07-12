@@ -16,7 +16,6 @@ export default function Home() {
 
 	return (
 		<Container>
-			{/* <Header></Header> */}
 			<Sidebar isOpen={isOpen} toggle={toggle}></Sidebar>
 			<Navbar toggle={toggle} resp={"Entrar"}></Navbar>
 			<Article></Article>
