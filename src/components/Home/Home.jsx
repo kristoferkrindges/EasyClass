@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import Header from "../Shared/Header";
 import Footer from "../Shared/Footer";
 import Article from "./Article";
 import TeachersCarrousel from "./TeacherCarrousel/TeacherCarrousel";

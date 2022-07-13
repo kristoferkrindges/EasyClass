@@ -5,6 +5,7 @@ import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 import {auth} from "../../../firebase";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../Shared/Loader";
 
 const Signup = () => {
 
@@ -174,7 +175,9 @@ const Signup = () => {
                         placeholder="Insira a sua imagem de perfil"
                         name="image"
                     />
-                    <button type="submit">Registrar</button>
+                    {
+                        loading ? <Loading /> : <button type="submit">Registrar</button>
+                    }
                 </form>
             </div>
         </Container>

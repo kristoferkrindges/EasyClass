@@ -5,7 +5,7 @@ import {sendPasswordResetEmail, signInWithEmailAndPassword} from "firebase/auth"
 import {auth} from "../../../firebase";
 import api from "../../../services/api";
 import {useNavigate} from "react-router-dom";
-import {TailSpin} from 'react-loader-spinner';
+import Loading from "../../Shared/Loader";
 
 const SignIn = () => {
 
@@ -68,8 +68,6 @@ const SignIn = () => {
             });
     };
 
-    // const navigate = useNavigate();
-
     return (
         <Container>
             <div className="form">
@@ -86,7 +84,7 @@ const SignIn = () => {
                         ref={psdRef}
                     />
                     {
-                        loading ? <TailSpin/> : <button onClick={() => { onEnterClicked() }}> Entrar </button>
+                        loading ? <Loading /> : <button onClick={() => { onEnterClicked() }}> Entrar </button>
                     }
                     <p onClick={forgotPasswordHandler}>Esqueceu a senha?</p>
                 </form>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSessionContext } from "../../../context/SessionContextProvider";
+import { useSessionContext } from "../../context/SessionContextProvider";
 import { Container } from "./style";
 
 const Dashboard = () => {

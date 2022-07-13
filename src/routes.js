@@ -14,7 +14,6 @@ import Dashboard from "./Pages/Dashboard"
 
 import {SessionContextProvider} from "./context/SessionContextProvider";
 import {PrivateRouter} from "./context/PrivateRouter";
-import {LessonRequestContextProvider} from "./components/Shared/Dash/ContextProvider/LessonRequestContextProvider";
 
 export default function EasyClassRoutes() {
     return (
