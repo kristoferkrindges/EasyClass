@@ -4,10 +4,10 @@ import logo from "../../../assets/logo.jpeg"
 import Bar from "../Bar"
 import {Container} from "./style"
 import Board from "./Board";
-import { useUserContext } from "../../../context/userContext";
+import { useSessionContext } from "../../../context/SessionContextProvider";
 
 function DashBoard(props) {
-	const { user } = useUserContext();
+	const { user } = useSessionContext();
 	return (
 		<Container>
 			<Bar logo={logo} name={user.displayName} type={props.type} msg={4} />

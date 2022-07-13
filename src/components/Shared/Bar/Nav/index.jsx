@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
 import logo from "../../../../assets/logo.jpeg";
-import { useUserContext } from "../../../../context/userContext";
+import { useSessionContext } from "../../../../context/SessionContextProvider";
 
 function Nav(props) {
-	const { user, photoURL, logoutUser } = useUserContext();
+	const { user, photoURL, logoutUser } = useSessionContext();
 
 	const [sidebar, setSidebar] = useState(true);
 

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Bar from "../../Shared/Bar";
 import { Container, Context } from "./style";
-import { useUserContext } from "../../../context/userContext";
+import { useSessionContext } from "../../../context/SessionContextProvider";
 import logo from "../../../assets/logo.jpeg";
 import Message from "./Message/";
 
 function Posts(props) {
-	const { user } = useUserContext();
+	const { user } = useSessionContext();
 
 	return (
 		<Container>

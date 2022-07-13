@@ -1,9 +1,9 @@
 import React from "react";
-import { useUserContext } from "../../../context/userContext";
+import { useSessionContext } from "../../../context/SessionContextProvider";
 import { Container } from "./style";
 
 const Dashboard = () => {
-	const { user, logoutUser } = useUserContext();
+	const { user, logoutUser } = useSessionContext();
 	return (
 		<Container>
 			<div className="dashboard">

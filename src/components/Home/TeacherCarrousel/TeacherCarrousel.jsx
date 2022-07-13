@@ -20,15 +20,13 @@ import logo from "../../../assets/logo.jpeg";
 import api from "../../../services/api";
 import Carrousel from "react-elastic-carousel";
 
-export default function Section() {
-    // Loader
+export default function TeachersCarrousel() {
+
     const [removeLoading, setRemoveLoading] = useState(false);
 
-    // Select state
     const [click, setClick] = useState(false);
 
     const [market, setMarket] = useState("Escolha");
-    console.log(market);
 
     const [teachers, setTeachers] = useState([]);
     useEffect(() => getTeachers(), []);
@@ -36,18 +34,15 @@ export default function Section() {
     let navigate = useNavigate();
 
     const routeChange = (id) => {
-        console.log(id);
         let path = `/request?teacherId=${id}`;
         navigate(path);
     };
 
     const getTeachers = () => {
-        console.log("get teachers");
         api
             .get("/user?role=TEACHER")
             .then(({data}) => {
                 setTeachers(data);
-                console.log(data);
                 setRemoveLoading(true);
             })
             .catch((error) => {
@@ -56,13 +51,11 @@ export default function Section() {
     };
 
     const getTeachersSubjectId = (id) => {
-        console.log("get teachers by subject" + id);
         if (id)
             api
                 .get("/user?subject=" + id.toUpperCase())
                 .then(({data}) => {
                     setTeachers(data);
-                    console.log(data);
                     setRemoveLoading(true);
                 })
                 .catch((error) => {

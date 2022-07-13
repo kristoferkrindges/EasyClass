@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import logo from "../../../assets/logo.jpeg";
 import Bar from "../Bar";
 import { Container, Content } from "./style";
-import { useUserContext } from "../../../context/userContext";
+import { useSessionContext } from "../../../context/SessionContextProvider";
 import LessonRequestList from "./LessonRequestList/LessonRequestList";
 import { useLessonRequestContext } from "./ContextProvider/LessonRequestContextProvider";
 import Sidebar from "../SideBar";
@@ -11,7 +11,7 @@ import Footer from "../Footer";
 
 function Dash() {
 
-	const { user, awsUser } = useUserContext();
+	const { user, awsUser } = useSessionContext();
 	const { lessonRequests, getLessonRequest, error } = useLessonRequestContext();
 	getLessonRequest(awsUser.userId, awsUser.role)
 

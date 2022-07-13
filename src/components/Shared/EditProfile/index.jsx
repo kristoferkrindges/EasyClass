@@ -22,11 +22,11 @@ import {
 	IoPencil,
 	IoClose,
 } from "./style";
-import { useUserContext } from "../../../context/userContext";
+import { useSessionContext } from "../../../context/SessionContextProvider";
 import logo from "../../../assets/logo.jpeg";
 
 function EditProfile(props) {
-	const { user } = useUserContext();
+	const { user } = useSessionContext();
 
 	const [clickName, setClickName] = useState(false);
 	const [clickPhone, setClickPhone] = useState(false);

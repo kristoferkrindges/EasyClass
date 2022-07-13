@@ -5,34 +5,34 @@ const LessonRequestContext = createContext({})
 export const useLessonRequestContext = () => useContext(LessonRequestContext)
 
 export const LessonRequestContextProvider = ( {children} ) => {
-    const [lessonRequests, setLessonRequests] = useState([]);
+    const [lessonRequests, setLessonRequests] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
-    const getLessonRequest = (userId, role, lessonRequestId) => {
+    const getLessonRequest = async (userId, role, lessonRequestId) => {
         setLoading(true)
         if (role === "TEACHER") {
-            getLessonRequestsForTeacher()
+            await getLessonRequestsForTeacher()
         } else if (role === "STUDENT") {
-            getLessonForStudent()
+            await getLessonForStudent()
         } else if (lessonRequestId) {
-            getLessonRequestById()
+            await getLessonRequestById()
         }
     };
 
-    function getLessonRequestsForTeacher(teacherId) {
+    async function getLessonRequestsForTeacher(teacherId) {
         api.get("/lesson-request", { params : { teacherId: teacherId} })
             .then( (response) => { updateLessonRequestSate(response.data) })
             .catch((error) => { onError(error) })
     }
 
-    function getLessonForStudent(studentId) {
+    async function getLessonForStudent(studentId) {
         api.get("/lesson-request", { params : { studentId: studentId} })
             .then( (response) => { updateLessonRequestSate(response.data) })
             .catch((error) => { onError(error) })
     }
 
-    function getLessonRequestById(lessonRequestId) {
+    async function getLessonRequestById(lessonRequestId) {
         api.get("/lesson-request", { params : { lessonRequestId: lessonRequestId} })
             .then( (response) => { updateLessonRequestSate(response.data) })
             .catch((error) => { onError(error) })

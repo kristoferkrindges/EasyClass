@@ -1,13 +1,13 @@
 import { Container, CalendarContainer } from "./styles";
 import React, { useState, useEffect } from "react";
-import { useUserContext } from "../../context/userContext";
+import { useSessionContext } from "../../context/SessionContextProvider";
 import { useLocation } from "react-router-dom";
 import WeekCalendar from "react-week-calendar";
 import * as moment from 'moment';
 import Bar from "../Shared/Bar"
 import api from "../../services/api";
 export default function RequestTeacher() {
-	const { awsUser, fetchUser, user } = useUserContext();
+	const { awsUser, fetchUser, user } = useSessionContext();
 	const [params, setParams] = useState(null);
 	const location = useLocation();
 	let [teacher, setTeacher] = useState(null);
@@ -23,7 +23,6 @@ export default function RequestTeacher() {
 
 	useEffect(()=> {
 		const queryParams = new URLSearchParams(location.search);
-		console.log(queryParams);
 		const teacherId = queryParams.get("teacherId");
 		setTeacherId(teacherId);
 	},[]);
@@ -36,19 +35,16 @@ export default function RequestTeacher() {
 	},[user,teacherId])
 
 	const checkUser = (awsUser) => {
-		console.log(awsUser)
 		if(awsUser!= null && awsUser != undefined)
 		setUid(awsUser.userId);
 		else fetchUser(user.uid);
 	}
 
 	const getTeacherById = (teacherId) => {
-		console.log("getUserTeacherById " + teacherId);
 		api
 			.get("/user?userId=" + teacherId)
 			.then(({ data }) => {
 				setTeacher(data);
-				console.log(data);
 			})
 			.catch((error) => {
 				console.error("error", error);
@@ -65,7 +61,6 @@ export default function RequestTeacher() {
 		//let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
 		api
 			.get("/lesson-request?teacherId=" + teacherId).then(res => {
-				console.log("getLessonsByTeacherId " + teacherId);
 				parseLesson(res.data);
 			}).catch((e)=> {
 				console.error(e);
@@ -74,8 +69,6 @@ export default function RequestTeacher() {
 	};
 
 	const parseLesson = (lessons = []) => {
-		console.log("parseLesson");
-		console.log(lessons);
 		let parseLessons = [];
 		let lastUid = 0;
 		lessons.forEach(lesson => {

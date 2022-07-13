@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Signin from "../Fields/index";
-import Signup from "../../Register/Fields/index";
+import SignIn from "../Form/SignIn";
+import Signup from "../../Register/Fields/SignUp";
 import { Container } from "./style";
 
 const Auth = () => {
@@ -11,7 +11,7 @@ const Auth = () => {
 	return (
 		<Container>
 			<div className="container">
-				{!index ? <Signin /> : <Signup />}
+				{!index ? <SignIn /> : <Signup />}
 				<p className="novo_usuario" onClick={toggleIndex}>
 					{!index ? "Novo usuário? Clique aqui " : "Já tem uma conta?"}
 				</p>

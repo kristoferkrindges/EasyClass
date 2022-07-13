@@ -25,10 +25,10 @@ import {
 	IoFileTrayFull,
 } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { useUserContext } from "../../../../context/userContext";
+import { useSessionContext } from "../../../../context/SessionContextProvider";
 
 function Dashboard(props) {
-	const { photoURL } = useUserContext();
+	const { photoURL } = useSessionContext();
 	let search;
 	let whoami;
 	if (props.type == "Aluno") {

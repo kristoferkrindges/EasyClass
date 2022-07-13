@@ -1,6 +1,6 @@
 import React from "react";
 import AvatarImage from "../../../../assets/logo.jpeg";
-import { useUserContext } from "../../../../context/userContext";
+import { useSessionContext } from "../../../../context/SessionContextProvider";
 import {
     Container,
     Card,
@@ -13,7 +13,7 @@ import {
 
 
 function Profile(props) {
-  const { user } = useUserContext();
+  const { user } = useSessionContext();
     return(
       <Container>
         <Card>

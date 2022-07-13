@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import Header from "../Shared/Header";
 import Footer from "../Shared/Footer";
 import Article from "./Article";
-import Section from "./Section";
+import TeachersCarrousel from "./TeacherCarrousel/TeacherCarrousel";
 import { Container } from "./styles";
 import Navbar from "../Shared/Navbar";
 import Sidebar from "../Shared/SideBar";
@@ -19,7 +19,7 @@ export default function Home() {
 			<Sidebar isOpen={isOpen} toggle={toggle}></Sidebar>
 			<Navbar toggle={toggle} resp={"Entrar"}></Navbar>
 			<Article></Article>
-			<Section></Section>
+			<TeachersCarrousel></TeachersCarrousel>
 			<Footer></Footer>
 		</Container>
 	);
