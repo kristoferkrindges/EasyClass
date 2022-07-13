@@ -21,6 +21,7 @@ import {
 import Profile from "../Profile";
 import Message from "../../../Student/Posts/Message";
 import logo from "../../../../assets/logo.jpeg";
+import api from "../../../../services/api";
 
 const Options = (props) => {
 	let search;

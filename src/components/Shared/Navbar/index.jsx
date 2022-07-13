@@ -4,9 +4,7 @@ import {
 	NavbarContainer, 
 	NavLogo, 
 	MobileIcon, 
-	NavMenu, 
-	NavItem, 
-	NavLinks,
+	NavMenu,
 	NavBtn,
 	NavBtnLink
 } from "./style";

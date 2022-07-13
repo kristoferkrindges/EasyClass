@@ -12,27 +12,13 @@ import {
 	ContainerSelect,
 	Option,
 	TextInput,
-	TextSelect,
 	Drop,
 	IconSearch,
-	Result,
-	Ul,
-	Li,
-	Span,
 } from "./style";
-import logo from "../../../../assets/logo.jpeg";
 import NewCards from "../../../Shared/NewCards";
 import Loading from "../../../Shared/Loader";
 import api from "../../../../services/api";
 import Carrousel from "react-elastic-carousel";
-
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Navigation, Pagination, A11y } from "swiper";
-
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// import "swiper/css/a11y";
 
 function Search() {
 	// Loader
@@ -40,17 +26,6 @@ function Search() {
 
 	//Filter(input)
 	const [searchName, setSearchName] = useState("");
-
-	// const [filter, setFilter] = useState("")
-	// const searchText = (event) =>{
-	// 	setFilter(event.target.value)
-	// }
-	// let dataSearch = teachers.name.filter(item =>{
-	// 	return Object.keys(item).some(key =>
-	// 		item[key].toString().toLowerCase().includes(filter.toString().toLowerCase())
-	// 		)
-	// })
-	// console.warn(filter);
 
 	//Select/Teacher
 	const [teachers, setTeachers] = useState([]);
@@ -79,7 +54,6 @@ function Search() {
 	};
 
 	const getTeachersSubjectId = (id) => {
-		console.log("get teachers by subject" + id);
 		if (id)
 			api
 				.get("/user?subject=" + id.toUpperCase())

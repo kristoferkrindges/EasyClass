@@ -3,19 +3,18 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeScreen from "./Pages/Home";
 
 import About from "./Pages/About";
-import DashBoardStudent from "./Pages/DashboardAluno";
-import DashBoardTeacher from "./Pages/DashboardTeacher";
 import Request from "./Pages/Request";
 import Login from "./Pages/Login";
-import Profile from "./Pages/Profile";
 import ErrorPage from "./Pages/ErrorPage";
 import SearchTeacherScreen from "./Pages/SearchTeacher";
 import EditProfileScreen from "./Pages/EditProfile";
 import PostsScreen from "./Pages/Posts";
 import RatingScreen from "./Pages/RatingPage";
+import Dashboard from "./Pages/Dashboard"
 
 import { UserContextProvider } from "./context/userContext";
 import { PrivateRouter } from "./context/PrivateRouter";
+import {LessonRequestContextProvider} from "./components/Shared/Dash/ContextProvider/LessonRequestContextProvider";
 
 export default function Routess() {
 	return (
@@ -24,7 +23,14 @@ export default function Routess() {
 				<Routes>
 					{/* <Route exact path="/" element={<HomeScreen/>}/> */}
 					<Route path="/" element={<HomeScreen />} />
-					<Route path="/login" element={<Login />} />
+					<Route path="/login" element={
+                        <Login />
+					} />
+					<Route path="/dashboard" element={
+						<LessonRequestContextProvider>
+						    <Dashboard />
+						</LessonRequestContextProvider>
+					} />
 					<Route path="/rating" element={<RatingScreen />} />
 					<Route path="/editprofile" element={<PrivateRouter />}>
 						<Route path="/editprofile" element={<EditProfileScreen />} />
