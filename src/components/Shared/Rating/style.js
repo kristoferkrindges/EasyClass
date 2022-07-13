@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { IoStar } from "react-icons/io5";
 
 export const Container = styled.div`
 	height: 100%;

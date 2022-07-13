@@ -9,7 +9,6 @@ export const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 	background-color: #3b393b;
-	/* border: 1px solid #3b393b; */
 
 	h3 {
 		color: #fff;
@@ -20,7 +19,6 @@ export const Container = styled.div`
 	.seletor {
 		display: flex;
 		align-items: center;
-		/* justify-content: space-between; */
 		padding: 2%;
 		text-align: center;
 		white-space: nowrap;
@@ -46,7 +44,6 @@ export const Container = styled.div`
 		border: 1px solid var(--select-border);
 		border-radius: 0.25em;
 		padding: 0.25em 0.5em;
-		/* margin-top: 5%; */
 		font-size: 1.25rem;
 		cursor: pointer;
 		line-height: 1.1;
@@ -83,9 +80,7 @@ export const ListCards = styled.ul`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* justify-self: center; */
 	max-width: 1800px;
-	/* padding: 20px; */
 	height: 60%;
 	width: 100%;
 	gap: 5%;
@@ -110,17 +105,9 @@ export const IoArrowDown = styled(IoArrowDownOutline)`
 	transition: 0.3s;
 `;
 
-export const IoBook = styled(IoBookOutline)`
-	/* stroke: black;
-    font-size: 1.5rem;
-    transition: 0.3s; */
-`;
+export const IoBook = styled(IoBookOutline)``;
 
-// Select Dinamic
-export const SelectMenu = styled.div`
-	/* width: 380px; */
-	/* margin: 140px auto; */
-`;
+export const SelectMenu = styled.div``;
 
 export const SelectBtn = styled.div`
 	display: flex;
@@ -149,7 +136,6 @@ export const Options = styled.ul`
 	background: #fff;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 	z-index: 15;
-	/* display: none; */
 `;
 export const Option = styled.li`
 	display: flex;

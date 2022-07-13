@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-// import AvatarImage from "../../../../assets/logo.jpeg";
 import {
 	Container,
 	Card,
@@ -9,10 +8,6 @@ import {
 	NameProfession,
 	Name,
 	Old,
-	FacebookIcon,
-	TwitterIcon,
-	WhatsappIcon,
-	Icons,
 	IoPencil,
 } from "./style";
 

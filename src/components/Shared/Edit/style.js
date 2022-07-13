@@ -42,17 +42,13 @@ export const IoCamera = styled(IoCameraOutline)`
 `;
 
 export const Container = styled.div`
-	/* display: flex; */
 	height: 100vh;
-	/* width: 100%; */
 	background: #4f4f4f;
 `;
 
 export const Context = styled.div`
 	display: flex;
 	justify-content: center;
-	/* align-items: center; */
-	/* background: red; */
 	width: 100%;
 	height: 91.8vh;
 `;
@@ -61,31 +57,21 @@ export const Layout = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* justify-content: center; */
 	height: 80vh;
 	margin-left: 15%;
 	margin-top: 1%;
 	border-radius: 25px;
-	/* border: 1px solid black; */
 	background: #fff;
 `;
 
 export const Top = styled.div`
 	background: #94449e;
 	border-radius: 20px;
-	/* position: relative; */
 	margin: 0px 0;
 	height: 40vh;
 	width: 100vh;
 	cursor: pointer;
 	transition: opacity 0.5s ease-out;
-	/* border: 1px solid black; */
-
-	&:hover {
-		/* width: 38vh;
-        height: 44vh; */
-		/* opacity: 0.5; */
-	}
 `;
 
 export const Image = styled.div`
@@ -103,8 +89,6 @@ export const Logo = styled.img`
 	border: 3px solid #fff;
 
 	&:hover {
-		/* width: 38vh;
-        height: 44vh; */
 		opacity: 0.5;
 	}
 `;
@@ -114,7 +98,6 @@ export const CardContent = styled.div`
 	align-items: center;
 	padding: 30px;
 	position: relative;
-	/* z-index: 100; */
 `;
 
 export const InputImage = styled.input`
@@ -195,8 +178,6 @@ export const HireMe = styled.button`
 	}
 `;
 
-// Second Container
-
 export const Bottom = styled.div`
 	height: 40vh;
 	width: 100vh;
@@ -204,8 +185,6 @@ export const Bottom = styled.div`
 	padding: 25px 30px;
 	border-radius: 25px;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-	/* bottom: -100%;
-	transition: 850ms; */
 `;
 
 export const Title = styled.div`
@@ -266,7 +245,6 @@ export const InputBox = styled.div`
 		border-radius: 5px;
 		padding-left: 15px;
 		transition: all 0.3s ease;
-		/* color: #94449e; */
 	}
 
 	input:focus {
@@ -298,21 +276,7 @@ export const ButtonResult = styled.div`
 
 	input {
 		:hover {
-			/* transform: scale(0.99); */
 			background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 		}
 	}
-`;
-
-export const FacebookIcon = styled(IoLogoFacebook)`
-	width: 30px;
-	height: 30px;
-`;
-export const TwitterIcon = styled(IoLogoTwitter)`
-	width: 30px;
-	height: 30px;
-`;
-export const WhatsappIcon = styled(IoLogoWhatsapp)`
-	width: 30px;
-	height: 30px;
 `;

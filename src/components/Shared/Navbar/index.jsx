@@ -1,19 +1,17 @@
 import React from "react";
-import { 
-	Nav, 
-	NavbarContainer, 
-	NavLogo, 
-	MobileIcon, 
-	NavMenu, 
-	NavItem, 
-	NavLinks,
+import {
+	Nav,
+	NavbarContainer,
+	NavLogo,
+	MobileIcon,
+	NavMenu,
 	NavBtn,
-	NavBtnLink
+	NavBtnLink,
 } from "./style";
-import {FaBars} from 'react-icons/fa'
+import { FaBars } from "react-icons/fa";
 import logo from "../../../assets/logo.jpeg";
 
-export default function Navbar({toggle, resp}) {
+export default function Navbar({ toggle, resp }) {
 	return (
 		<>
 			<Nav>
@@ -25,17 +23,7 @@ export default function Navbar({toggle, resp}) {
 					<MobileIcon onClick={toggle}>
 						<FaBars></FaBars>
 					</MobileIcon>
-					<NavMenu>
-						{/* <NavItem>
-							<NavLinks to="/">Home</NavLinks>
-						</NavItem>
-						<NavItem>
-							<NavLinks to="/about">Sobre</NavLinks>
-						</NavItem>
-						<NavItem>
-							<NavLinks to="/profile">Perfil</NavLinks>
-						</NavItem> */}
-					</NavMenu>
+					<NavMenu></NavMenu>
 					<NavBtn>
 						<NavBtnLink to="/login">{resp}</NavBtnLink>
 					</NavBtn>

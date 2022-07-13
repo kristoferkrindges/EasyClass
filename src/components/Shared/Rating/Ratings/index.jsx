@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import {
 	Card,
-	CardContent,
 	Title,
 	Logo,
 	Name,
 	Stars,
 	StarIcon,
-	User,
 	Text,
 	Buttons,
 	HireMe,
@@ -43,7 +41,6 @@ function Ratings(props) {
 		<Container>
 			<Card>
 				<Layout>
-					{/* <CardContent></CardContent> */}
 					<Title>
 						Avalie sua Aula <IoClose onClick={() => props.closeModal(false)} />
 					</Title>

@@ -4,12 +4,14 @@ import logo from "../../../assets/logo.jpeg";
 import Bar from "../../Shared/Bar";
 import { Container, Content } from "./style";
 import Search from "./Search";
+import { useUserContext } from "../../../context/userContext";
 
 function SearchTeacher() {
+	const { user, photoURL } = useUserContext();
 	let { username } = useParams();
 	return (
 		<Container>
-			<Bar logo={logo} name={"Kristofer Krindges"} type={"Aluno"} msg={4} />
+			<Bar logo={photoURL} name={user.displayName} type={""} msg={4} />
 			<Content>
 				<Search />
 			</Content>

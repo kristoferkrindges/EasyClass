@@ -37,7 +37,6 @@ export const Container = styled.div`
 		background: #94449e;
 		white-space: nowrap;
 		padding: 10px 22px;
-		/* margin-left: 1500px; */
 		color: white;
 		font-size: 16px;
 		outline: none;
@@ -106,8 +105,8 @@ export const Container = styled.div`
 		align-items: center;
 		cursor: pointer;
 		width: 140px;
-		border: none;
-		border-radius: 90px;
+		border: 3px solid #94449e;
+		border-radius: 50%;
 		box-shadow: 0 1px 6px black;
 	}
 	.img-p:hover {
@@ -128,12 +127,6 @@ export const Container = styled.div`
 		color: #f5f5f5;
 		font-size: 1.5rem;
 		margin-bottom: 8px;
-		/* width: 95%;
-        height: 100%;
-        display: flex; */
-		/* align-items: center; */
-		/* padding: 0 16px; */
-		/* border-radius: 4px; */
 	}
 	.user h2 {
 		color: #f5f5f5;

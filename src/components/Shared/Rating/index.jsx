@@ -9,7 +9,6 @@ function Esqueleton(props) {
 	const { user } = useUserContext();
 	return (
 		<Container>
-			{/* logo={logo} name={user.displayName} type={props.type} msg={4} */}
 			<Bar logo={logo} type={props.type} msg={4} />
 			<Content>
 				<Ratings img={logo} name={"Richard"} type={"Professor"} />

@@ -1,12 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import {
 	Layout,
 	Title,
-	BreadCrumbs,
 	InfoData,
 	Data,
 	ContentData,
-	Itter,
 	Info,
 	Call,
 } from "./style";
@@ -59,17 +57,6 @@ const Options = (props) => {
 			<Title>
 				Bem-vindo! <span>{props.name}</span>
 			</Title>
-			{/* <BreadCrumbs>
-				<li>
-					<Link to="#">Home</Link>
-				</li>
-				<li className="divider">/</li>
-				<li>
-					<Link to="#" className="active">
-						Dashboard
-					</Link>
-				</li>
-			</BreadCrumbs> */}
 			<InfoData>
 				{doc.map((value, key) => (
 					<Link to={value.link}>
@@ -116,14 +103,6 @@ const Options = (props) => {
 					date={"15/11/2022"}
 					time={"10:00"}
 				/>
-				{/* <Message
-					subject={"Física"}
-					name={"Nathalia"}
-					type={"Recusado"}
-					logo={logo}
-					date={"15/11/2022"}
-					time={"10:00"}
-				/> */}
 			</Info>
 		</Layout>
 	);

@@ -4,8 +4,6 @@ import Sidebar from "../Shared/SideBar";
 import Footer from "../Shared/Footer";
 import { useUserContext } from "../../context/userContext";
 import Auth from "./Auth/auth";
-// import Dashboard from "./Dashboard/dashboard";
-import DashBoard from "../Shared/Dashboard";
 import Dash from "../Shared/Dash";
 import { Container } from "./style";
 import Profile from "../../Pages/Profile";
@@ -31,7 +29,6 @@ function Login() {
 					<> {user ? <Dash type={"Aluno"} /> : <Auth />} </>
 				)}
 				{user ? <div /> : <Footer />}
-				{/* <Footer></Footer> */}
 			</div>
 		</Container>
 	);

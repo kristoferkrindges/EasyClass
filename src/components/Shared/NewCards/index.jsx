@@ -14,9 +14,6 @@ import {
 	HireMe,
 	StarIcon1,
 	StarIcon2,
-	FacebookIcon,
-	TwitterIcon,
-	WhatsappIcon,
 } from "./style";
 export default function Cards({
 	img,
@@ -24,7 +21,6 @@ export default function Cards({
 	name,
 	lastName,
 	subject,
-	price,
 	id,
 	onClick,
 }) {

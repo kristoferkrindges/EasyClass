@@ -21,7 +21,6 @@ export default function Message(props) {
 
 	if (props.type == "Aceito") {
 		return (
-			// <Context>
 			<Card style={!click ? { boxshadow: "none" } : {}}>
 				{openModal && (
 					<Rating
@@ -42,7 +41,6 @@ export default function Message(props) {
 				<Right style={!click ? { display: "none", boxshadown: "none" } : {}}>
 					<Div>
 						<h4>Professor(a): {props.name}</h4>
-						{/* <h6>{props.name}</h6> */}
 					</Div>
 					<h2>Aula: {props.subject}</h2>
 					<h2>Data: {props.date}</h2>
@@ -60,16 +58,8 @@ export default function Message(props) {
 							{props.type}
 						</HireMe>
 					</Buttons>
-
-					{/* <button
-						class="button background1-left-column"
-						style={controll ? { background: "green" } : {}}
-					>
-						{props.type}
-					</button> */}
 				</Right>
 			</Card>
-			// </Context>
 		);
 	} else if (props.type == "Aguardando") {
 		return (
@@ -85,7 +75,6 @@ export default function Message(props) {
 				<Right style={!click ? { display: "none", boxshadown: "none" } : {}}>
 					<Div>
 						<h4>Professor(a): {props.name}</h4>
-						{/* <h6>{props.name}</h6> */}
 					</Div>
 					<h2>Aula: {props.subject}</h2>
 					<h2>Data: {props.date}</h2>
@@ -98,12 +87,6 @@ export default function Message(props) {
 							{props.type}
 						</HireMe>
 					</Buttons>
-					{/* <button
-						class="button background1-left-column"
-						style={controll ? { background: "yellow" } : {}}
-					>
-						{props.type}
-					</button> */}
 				</Right>
 			</Card>
 		);
@@ -121,7 +104,6 @@ export default function Message(props) {
 				<Right style={!click ? { display: "none", boxshadown: "none" } : {}}>
 					<Div>
 						<h4>Professor(a): {props.name}</h4>
-						{/* <h6>{props.name}</h6> */}
 					</Div>
 					<h2>Aula: {props.subject}</h2>
 					<h2>Data: {props.date}</h2>
@@ -134,12 +116,6 @@ export default function Message(props) {
 							{props.type}
 						</HireMe>
 					</Buttons>
-					{/* <button
-						class="button background1-left-column"
-						style={controll ? { background: "red" } : {}}
-					>
-						{props.type}
-					</button> */}
 				</Right>
 			</Card>
 		);

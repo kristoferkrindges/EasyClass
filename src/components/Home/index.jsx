@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import Header from "../Shared/Header";
 import Footer from "../Shared/Footer";
 import Article from "./Article";
 import Section from "./Section";
@@ -16,7 +15,6 @@ export default function Home() {
 
 	return (
 		<Container>
-			{/* <Header></Header> */}
 			<Sidebar isOpen={isOpen} toggle={toggle}></Sidebar>
 			<Navbar toggle={toggle} resp={"Entrar"}></Navbar>
 			<Article></Article>
