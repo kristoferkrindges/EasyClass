@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useUserContext } from "../../context/userContext";
 import { useLocation } from "react-router-dom";
 import WeekCalendar from "react-week-calendar";
-import * as moment from 'moment';
-import Bar from "../Shared/Bar"
+import * as moment from "moment";
+import Bar from "../Shared/Bar";
 import api from "../../services/api";
 export default function RequestTeacher() {
 	const { awsUser, fetchUser, user } = useUserContext();
@@ -16,31 +16,29 @@ export default function RequestTeacher() {
 	let [classe, setClass] = useState([]);
 	let [uid, setUid] = useState(0);
 
-
 	useEffect(() => {
 		checkUser(awsUser);
-	},[]);
+	}, []);
 
-	useEffect(()=> {
+	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
 		console.log(queryParams);
 		const teacherId = queryParams.get("teacherId");
 		setTeacherId(teacherId);
-	},[]);
+	}, []);
 
-	useEffect(()=> {
-		if(teacherId) {
+	useEffect(() => {
+		if (teacherId) {
 			getTeacherById(teacherId);
 			getLessonsByTeacherId(teacherId);
 		}
-	},[user,teacherId])
+	}, [user, teacherId]);
 
 	const checkUser = (awsUser) => {
-		console.log(awsUser)
-		if(awsUser!= null && awsUser != undefined)
-		setUid(awsUser.userId);
+		console.log(awsUser);
+		if (awsUser != null && awsUser != undefined) setUid(awsUser.userId);
 		else fetchUser(user.uid);
-	}
+	};
 
 	const getTeacherById = (teacherId) => {
 		console.log("getUserTeacherById " + teacherId);
@@ -55,22 +53,21 @@ export default function RequestTeacher() {
 			});
 	};
 
-
 	const getLessonsByTeacherId = (teacherId) => {
-		
 		//let dateNow = new Date();
 		//let dateNextWeey = new Date();
 		//dateNextWeey.setDate(dateNow.getDate() + 7);
 		//let formattedDateNow = (moment(dateNow)).format('YYYY-MM-DDTHH:mm:ss+0000');
 		//let formatedDateNextWeek = (moment(dateNextWeey)).format('YYYY-MM-DDTHH:mm:ss+0000');
 		api
-			.get("/lesson-request?teacherId=" + teacherId).then(res => {
+			.get("/lesson-request?teacherId=" + teacherId)
+			.then((res) => {
 				console.log("getLessonsByTeacherId " + teacherId);
 				parseLesson(res.data);
-			}).catch((e)=> {
-				console.error(e);
 			})
-
+			.catch((e) => {
+				console.error(e);
+			});
 	};
 
 	const parseLesson = (lessons = []) => {
@@ -78,112 +75,109 @@ export default function RequestTeacher() {
 		console.log(lessons);
 		let parseLessons = [];
 		let lastUid = 0;
-		lessons.forEach(lesson => {
+		lessons.forEach((lesson) => {
 			let includeLesson = {
 				lastUid: lastUid,
 				start: moment(lesson.startDate),
 				end: moment(lesson.endDate),
-				value: "status da aula"
-			}
-			lastUid ++;
+				value: "status da aula",
+			};
+			lastUid++;
 			parseLessons.push(includeLesson);
-		})
+		});
 		setUid(lastUid);
 		setLessons(parseLessons);
-		
 	};
 
-
 	class StandardCalendar extends React.Component {
-
 		constructor(props) {
-		  super(props);
-		  this.state = {
-			lastUid: uid,
-			selectedIntervals: lessons
-		  }
+			super(props);
+			this.state = {
+				lastUid: uid,
+				selectedIntervals: lessons,
+			};
 		}
-	  
+
 		handleEventRemove = (event) => {
-		  const {selectedIntervals} = this.state;
-		  const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid);
-		  if (index > -1) {
-			selectedIntervals.splice(index, 1);
-			this.setState({selectedIntervals});
-		  }
-	  
-		}
-	  
-		handleEventUpdate = (event) => {
-		  const {selectedIntervals} = this.state;
-		  const index = selectedIntervals.findIndex((interval) => interval.uid === event.uid);
-		  if (index > -1) {
-			selectedIntervals[index] = event;
-			this.setState({selectedIntervals});
-		  }
-		}
-	  
-		handleSelect = (newIntervals) => {
-		  const {lastUid, selectedIntervals} = this.state;
-		  const intervals = newIntervals.map( (interval, index) => {
-	  
-			return {
-			  ...interval,
-			  uid: lastUid + index
+			const { selectedIntervals } = this.state;
+			const index = selectedIntervals.findIndex(
+				(interval) => interval.uid === event.uid
+			);
+			if (index > -1) {
+				selectedIntervals.splice(index, 1);
+				this.setState({ selectedIntervals });
 			}
-		  });
-	  
-		  this.setState({
-			selectedIntervals: selectedIntervals.concat(intervals),
-			lastUid: lastUid + newIntervals.length
-		  })
-		}
-	  
+		};
+
+		handleEventUpdate = (event) => {
+			const { selectedIntervals } = this.state;
+			const index = selectedIntervals.findIndex(
+				(interval) => interval.uid === event.uid
+			);
+			if (index > -1) {
+				selectedIntervals[index] = event;
+				this.setState({ selectedIntervals });
+			}
+		};
+
+		handleSelect = (newIntervals) => {
+			const { lastUid, selectedIntervals } = this.state;
+			const intervals = newIntervals.map((interval, index) => {
+				return {
+					...interval,
+					uid: lastUid + index,
+				};
+			});
+
+			this.setState({
+				selectedIntervals: selectedIntervals.concat(intervals),
+				lastUid: lastUid + newIntervals.length,
+			});
+		};
+
 		render() {
-		  return <WeekCalendar
-		  numberOfDays={7}
-		  dayFormat={"DD/MM"}
-		  scaleUnit={60}
-		  scaleFormat={"HH"}
-		  modalComponent={ModalCalendar}
-		  selectedIntervals = {this.state.selectedIntervals}
-		  onIntervalSelect = {this.handleSelect}
-		  onIntervalUpdate = {this.handleEventUpdate}
-		  onIntervalRemove = {this.handleEventRemove}
-		  />
+			return (
+				<WeekCalendar
+					numberOfDays={7}
+					dayFormat={"DD/MM"}
+					scaleUnit={60}
+					scaleFormat={"HH"}
+					modalComponent={ModalCalendar}
+					selectedIntervals={this.state.selectedIntervals}
+					onIntervalSelect={this.handleSelect}
+					onIntervalUpdate={this.handleEventUpdate}
+					onIntervalRemove={this.handleEventRemove}
+				/>
+			);
 		}
 	}
 
 	class ModalCalendar extends React.Component {
-
-
 		handleSave = () => {
-			console.log(this)
+			console.log(this);
 			let { value } = this.input;
 			let { start, end } = this.props;
-			let formattedStart = start.format('YYYY-MM-DDTHH:mm:ss');
-			let formatedEnd = end.format('YYYY-MM-DDTHH:mm:ss');
+			let formattedStart = start.format("YYYY-MM-DDTHH:mm:ss");
+			let formatedEnd = end.format("YYYY-MM-DDTHH:mm:ss");
 			let postData = {
 				studentId: awsUser.userId,
 				teacherId: teacherId,
 				startDate: formattedStart,
 				endDate: formatedEnd,
-				subject: 'biology',
-				hourlyPrice: 70.00
+				subject: "biology",
+				hourlyPrice: 70.0,
 				//subject: teacher.subject[0],
 				//hourlyPrice: teacher.hourlyPrice,
-			}
+			};
 			console.log("post", postData);
 			api
-			.post("/lesson-request", postData)
-			.then(({ data }) => {
-				console.log(data);
-			})
-			.catch((error) => {
-				console.error("error", error);
-			});
-
-
+				.post("/lesson-request", postData)
+				.then(({ data }) => {
+					console.log(data);
+				})
+				.catch((error) => {
+					console.error("error", error);
+				});
 		};
 
 		render() {
@@ -191,7 +185,7 @@ export default function RequestTeacher() {
 			return (
 				<div className="customModal">
 					<div className="customModal__text">
-					{`Das ${start.format('HH:mm')} {as ${end.format('HH:mm')}`}
+						{`Das ${start.format("HH:mm")} {as ${end.format("HH:mm")}`}
 					</div>
 					<input
 						ref={(el) => {
@@ -214,31 +208,26 @@ export default function RequestTeacher() {
 				</div>
 			);
 		}
-
-		
-
-		
 	}
 
-    return(
-      <div>
-		Funciona
-		<div>
-        	{teacher? teacher.firstName : null} {teacher? teacher.role : null} {teacher? teacher.photoUrl: null}
-            <CalendarContainer>
-              <div>
-            <h3>Consulte os horários disponível para o professor</h3>          
-            </div>
-             <WeekCalendar
-             numberOfDays={7}
-             dayFormat={'DD/MM'}
-             scaleUnit={60}
-             scaleFormat={'HH'}
-             selectedIntervals={lessons}
-             modalComponent={ModalCalendar}
-             ></WeekCalendar>
-        </CalendarContainer>
-        </div>
-        </div>
-    )
+	return (
+		<>
+			{/* Funciona */}
+			<Container>
+				{/* {teacher ? teacher.firstName : null} {teacher ? teacher.role : null}{" "}
+				{teacher ? teacher.photoUrl : null} */}
+				<h3>Consulte os horários disponível para o professor</h3>
+				<CalendarContainer>
+					<WeekCalendar
+						numberOfDays={7}
+						dayFormat={"DD/MM"}
+						scaleUnit={60}
+						scaleFormat={"HH"}
+						selectedIntervals={lessons}
+						modalComponent={ModalCalendar}
+					></WeekCalendar>
+				</CalendarContainer>
+			</Container>
+		</>
+	);
 }
