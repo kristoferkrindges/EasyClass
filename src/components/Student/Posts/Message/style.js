@@ -17,14 +17,8 @@ export const IoCamera = styled(IoCameraOutline)`
 	}
 `;
 export const Container = styled.div`
-	/* display: flex; */
 	height: 100vh;
-	/* width: 100%; */
 	background: #4f4f4f;
-
-	/* @media (max-width: 768px) {
-		width: 50vh;
-	} */
 `;
 
 export const Context = styled.div`
@@ -44,7 +38,6 @@ export const Context = styled.div`
 export const Card = styled.div`
 	background-color: none;
 	border-radius: 1rem;
-	/* box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2); */
 	display: flex;
 	margin: 1.5rem;
 	overflow: hidden;
@@ -64,7 +57,6 @@ export const Card = styled.div`
 	}
 `;
 export const Left = styled.div`
-	/* background-color: red; */
 	color: var(--white-text);
 	padding: 2rem;
 	max-width: 10rem;
@@ -95,21 +87,10 @@ export const Right = styled.div`
 	align-items: start;
 	justify-content: space-between;
 	background-color: white;
-	/* display: none; */
 
 	p {
 		font-size: 0.9rem;
 		color: var(--black-text);
-	}
-
-	button {
-		/* border-radius: 3rem;
-		box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-		color: var(--white-text);
-		font-size: 1.2rem;
-		padding: 0.8rem 1.5rem;
-		letter-spacing: 0.1rem;
-		align-self: flex-end; */
 	}
 `;
 export const Div = styled.div``;

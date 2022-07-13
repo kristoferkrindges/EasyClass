@@ -6,7 +6,6 @@ import {
 	IoCameraOutline,
 	IoPencilOutline,
 } from "react-icons/io5";
-import { FiUpload } from "react-icons/fi";
 
 export const Container = styled.div`
 	border-radius: 1rem;
@@ -17,20 +16,7 @@ export const Container = styled.div`
 	box-shadow: red;
 	transition: 0.4s ease-in-out;
 	z-index: 1;
-	/* border: 8px solid purple; */
-	&:hover {
-		/* box-shadow: red;
-		opacity: 0.8; */
-	}
 
-	/* &::before {
-		content: "";
-		position: absolute;
-		height: 20%;
-		width: 26.5%;
-		background: #94449e;
-		border-radius: 20px 20px 0 0;
-	} */
 	@media screen and (min-width: 320px) and (max-width: 1080px) {
 		height: max-content;
 		width: 100%;
@@ -49,8 +35,6 @@ export const Card = styled.div`
 	flex-direction: column;
 	align-items: center;
 	padding: 30px;
-	position: relative;
-	/* z-index: 100; */
 `;
 export const NameProfession = styled.div`
 	display: flex;
@@ -115,7 +99,6 @@ export const Name = styled.div`
 	font-size: 1.5rem;
 	font-weight: 600;
 	color: white;
-	/* background-color: rgba(146, 166, 255, 0.3); */
 	border-radius: 10px;
 `;
 
@@ -123,22 +106,7 @@ export const Old = styled.span`
 	font-size: 1rem;
 	font-weight: 600;
 	color: white;
-	/* background-color: rgba(146, 166, 255, 0.3); */
-	/* border-radius: 10px; */
 	margin-bottom: 2%;
-`;
-
-export const FacebookIcon = styled(IoLogoFacebook)`
-	width: 20px;
-	height: 20px;
-`;
-export const TwitterIcon = styled(IoLogoTwitter)`
-	width: 20px;
-	height: 20px;
-`;
-export const WhatsappIcon = styled(IoLogoWhatsapp)`
-	width: 20px;
-	height: 20px;
 `;
 
 export const IoCamera = styled(IoCameraOutline)`
@@ -159,5 +127,3 @@ export const IoPencil = styled(IoPencilOutline)`
 		opacity: 0.5;
 	}
 `;
-
-// ====================================================

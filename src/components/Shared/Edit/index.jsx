@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import Bar from "../Bar";
 import {
 	Container,
@@ -14,20 +13,13 @@ import {
 	Name,
 	Buttons,
 	HireMe,
-	FacebookIcon,
-	TwitterIcon,
-	WhatsappIcon,
 	IoCamera,
-	Social,
 	InputImage,
 	LabelImage,
 	Title,
 	UserDetails,
 	InputBox,
-	ButtonResult,
 	Collection,
-	IoClose,
-	IoPencil,
 } from "./style";
 import { useUserContext } from "../../../context/userContext";
 import logo from "../../../assets/logo.jpeg";
@@ -106,11 +98,6 @@ function Edit(props) {
 									<IoCamera></IoCamera>
 								</LabelImage>
 							</Image>
-							<Social>
-								<FacebookIcon></FacebookIcon>
-								<TwitterIcon></TwitterIcon>
-								<WhatsappIcon></WhatsappIcon>
-							</Social>
 							<NameSubject>
 								<Name style={open ? { margin: "20% 0% 0% 0%" } : {}}>
 									{open ? "Estudante" : user.displayName}
@@ -164,9 +151,6 @@ function Edit(props) {
 											required
 										/>
 									</InputBox>
-									{/* <ButtonResult>
-										<input type="submit" value="Register" />
-									</ButtonResult> */}
 									<Buttons
 										onClick={HandlerOpen}
 										style={open ? { margin: "8% 0% 0% 0%" } : {}}

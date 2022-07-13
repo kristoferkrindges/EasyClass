@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import Bar from "../../Shared/Bar";
 import { Container, Context } from "./style";
 import { useUserContext } from "../../../context/userContext";

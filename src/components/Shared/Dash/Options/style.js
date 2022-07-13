@@ -32,12 +32,10 @@ export const BreadCrumbs = styled.ul`
 	}
 	li a .active {
 		color: white;
-		/* pointer-events: none; */
 	}
 
 	li .divider {
 		color: white;
-		/* pointer-events: none; */
 	}
 `;
 
@@ -84,18 +82,6 @@ export const Info = styled.div`
 	align-items: center;
 	flex-wrap: wrap;
 	background-color: #3b393b;
-	/* margin-top: 10px;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	grid-gap: 0px;
-	background-color: #3b393b;
-
-	a {
-		color: white;
-	}
-	a:hover {
-		opacity: 0.5;
-	} */
 `;
 
 export const Itter = styled.div`

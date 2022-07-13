@@ -30,7 +30,7 @@ export const CalendarContainer = style.div`
 
       .event {
         color: white;
-        background-color: white;
+        background-color: gray;
       }
 
       .customModal__button {

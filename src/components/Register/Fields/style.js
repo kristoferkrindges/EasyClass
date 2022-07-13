@@ -31,7 +31,6 @@ export const Container = styled.div`
 
 	.form h3 {
 		text-align: center;
-		margin-bottom: 2%;
 	}
 
 	.form p {
@@ -59,7 +58,7 @@ export const Container = styled.div`
 		border: 1px solid var(--select-border);
 		border-radius: 0.25em;
 		padding: 0.25em 0.5em;
-		margin-top: 5%;
+		margin-top: 2%;
 		font-size: 1.25rem;
 		cursor: pointer;
 		line-height: 1.1;

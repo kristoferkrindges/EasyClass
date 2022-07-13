@@ -17,10 +17,6 @@ export const Card = styled.div`
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
-	/* background-color: #3b393b;
-	justify-content: center;
-	margin-top: 10%;
-	width: 500px; */
 	position: fixed;
 	z-index: 500;
 	top: 0px;

@@ -58,7 +58,6 @@ export const UserContextProvider = ({ children }) => {
 	useEffect(() => {
 		if (user?.photoURL) {
 			setPhotoURL(user.photoURL);
-			console.log(user.photoURL);
 		}
 	}, [user]);
 
@@ -73,18 +72,17 @@ export const UserContextProvider = ({ children }) => {
 		return unsubscribe;
 	}, []);
 
-	const registerUser = (email, name, password) => {
+	const registerUser = (email, firstName, lastName, password, role) => {
 		///
+		let fullName = firstName + " " + lastName
 		setLoading(true);
 		createUserWithEmailAndPassword(auth, email, password)
-			.then(() => {
-				updateProfile(auth.currentUser, {
-					displayName: name,
-				});
-			})
 			.then((res) => {
-				console.log("registerUser", res.user.uid);
+				updateProfile(auth.currentUser, {
+					displayName: fullName,
+				});
 				setUser(res.user);
+				doRegisterAWS(res.user.uid, res.user.email, firstName, lastName, role)
 			})
 			.catch((err) => setError(err.message))
 			.finally(() => setLoading(false));
@@ -94,7 +92,6 @@ export const UserContextProvider = ({ children }) => {
 		setLoading(true);
 		signInWithEmailAndPassword(auth, email, password)
 			.then((res) => {
-				console.log("signInUser", res.user.uid);
 				setUser(res.user);
 				fetchUser(res.user.uid)
 			})
@@ -103,25 +100,43 @@ export const UserContextProvider = ({ children }) => {
 	};
 
 	function fetchUser(userRemoteId) {
-		// let payload = { userRemoteId: userRemoteId }
 		api
 		.post("/login", { "userRemoteId": userRemoteId })
-		.then(({res})  => {
-			console.log("aws user", res)
-			setAwsUser(res)
+		.then((res)  => {
+			setAwsUser(res.data)
 		})
 		.catch((error) => {
-			console.log(error)
+			setError(error.message)
 		})
 	}
 
+	function doRegisterAWS(userRemoteId, email, firstName, lastName, role) {
+		api
+			.post(
+				"/register",
+				{
+                    "firstName": firstName,
+                    "lastName": lastName,
+                    "email": email,
+                    "userRemoteId": userRemoteId
+                },
+				{ params: { registerRole: role } }
+			)
+			.then((response) => {
+				if (response) {
+					fetchUser(userRemoteId)
+				}
+			})
+			.catch((error) => {
+				setError(error.message)
+			})
+	}
+
 	const logoutUser = () => {
-		//
 		signOut(auth);
 	};
 
 	const forgotPassword = (email) => {
-		//
 		return sendPasswordResetEmail(auth, email);
 	};
 

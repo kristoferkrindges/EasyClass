@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import {
-	IoStar,
-	IoLogoFacebook,
-	IoLogoTwitter,
-	IoLogoWhatsapp,
-} from "react-icons/io5";
+import { IoStar } from "react-icons/io5";
 
 export const Container = styled.div`
 	background: #fff;
@@ -15,7 +10,6 @@ export const Container = styled.div`
 	width: 36vh;
 	cursor: pointer;
 	transition: opacity 0.5s ease-out;
-	/* border: 1px solid black; */
 
 	&::before {
 		content: "";
@@ -24,12 +18,6 @@ export const Container = styled.div`
 		width: 100%;
 		background: #94449e;
 		border-radius: 20px 20px 0 0;
-	}
-
-	&:hover {
-		/* width: 38vh;
-        height: 44vh; */
-		/* opacity: 0.5; */
 	}
 `;
 export const Image = styled.div`
@@ -47,8 +35,6 @@ export const Logo = styled.img`
 	border: 3px solid #fff;
 
 	&:hover {
-		/* width: 38vh;
-        height: 44vh; */
 		opacity: 0.5;
 	}
 `;
@@ -92,7 +78,7 @@ export const Name = styled.span`
 	font-weight: 600;
 `;
 export const Subject = styled.span`
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	font-weight: 500;
 `;
 export const SubjectUl = styled.ul``;
@@ -153,16 +139,4 @@ export const StarIcon2 = styled(IoStar)`
 		color: #94449e;
 		opacity: 0.9;
 	}
-`;
-export const FacebookIcon = styled(IoLogoFacebook)`
-	width: 20px;
-	height: 20px;
-`;
-export const TwitterIcon = styled(IoLogoTwitter)`
-	width: 20px;
-	height: 20px;
-`;
-export const WhatsappIcon = styled(IoLogoWhatsapp)`
-	width: 20px;
-	height: 20px;
 `;
